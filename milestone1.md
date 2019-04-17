@@ -1,9 +1,10 @@
-### TeamName
-# Andrew Li
-# Daniel Dinata
-# Melody Xue
+# TeamName
+### Team:
+- Andrew Li
+- Daniel Dinata
+- Melody Xue
 
-# Pitch 
+### Pitch 
 
 
 Storyboard 1:
