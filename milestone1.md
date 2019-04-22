@@ -1,9 +1,9 @@
 # TeamName
 ### Team:
 - Andrew Li
-- Daniel Dinata
+- David Dinata
 - Melody Xue
-- zhizhu Wang
+- Zhizhu Wang
 
 ### Pitch 
 
