@@ -3,6 +3,7 @@
 - Andrew Li
 - Daniel Dinata
 - Melody Xue
+- zhizhu Wang
 
 ### Pitch 
 
