@@ -5,7 +5,7 @@
 - Melody Xue
 - Zhizhu Wang
 
-### Pitch 
+### Project Proposal 
 After discussion, we decided to design an application to assist people with color blindness. Help them style their outfits by helping them correctly identify colors and recommending aesthetically pleasing color combination from our database that match well with the color of the clothing. Our target user population is people with (various degrees of) color blindness.  None of our team members are color blind, but we recognize there are people around us who are color blind and struggle to pick out outfits on a daily basis.  Some of them would have to ask their friends and parents to assist them in matching their outfit before going out. 
 
 We were inspired by this story and came up with the idea of creating an outfit assistance specifically targeted at color blind users.  This app would help save our target users the trouble of color-coordinating outfits.  Since none of our team members are color blind, our app idea fits the project theme of designing for people very different from ourselves. 
