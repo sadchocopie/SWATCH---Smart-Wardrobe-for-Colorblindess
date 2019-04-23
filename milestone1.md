@@ -23,13 +23,13 @@ This API will return colors found in an image. The problem we see is that  it wi
 
 <br/>
 Storyboard 1:
-![Storyboard 1](storyboard1.jpg)
+![Storyboard 1](./milestone1-Images/storyboard1.jpg)
 
 Storyboard 2:
-![Storyboard 2](storyboard2.jpg)
+![Storyboard 2](./milestone1-Images/storyboard2.jpg)
 
 Paper prototype 1:
-![Paper prototype 1](Paper1.JPEG)
+![Paper prototype 1](./milestone1-Images/Paper1.JPEG)
 
 Paper prototype 2:
-![Paper prototype 2](Paper2.JPEG)
+![Paper prototype 2](./milestone1-Images/Paper2.JPEG)
