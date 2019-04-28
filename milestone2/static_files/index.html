@@ -10,104 +10,20 @@
 
   <script src="./js/jquery-3.3.1.min.js"></script>
   <script src="./js/image.js"></script>
-  <script type="text/javascript">
-
-    // jQuery convention for running when the document has been fully loaded:
-    $(document).ready(() => {
-      $('#readButton').click(() => {
-        const requestURL = 'colorCombo/' + $('#nameBox').val();
-        console.log('making ajax request to:', requestURL);
-
-        // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
-        // Using the core $.ajax() method since it's the most flexible.
-        // ($.get() and $.getJSON() are nicer convenience functions)
-        $.ajax({
-          // all URLs are relative to http://localhost:3000/
-          url: requestURL,
-          type: 'GET',
-          dataType: 'json', // this URL returns data in JSON format
-          success: (data) => {
-            console.log('You received some data!', data);
-
-            if (data) {
-              $('#status').html('Successfully fetched data at URL: ' + requestURL);
-              $('#jobDiv').html('that color is ' + $('#nameBox').val());
-              $('#petImage').attr('src', "./images/" + data.pic).attr('width', '300px');
-              console.log('You received some data!', data.colors);
-              $('#color1').css('background-color', data.colors[0]);
-              $('#color1').html(data.colors[0]);
-              $('#color2').css('background-color', data.colors[1]);
-              $('#color2').html(data.colors[1]);
-              $('#color3').css('background-color', data.colors[2]);
-              $('#color3').html(data.colors[2]);
-            } else {
-              $('#status').html('Error: could not find color at URL: ' + requestURL);
-              // clear the display
-              $('#jobDiv').html('');
-              $('#petImage').attr('src', '').attr('width', '0px');
-            }
-          },
-        });
-      });
-
-      $('#allUsersButton').click(() => {
-        $.ajax({
-          url: 'colorCombo',
-          type: 'GET',
-          dataType: 'json',
-          success: (data) => {
-            console.log('You received some data!', data);
-            $('#status').html('All colors: ' + data);
-          },
-        });
-      });
-
-      // define a generic Ajax error handler:
-      // http://api.jquery.com/ajaxerror/
-      $(document).ajaxError(() => {
-        $('#status').html('Error: unknown ajaxError!');
-      });
-    });
-  </script>
 
 </head>
 
 <body>
   <div class="container">
-
-    <h1 style="text-align: center">Welcome to ColorBlind App!</h1>
+    <h1 style="text-align: center">more clothes no problem</h1>
     <br>
-    <div class="container">
-      <h3>Upload image of clothing</h3>
-      <div class="row">
-        <div class="col-sm-4 imgUp">
-          <div class="imagePreview"></div>
-          <label class="btn btn-primary">
-            Upload<input type="file" class="uploadFile img" value="Upload Photo"
-              style="width: 0px;height: 0px;overflow: hidden;">
-          </label>
-        </div><!-- col-2 -->
-        <!-- <i class="fa fa-plus imgAdd"></i> -->
-      </div><!-- row -->
-    </div><!-- container -->
-
-
-
-    Color: <input id="nameBox" type="text" size="20" />
-    <button id="readButton">Get color specific data</button>
-    <button id="allUsersButton">Get All Color data </button>
-
-    <div id="jobDiv"></div>
-    <img id="petImage"></img>
-
-    <hr />
-
-    <div id="status"></div>
-    <hr />
     <div class="row">
-      <div id="color1" style="height:300px;width:300px"></div>
-      <div id="color2" style="height:300px;width:300px"></div>
-      <div id="color3" style="height:300px;width:300px"></div>
+      <div class="col-md-6" style="text-align: right">
+        <a href="./library.html" class="btn btn-info" role="button"> View Clothes Library</a>
+      </div>
+      <div class="col-md-6">
+        <a href="./scan.html" class="btn btn-info" role="button"> Scan Clothes </a>
+      </div>
     </div>
   </div>
 </body>
