@@ -9,6 +9,7 @@ const app = new Vue({
     methods: {
         gotPic(event) {
             this.imageSrc = URL.createObjectURL(event.target.files[0]);
+            console.log("it works!");
         },
         getSwatches() {
             console.log("test")
