@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta charset="utf-8">
+        <title>Color your wardrobe</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- FONT
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+        <!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
+        <!--        <link href="./css/main.css" rel="stylesheet">-->
+        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
+        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
+        <!--        <link  rel="stylesheet" href="./css/main.css">-->
+        <link rel="stylesheet" href="./css/custom.css">
+
+        <!-- Scripts
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <script src="./js/jquery-3.3.1.min.js"></script>
+        <!--        <script src="./js/image.js"></script> -->
+
+
+<script type="text/javascript">
+
+// jQuery convention for running when the document has been fully loaded:
+$(document).ready(() => {
+$('#readButton').click(() => {
+const requestURL = 'colorCombo/' + $('#nameBox').val();
+console.log('making ajax request to:', requestURL);
+
+// From: http://learn.jquery.com/ajax/jquery-ajax-methods/
+// Using the core $.ajax() method since it's the most flexible.
+// ($.get() and $.getJSON() are nicer convenience functions)
+$.ajax({
+// all URLs are relative to http://localhost:3000/
+url: requestURL,
+type: 'GET',
+dataType: 'json', // this URL returns data in JSON format
+success: (data) => {
+console.log('You received some data!', data);
+
+if (data) {
+$('#status').html('Successfully fetched data at URL: ' + requestURL);
+$('#jobDiv').html('that color is ' + $('#nameBox').val());
+$('#petImage').attr('src', "./images/" + data.pic).attr('width', '300px');
+console.log('You received some data!', data.colors);
+$('#color1').css('background-color', data.colors[0]);
+$('#color1').html(data.colors[0]);
+$('#color2').css('background-color', data.colors[1]);
+$('#color2').html(data.colors[1]);
+$('#color3').css('background-color', data.colors[2]);
+$('#color3').html(data.colors[2]);
+} else {
+$('#status').html('Error: could not find color at URL: ' + requestURL);
+// clear the display
+$('#jobDiv').html('');
+$('#petImage').attr('src', '').attr('width', '0px');
+}
+},
+});
+});
+
+$('#allUsersButton').click(() => {
+$.ajax({
+url: 'colorCombo',
+type: 'GET',
+dataType: 'json',
+success: (data) => {
+console.log('You received some data!', data);
+$('#status').html('All colors: ' + data);
+},
+});
+});
+
+// define a generic Ajax error handler:
+// http://api.jquery.com/ajaxerror/
+$(document).ajaxError(() => {
+$('#status').html('Error: unknown ajaxError!');
+});
+});
+</script>
+
+
+
+
+        <!-- Favicon
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
+    </head>
+
+    <body>
+
+        <!-- Primary Page Layout
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <div class="top-nav">
+            <div class="container">
+                <div class="userProfile u-pull-right">
+                    <a href="." class="UserProfile">User</a>
+                    <img class="user "id="profilePic" src=".">
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="section upload">
+            <div class="container">
+             <!--    <div class="row">
+                    <div id="app" class="imgUpload" v-cloak> -->
+
+
+                        <!-- Vue Conditional Rendering -->
+                        <!-- <div v-if="imageSrc">
+                            <img id="yourImage" :src="imageSrc" @load="getSwatches" ref="theImage">
+                        </div>
+                        <div v-else>
+                            <div class="u-full-width imagePreview"></div>
+                        </div>
+
+
+                        <label class="u-full-width button button-primary inputWrap"> 
+                            <p>Upload File</p>
+                            <input type="file" capture="camera" accept="image/*" @change="gotPic" style="visibility: hidden">
+                        </label> -->
+
+                        <!-- Show swathces of TOP THREE prominent colors -->
+                 <!--        <div id="swatches">
+                            <div v-for="swatch in swatches" class="swatch" :style="swatch.style"></div>
+                        </div>
+                    </div>
+
+                </div> -->
+
+                   </div>
+            </div>
+        </div>
+              <div class="match colors">
+                <div class="container" style="vertical-align: middle;" align=center>
+                <div class="row">      
+                    <h3 style="margin: auto" >It'a match!</h3></div>
+                    <br>
+                <div class="row">
+                       
+                        <img src="./images/shirt.jpg" style="width:40%; height:40%;margin-left: auto; margin-right: auto;  border: 2px solid powderblue" >
+                     
+                        <img src="./images/pants.jpg" style="width:40%; height:40%;margin-left: auto; margin-right: auto; ;  border: 2px solid powderblue">
+                </div>
+                
+                <div class="row"> 
+                    <h5 style="margin: auto" >Color: Mint Green</h5>
+                    <h5 style="margin: auto" >Color: Dark Grey</h5>
+                </div>
+                <br>
+
+                <div class="row">
+                    <!-- <div class =six columns> -->
+                    <span class=smallerswatch style="margin-left: auto; margin-right: auto">
+                       <span class=swatchsmall style="background-color:#00e2d3"></span>
+                       <span class=swatchsmall style="background-color:#37a6a0"></span>
+                       <span class=swatchsmall style="background-color:#90cdd0"></span>
+                       <span class=swatchsmall style="background-color:#fffea8"></span>
+                    </span>
+                    <hr>
+                   <!--  <div class =six columns> -->
+                    <span class=smallerswatch style="margin-left: auto; margin-right: auto">
+                          <span class=swatchsmall style="background-color:#FBF6F3"></span>
+                       <span class=swatchsmall style="background-color:#feb06a"></span>
+                       <span class=swatchsmall style="background-color:#36d6e7"></span>
+                       <span class=swatchsmall style="background-color:#5d6c89"></span>
+                      
+                    </span>
+                </div>
+
+               <a href="library.html"><button>Done!</button></a>
+
+            </div>
+        </div>
+
+             
+
+       
+
+<!-- Color: <input id="nameBox" type="text" size="20" />
+<button id="readButton">Get color specific data</button>
+<button id="allUsersButton">Get All Color data </button>
+
+<div id="jobDiv"></div>
+<img id="petImage">
+
+<hr />
+
+<div id="status"></div>
+<hr />
+<div class="row">
+<div id="color1" style="height:300px;width:300px"></div>
+<div id="color2" style="height:300px;width:300px"></div>
+<div id="color3" style="height:300px;width:300px"></div>
+</div>
+
+
+
+        <div class="section footer" style="text-align: center;">
+            <div class="container">
+            </div>
+        </div> -->
+
+        <!-- End Document
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+        <!-- Scripts
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <script type="text/javascript" charset="utf-8" src="./js/color-thief.js"></script>
+        <script src="./js/vue.min.js"></script>
+        <script src="./js/test.js"></script>
+
+    </body>
+
+</html>
