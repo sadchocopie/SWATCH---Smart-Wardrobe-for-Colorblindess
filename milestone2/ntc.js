@@ -1684,3 +1684,5 @@ var ntc = {
 }
 
 ntc.init();
+
+module.exports = ntc;
