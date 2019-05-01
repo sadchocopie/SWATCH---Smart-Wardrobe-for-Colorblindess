@@ -23,8 +23,41 @@
         <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
         <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
-        <!--        <link  rel="stylesheet" href="./css/main.css">-->
         <link rel="stylesheet" href="./css/custom.css">
+        <style>
+            .itemBox {
+                height: 100px;
+                width: 20%;
+                cursor: pointer !important;
+                margin-right: 2.5%;
+                margin-left: 2.5%;
+                border-radius: 3px;
+                border: 1px solid lightgray;
+                padding: 20px;
+                box-sizing: border-box;
+                float: left;
+                margin-bottom: 20px;
+            }
+
+            .imgBox {
+                height: 100px;
+                width: 20%;
+
+                border: 1px solid lightgray;
+                padding: 20px;
+                box-sizing: border-box;
+                margin-bottom: 20px;
+            }
+
+            .itemBox:hover {
+                border-color: #000000;
+            }
+
+            .itemBox.selected {
+                border-color: orange;
+            }
+
+        </style>
 
         <!-- Scripts
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -36,7 +69,7 @@
 
     </head>
     <body>
-        
+
         <!-- User Profile  -->
         <div class="top-nav">
             <div class="container">
@@ -47,26 +80,53 @@
             </div>
         </div>
 
+        <div class="section libraryView" >
+            <div class="container">
+                <div class="row">
+                    <!-- place library -->
 
-        <div class="container">
-            <div class="row">
-                <!-- place library -->
+                    <div id="app">
+                        <p>{{ message }}</p>
+                        <obj 
+                             class="itemBox"
+                             v-for="object in objectTypes"
+                             @click.native="selectObjectType(object)"     
+                             :key="object.id"
+                             :item="object.type"
+                             :class="object.selected ? 'selected' : ''"
+                             >
+                        </obj>
+
+
+
+                    </div>
+
+<!--                    <img class="imgApp imgBox"  v-for="object in imageSources" v-bind:src="imgSrc"/>-->
+
+
+
+                </div>
             </div>
-
-
-
-
-            <!--
-<div class="row">
-<div class="col-md-6" style="text-align: right">
-<a href="./scan.html" class="btn btn-info" role="button"> Camera</a>
-</div>
-<div class="col-md-6">
-<a href="./page4.html" class="btn btn-info" role="button">Check </a>
-</div>
-</div>
--->
         </div>
+
+        <div class="section bottom-nav" style="text-align: center;">
+            <div class="container">
+                <div class="row">
+                    <a href="./upload.html" class="button" style="background-color: #ffffff;margin:auto"> Go Back</a>
+
+                    <a href="./match.html" class="button" style="background-color: #ffffff;margin:auto"> Check </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="section footer" style="text-align: center;">
+            <div class="container">
+            </div>
+        </div>
+
+        <script src="./js/vue.min.js"></script>
+        <script src="./js/loadLibrary.js"></script>
     </body>
 
 </html>

@@ -44,16 +44,24 @@
 
 .colorCombo {
     margin:auto 0;
-/*    background-color: aqua;*/
+    /*    background-color: aqua;*/
 }
 
 .colorCombo .row {
-    margin: auto 0;
+    margin: auto;
 }
 
 .colorCombo .inputRow {
-/*    background-color: antiquewhite;*/
-    margin: auto 0;
+    /*    background-color: antiquewhite;*/
+    margin: auto;
+}
+
+.libraryView {
+    margin: auto;
+}
+
+.libraryView #app {
+    margin: auto;
 }
 
 .imagePreview {
@@ -71,7 +79,7 @@
 #yourImage {
     display:inline-block;
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
     background-position: center center;
     background:url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
     background-color:#fff;
@@ -94,6 +102,11 @@
 .imgUpload {
     margin-bottom:15px;
     margin: auto;
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    max-height: 300px;
+    margin-bottom: 50px;
 }
 
 .del {
@@ -123,21 +136,26 @@
 }
 
 .swatch {
-  height: 50px;
-  width: 50px;
-  border-style: solid;
-  border-width: thin;
-  float: left;
-  margin-right: 3px;
-  display: block;
+    height: 50px;
+    width: 50px;
+    border-style: solid;
+    border-width: thin;
+    float: left;
+    margin-right: 3px;
+    display: block;
 }
 
 .swatchsmall {
-  height: 40px;
-  width: 40px;
-  /*border-style: solid;*/
-  border-width: thin;
-  float: left;
-  margin-right: 3px;
-  display: block;
+    height: 40px;
+    width: 40px;
+    /*border-style: solid;*/
+    border-width: thin;
+    float: left;
+    margin-right: 3px;
+    display: block;
+}
+
+
+.bottom-nav a {
+    text-decoration: none !important;
 }
