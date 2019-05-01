@@ -1,3 +1,8 @@
+const http = require("http");
+const path = require("path");
+const fs = require("fs");
+
+
 const express = require('express');
 const app = express();
 // Learn more: http://expressjs.com/en/starter/static-files.html
@@ -6,6 +11,22 @@ const app = express();
 // Express - basic routing: http://expressjs.com/en/starter/basic-routing.html
 // Express - routing: https://expressjs.com/en/guide/routing.html
 app.use(express.static('static_files'));
+
+
+const multer = require("multer");
+
+const handleError = (err, res) => {
+  res
+    .status(500)
+    .contentType("text/plain")
+    .end("Oops! Something went wrong!");
+};
+
+const upload = multer({
+  dest: "/tmp/"
+  // you might also want to set some limits: https://github.com/expressjs/multer#limits
+});
+
 
 // simulates a database in memory, to make this example simple and
 // self-contained (so that you don't need to set up a separate database).
@@ -22,6 +43,19 @@ const colorDatabase = {
 //
 // To test, open this URL in your browser:
 //   http://localhost:3000/users
+
+
+app.get('/nearestColor/:colorHex', (req, res) => {
+  const colorToName = req.params.colorHex; 
+  const ntc = require("ntc.js").ntc;
+
+  const match = ntc.name(colorToName);
+
+  const name = match[1];
+  res.send(name);
+
+});
+
 app.get('/colorCombo', (req, res) => {
   const allColorCombo = Object.keys(colorDatabase); // returns a list of object keys
   console.log('allColorCombo is:', allColorCombo);
@@ -45,6 +79,35 @@ app.get('/colorCombo/:color', (req, res) => {
     res.send({}); // failed, so return an empty object instead of undefined
   }
 });
+
+app.post(
+  "/uploadimg",
+  upload.single("file" /* name attribute of <file> element in your form */),
+  (req, res) => {
+    const tempPath = req.file.path;
+    const targetPath = path.join(__dirname, "./uploads/image.png");
+
+    if (path.extname(req.file.originalname).toLowerCase() === ".jpg") {
+      fs.rename(tempPath, targetPath, err => {
+        if (err) return handleError(err, res);
+
+        res
+          .status(200)
+          .contentType("text/plain")
+          .end("File uploaded!");
+      });
+    } else {
+      fs.unlink(tempPath, err => {
+        if (err) return handleError(err, res);
+
+        res
+          .status(403)
+          .contentType("text/plain")
+          .end("Only .png files are allowed!");
+      });
+    }
+  }
+);
 
 // start the server at URL: http://localhost:3000/
 app.listen(3000, () => {
