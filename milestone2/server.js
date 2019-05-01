@@ -48,17 +48,23 @@ const colorDatabase = {
 
 
 app.get('/nearestColor/:colorHex', (req, res) => {
-  const colorToName = '#' + req.params.colorHex; 
+  const colorToName = '#' + req.params.colorHex;
   const ntc = require("./ntc.js");
   const match = ntc.name(colorToName);
   const name = match[1];
-  res.send(name);
+  const hex = match[0];
+  res.send(
+    {
+      'name': name,
+      'hex': hex,
+    }
+  );
 
 });
 
 
 app.get('/nearestColor/:colorHex', (req, res) => {
-  const colorToName = req.params.colorHex; 
+  const colorToName = req.params.colorHex;
   const ntc = require("ntc.js").ntc;
 
   const match = ntc.name(colorToName);
