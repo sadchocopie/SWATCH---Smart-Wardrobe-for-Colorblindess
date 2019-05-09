@@ -22,10 +22,10 @@ Another API that might be useful is the color generator API by Canva.
 This API will return colors found in an image. The problem we see is that  it will also detect colors of the background. We might have to do this manually by having users identify individual articles of clothing but this is one possible method.<br/>
 <br/>
 
-Storyboard 1: ![](./milestone1-Images/storyboard1.jpg)
+Storyboard 1: ![](./milestone-Images/storyboard1.jpg)
 
-Storyboard 2: ![](./milestone1-Images/storyboard2.jpg)
+Storyboard 2: ![](./milestone-Images/storyboard2.jpg)
 
-Paper prototype 1: ![Paper prototype 1](./milestone1-Images/Paper1.JPEG)
+Paper prototype 1: ![Paper prototype 1](./milestone-Images/Paper1.JPEG)
 
-Paper prototype 2: ![Paper prototype 2](./milestone1-Images/Paper2.JPEG)
+Paper prototype 2: ![Paper prototype 2](./milestone-Images/Paper2.JPEG)
