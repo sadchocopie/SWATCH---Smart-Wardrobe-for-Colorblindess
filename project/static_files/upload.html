@@ -173,6 +173,7 @@
 
                                     <a href="./library.html" class="button"
                                         style="background-color: #ffffff;margin:auto"> View Library </a>
+                                    <input id="typeBox" type="text" size="20" />
                                     <button type="button" class="btn button-primary" id="uploadButton"
                                         onclick="uploadFile()">
                                         Testing upload submit
@@ -270,7 +271,8 @@
                 let updates = {};
                 let postData = {
                     url: downloadURL,
-                    caption: "testimages"
+                    type: $('#typeBox').val(),
+                    caption: fileName
                     // user: user.uid
                 }
                 updates['/Posts/' + postKey] = postData;
