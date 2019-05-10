@@ -1,3 +1,4 @@
+let selectedFile = "";
 const app = new Vue({
     el: '#app',
     data() {
@@ -10,6 +11,7 @@ const app = new Vue({
         gotPic(event) {
             this.imageSrc = URL.createObjectURL(event.target.files[0]);
             console.log("it works!");
+            selectedFile = event.target.files[0];
         },
         getSwatches() {
             let count = 1;
