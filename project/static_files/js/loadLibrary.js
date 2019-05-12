@@ -16,7 +16,7 @@ database.ref('Posts/').on('value', (snapshot) => {
         Object.keys(allClothes).forEach((key) => {
             clothesList.push(
                 {
-                    //type: allClothes[key].type,
+                    type: allClothes[key].type,
                     selected: false,
                     imgSrc: allClothes[key].url,
                     id: key
