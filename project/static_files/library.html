@@ -16,7 +16,7 @@
         // Initialize Firebase
 
         firebase.initializeApp(firebaseConfig);
-        console.log("configed ")
+        console.log("configed ");
     </script>
     <!-- Basic Page Needs
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -107,8 +107,10 @@
         <div class="container">
             <div class="row">
                 <a href="./upload.html" class="button" style="background-color: #ffffff;margin:auto"> Go Back</a>
-
                 <a href="./match.html" class="button" style="background-color: #ffffff;margin:auto"> Check </a>
+                <button type="button" class="btn button-primary" id="deleteButton" onclick="deleteFile()">
+                    Delete Selected Images
+                </button>
             </div>
         </div>
     </div>
