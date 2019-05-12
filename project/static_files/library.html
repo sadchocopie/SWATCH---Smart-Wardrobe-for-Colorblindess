@@ -94,7 +94,7 @@
                     <p>{{ message }}</p>
 
                     <obj v-for="object in objectTypes" @click.native="selectObjectType(object)" :key="object.id"
-                        :item="object.type" :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                         :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
                     </obj>
                 </div>
             </div>
