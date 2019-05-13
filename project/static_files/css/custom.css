@@ -183,7 +183,11 @@
   padding: 0px 10px;
 }
 
-
+.bottom-nav {
+    width: 100%;
+    max-width: 320px;
+    margin: auto;
+}
 
 .bottom-nav a {
     text-decoration: none !important;
