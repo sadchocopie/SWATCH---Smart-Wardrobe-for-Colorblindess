@@ -139,6 +139,11 @@
                 <div class="row">
                     <div class="section upload one-half column">
                         <div class="container">
+
+                            <div class="row" style="margin-top: 10px;">
+                                <a href="./index.html" class="button" style="background-color: #ffffff;margin:auto">
+                                    Go Back</a>
+                            </div>
                             <div class="row">
                                 <h5 style="margin: auto">Upload image of clothing</h5>
                             </div>
@@ -177,16 +182,13 @@
                                             <option value="Outerwear">Outerwear</option>
                                         </select>
 
-<!--
-                                        <input id="typeBox" type="text" size="20" />
+                                        <!--
+<input id="typeBox" type="text" size="20" />
 -->
                                         <button type="button" class="button button-primary" id="uploadButton"
                                                 onclick="uploadFile()">
                                             Add to Wardrobe
                                         </button>
-
-                                        <a href="./index.html" class="button" style="background-color: #ffffff;margin:auto">
-                                            Go Back</a>
 
                                         <a href="./library.html" class="button"
                                            style="background-color: #ffffff;margin:auto"> View Library </a>
@@ -242,15 +244,15 @@
         <script src="./js/vue.min.js"></script>
         <script src="./js/test.js"></script>
         <script>
-            
-            
-             $("#readFileButton").click(function() {
-                 
-                 $("#uploadButton").html("Add to Wardrobe")
-                 
-             });
-            
-            
+
+
+            $("#readFileButton").click(function() {
+
+                $("#uploadButton").html("Add to Wardrobe")
+
+            });
+
+
             // Create a root reference
             function uploadFile() {
                 let storageRef = firebase.storage().ref();
@@ -295,18 +297,18 @@
                         caption: fileName
                         // user: user.uid
                     }
-                    
+
                     console.log("the option rn is: " + $('#userSelect').val());
-                    
+
                     updates['/Posts/' + postKey] = postData;
                     firebase.database().ref().update(updates);
                     console.log("uploaded image");
-                    
-                    
+
+
                     $("#uploadButton").html("Upload Complete ✓");
-                
-                    
-                    
+
+
+
                     // uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                     //     console.log('File available at', downloadURL);
                     // });
