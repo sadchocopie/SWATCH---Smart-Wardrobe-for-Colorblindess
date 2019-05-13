@@ -154,7 +154,7 @@
 
                                     <label class="u-full-width button button-primary inputWrap" style="margin-top:20px;">
                                         <p>Upload File</p>
-                                        <input type="file" capture="camera" accept="image/*" @change="gotPic"
+                                        <input id="readFileButton" type="file" capture="camera" accept="image/*" @change="gotPic"
                                                style="visibility: hidden">
                                     </label>
 
@@ -190,11 +190,9 @@
 
                                         <a href="./library.html" class="button"
                                            style="background-color: #ffffff;margin:auto"> View Library </a>
-
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -244,6 +242,15 @@
         <script src="./js/vue.min.js"></script>
         <script src="./js/test.js"></script>
         <script>
+            
+            
+             $("#readFileButton").click(function() {
+                 
+                 $("#uploadButton").html("Add to Wardrobe")
+                 
+             });
+            
+            
             // Create a root reference
             function uploadFile() {
                 let storageRef = firebase.storage().ref();
@@ -284,7 +291,7 @@
                     let updates = {};
                     let postData = {
                         url: downloadURL,
-                        type:  $('#my-select').on('change', function(){$('#userSelect').val()}),
+                        type: $('#userSelect').val(),
                         caption: fileName
                         // user: user.uid
                     }
@@ -294,6 +301,12 @@
                     updates['/Posts/' + postKey] = postData;
                     firebase.database().ref().update(updates);
                     console.log("uploaded image");
+                    
+                    
+                    $("#uploadButton").html("Upload Complete ✓");
+                
+                    
+                    
                     // uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                     //     console.log('File available at', downloadURL);
                     // });
