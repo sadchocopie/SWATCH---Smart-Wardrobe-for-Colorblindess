@@ -46,6 +46,53 @@ const colorDatabase = {
 
 
 
+app.get('/recommendColors', (req, res) => {
+  console.log(req.query.array);
+
+  let starterColors = [];
+  for (let i = 0; i < req.query.array.length; i++) {
+    if (req.query.array[i]) { 
+      let hexs = req.query.array[i].match(/..?/g);
+      console.log(hexs);
+      //split hex values into rgb FFFFFF => ['FF', 'FF', 'FF']
+      let rgb = hexs.map((val) => {return parseInt("0x"+ val)});
+      console.log(rgb);
+      //parseInt("0xFF")
+      starterColors.push(rgb);
+    }
+  }
+  for (let i = 0; i < 5-req.query.array.length; i++) {
+    starterColors.push("N");
+  }
+
+
+  var url = "http://colormind.io/api/";
+  var data = {
+    model : "default",
+    input : starterColors
+  }
+
+  console.log(data);
+
+
+  var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
+  var http = new XMLHttpRequest();
+
+  http.open("POST", url, true);
+  http.send(JSON.stringify(data));
+
+  http.onreadystatechange = function() {
+    if(http.readyState == 4 && http.status == 200) {
+      var palette = JSON.parse(http.responseText).result;
+      console.log(palette);
+      res.send("recommended colors" + palette);
+
+
+    }
+  }
+});
+
 
 app.get('/nearestColor/:colorHex', (req, res) => {
   const colorToName = '#' + req.params.colorHex;
