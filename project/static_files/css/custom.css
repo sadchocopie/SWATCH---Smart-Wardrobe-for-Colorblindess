@@ -78,8 +78,9 @@
 
 #yourImage {
     display:inline-block;
-    width: 100%;
-    max-width: 400px;
+    width: auto;
+    height: auto;
+    max-height: 250px;
     background-position: center center;
     background:url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
     background-color:#fff;
@@ -155,6 +156,7 @@
     display: block;
 }
 
+<<<<<<< HEAD
 .sidenav {
   height: 100%;
   width: 100%;
@@ -182,6 +184,13 @@
   padding: 0px 10px;
 }
 
+=======
+.bottom-nav {
+    width: 100%;
+    max-width: 320px;
+    margin: auto;
+}
+>>>>>>> ed6bceed46386678995ac94494e9a8cf15ed87d5
 
 .bottom-nav a {
     text-decoration: none !important;

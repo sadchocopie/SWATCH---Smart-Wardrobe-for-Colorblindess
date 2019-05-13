@@ -1,289 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
 
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js"></script> -->
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyB_DRCJ9aj0qMJ_4UHIh2JMjXgohGdmhEY",
-            authDomain: "cogs121-color-blind.firebaseapp.com",
-            databaseURL: "https://cogs121-color-blind.firebaseio.com",
-            projectId: "cogs121-color-blind",
-            storageBucket: "cogs121-color-blind.appspot.com",
-            messagingSenderId: "29094890858",
-            appId: "1:29094890858:web:459b485133b61038"
-        };
-        // Initialize Firebase
-
-        firebase.initializeApp(firebaseConfig);
-        console.log("configed ")
-    </script>
-
-    <!-- Basic Page Needs
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta charset="utf-8">
-    <title>Color your wardrobe</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Mobile Specific Metas
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- FONT
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
-
-    <!-- CSS
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
-    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
-    <link rel="stylesheet" href="./css/custom.css">
-
-    <!-- Scripts
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script src="./js/jquery-3.3.1.min.js"></script>
-    <!--        <script src="./js/image.js"></script> -->
-
-    <script type="text/javascript">
-
-        // jQuery convention for running when the document has been fully loaded:
-        $(document).ready(() => {
-            $('#readButton').click(() => {
-                const requestURL = 'colorCombo/' + $('#nameBox').val();
-                console.log('making ajax request to:', requestURL);
-
-                // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
-                // Using the core $.ajax() method since it's the most flexible.
-                // ($.get() and $.getJSON() are nicer convenience functions)
-                $.ajax({
-                    // all URLs are relative to http://localhost:3000/
-                    url: requestURL,
-                    type: 'GET',
-                    dataType: 'text', // this URL returns data in JSON format
-                    success: (data) => {
-                        console.log('You received some data!', data);
-
-                        if (data) {
-                            $('#status').html('Successfully fetched data at URL: ' + requestURL);
-                            $('#jobDiv').html('that color is ' + $('#nameBox').val());
-                            $('#petImage').attr('src', "./images/" + data.pic).attr('width', '300px');
-                            console.log('You received some data!', data.colors);
-                            $('#color1').css('background-color', data.colors[0]);
-                            $('#color1').html(data.colors[0]);
-                            $('#color2').css('background-color', data.colors[1]);
-                            $('#color2').html(data.colors[1]);
-                            $('#color3').css('background-color', data.colors[2]);
-                            $('#color3').html(data.colors[2]);
-                        } else {
-                            $('#status').html('Error: could not find color at URL: ' + requestURL);
-                            // clear the display
-                            $('#jobDiv').html('');
-                            $('#petImage').attr('src', '').attr('width', '0px');
-                        }
-                    },
-                });
-            });
-
-            $('#allUsersButton').click(() => {
-                $.ajax({
-                    url: 'colorCombo',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: (data) => {
-                        console.log('You received some data!', data);
-                        $('#status').html('All colors: ' + data);
-                    },
-                });
-            });
-
-            // define a generic Ajax error handler:
-            // http://api.jquery.com/ajaxerror/
-            $(document).ajaxError(() => {
-                $('#status').html('Error: unknown ajaxError!');
-            });
-        });
-    </script>
-
-
-
-
-    <!-- Favicon
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
-</head>
-
-<body>
-
-    <!-- Primary Page Layout
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <div class="top-nav">
-        <div class="container">
-            <div class="userProfile u-pull-right">
-                <a href="." class="UserProfile">User012 </a>
-                <img class="user " id="profilePic" src="./images/userProfile.png">
-            </div>
-        </div>
-    </div>
-
-    <div class="section mainView" style="margin: auto 0">
-        <div class="container">
-
-            <div class="row">
-                <div class="section upload one-half column">
-                    <div class="container">
-                        <div class="row">
-                            <h5 style="margin: auto">Upload image of clothing</h5>
-                        </div>
-                        <div class="row">
-                            <div id="app" class="imgUpload" v-cloak>
-                                <!-- Vue Conditional Rendering -->
-                                <div v-if="imageSrc">
-                                    <img id="yourImage" :src="imageSrc" @load="getSwatches" ref="theImage">
-                                </div>
-                                <div v-else>
-                                    <div class="u-full-width imagePreview"></div>
-                                </div>
-
-                                <label class="u-full-width button button-primary inputWrap">
-                                    <p>Upload File</p>
-                                    <input type="file" capture="camera" accept="image/*" @change="gotPic"
-                                        style="visibility: hidden">
-                                </label>
-
-                                <!-- Show swathces of TOP THREE prominent colors -->
-                                <div id="swatches" style="visibility: hidden">
-                                    <div v-for="swatch in swatches" class="swatch" :style="swatch.style"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="section bottom-nav">
-                            <div class="container">
-                                <div class="row">
-                                    <a href="./index.html" class="button" style="background-color: #ffffff;margin:auto">
-                                        Go Back</a>
-
-                                    <a href="./library.html" class="button"
-                                        style="background-color: #ffffff;margin:auto"> View Library </a>
-                                    <input id="typeBox" type="text" size="20" />
-                                    <button type="button" class="btn button-primary" id="uploadButton"
-                                        onclick="uploadFile()">
-                                        Testing upload submit
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="section colorCombo one-half column">
-                    <div class="container">
-                        <div class="row">
-                            <div class="inputRow" style="margin:auto">
-                                <div class="u-full-width" id="status"></div>
-                                <div class="u-full-width" id="jobDiv"></div>
-
-                                <img id="petImage" style="display: inline-block; width: 30vw; min-width: 300px">
-                                <div class="row">
-                                    <div id="color1" style="height:100px;width:100px"></div>
-                                    <div id="color2" style="height:100px;width:100px"></div>
-                                    <div id="color3" style="height:100px;width:100px"></div>
-                                </div>
-                                <div class="row">
-                                    <div id="colorText1" style="height:100px;width:100px"></div>
-                                    <div id="colorText2" style="height:100px;width:100px"></div>
-                                    <div id="colorText3" style="height:100px;width:100px"></div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="section footer" style="text-align: center;">
-        <div class="container">
-        </div>
-    </div>
-
-    <!-- End Document
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-
-
-    <!-- Scripts
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script type="text/javascript" charset="utf-8" src="./js/color-thief.js"></script>
-    <script src="./js/vue.min.js"></script>
-    <script src="./js/test.js"></script>
-    <script>
-        // Create a root reference
-        function uploadFile() {
-            let storageRef = firebase.storage().ref();
-            let fileName = selectedFile.name;
-            console.log(fileName);
-
-            // Create the file metadata
-            var metadata = {
-                contentType: 'image/jpeg'
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <!-- <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js"></script> -->
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyB_DRCJ9aj0qMJ_4UHIh2JMjXgohGdmhEY",
+                authDomain: "cogs121-color-blind.firebaseapp.com",
+                databaseURL: "https://cogs121-color-blind.firebaseio.com",
+                projectId: "cogs121-color-blind",
+                storageBucket: "cogs121-color-blind.appspot.com",
+                messagingSenderId: "29094890858",
+                appId: "1:29094890858:web:459b485133b61038"
             };
-            // Upload file and metadata to the object 'images/mountains.jpg'
-            let uploadTask = storageRef.child('clothes/' + fileName).put(selectedFile, metadata);
+            // Initialize Firebase
 
-            // Register three observers:
-            // 1. 'state_changed' observer, called any time the state changes
-            // 2. Error observer, called on failure
-            // 3. Completion observer, called on successful completion
-            uploadTask.on('state_changed', function (snapshot) {
-                // Observe state change events such as progress, pause, and resume
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                switch (snapshot.state) {
-                    case firebase.storage.TaskState.PAUSED: // or 'paused'
-                        console.log('Upload is paused');
-                        break;
-                    case firebase.storage.TaskState.RUNNING: // or 'running'
-                        console.log('Upload is running');
-                        break;
-                }
-            }, function (error) {
-                // Handle unsuccessful uploads
-            }, function () {
-                // Handle successful uploads on complete
-                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                let postKey = firebase.database().ref('/Posts/').push().key;
-                let downloadURL = uploadTask.snapshot.downloadURL;
-                let updates = {};
-                let postData = {
-                    url: downloadURL,
-                    type: $('#typeBox').val(),
-                    caption: fileName
-                    // user: user.uid
-                }
-                updates['/Posts/' + postKey] = postData;
-                firebase.database().ref().update(updates);
-                console.log("uploaded image");
-                // uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-                //     console.log('File available at', downloadURL);
-                // });
+            firebase.initializeApp(firebaseConfig);
+            console.log("configed ")
+        </script>
+
+        <!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta charset="utf-8">
+        <title>Color your wardrobe</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- FONT
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+        <!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
+        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
+        <link rel="stylesheet" href="./css/custom.css">
+
+        <!-- Scripts
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <script src="./js/jquery-3.3.1.min.js"></script>
+        <!--        <script src="./js/image.js"></script> -->
+
+        <script type="text/javascript">
+
+            // jQuery convention for running when the document has been fully loaded:
+            $(document).ready(() => {
+                $('#readButton').click(() => {
+                    const requestURL = 'colorCombo/' + $('#nameBox').val();
+                    console.log('making ajax request to:', requestURL);
+
+                    // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
+                    // Using the core $.ajax() method since it's the most flexible.
+                    // ($.get() and $.getJSON() are nicer convenience functions)
+                    $.ajax({
+                        // all URLs are relative to http://localhost:3000/
+                        url: requestURL,
+                        type: 'GET',
+                        dataType: 'text', // this URL returns data in JSON format
+                        success: (data) => {
+                            console.log('You received some data!', data);
+
+                            if (data) {
+                                $('#status').html('Successfully fetched data at URL: ' + requestURL);
+                                $('#jobDiv').html('that color is ' + $('#nameBox').val());
+                                $('#petImage').attr('src', "./images/" + data.pic).attr('width', '300px');
+                                console.log('You received some data!', data.colors);
+                                $('#color1').css('background-color', data.colors[0]);
+                                $('#color1').html(data.colors[0]);
+                                $('#color2').css('background-color', data.colors[1]);
+                                $('#color2').html(data.colors[1]);
+                                $('#color3').css('background-color', data.colors[2]);
+                                $('#color3').html(data.colors[2]);
+                            } else {
+                                $('#status').html('Error: could not find color at URL: ' + requestURL);
+                                // clear the display
+                                $('#jobDiv').html('');
+                                $('#petImage').attr('src', '').attr('width', '0px');
+                            }
+                        },
+                    });
+                });
+
+                $('#allUsersButton').click(() => {
+                    $.ajax({
+                        url: 'colorCombo',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: (data) => {
+                            console.log('You received some data!', data);
+                            $('#status').html('All colors: ' + data);
+                        },
+                    });
+                });
+
+                // define a generic Ajax error handler:
+                // http://api.jquery.com/ajaxerror/
+                $(document).ajaxError(() => {
+                    $('#status').html('Error: unknown ajaxError!');
+                });
             });
-        }
-    </script>
-</body>
+        </script>
+
+
+
+
+        <!-- Favicon
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
+    </head>
+
+    <body>
+
+        <!-- Primary Page Layout
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <div class="top-nav">
+            <div class="container">
+                <div class="userProfile u-pull-right">
+                    <a href="." class="UserProfile">User012 </a>
+                    <img class="user " id="profilePic" src="./images/userProfile.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="section mainView" style="margin: auto 0">
+            <div class="container">
+
+                <div class="row">
+                    <div class="section upload one-half column">
+                        <div class="container">
+
+                            <div class="row" style="margin-top: 10px;">
+                                <a href="./index.html" class="button" style="background-color: #ffffff;margin:auto">
+                                    Go Back</a>
+                            </div>
+                            <div class="row">
+                                <h5 style="margin: auto">Upload image of clothing</h5>
+                            </div>
+                            <div class="row">
+                                <div id="app" class="imgUpload" v-cloak>
+                                    <!-- Vue Conditional Rendering -->
+                                    <div v-if="imageSrc">
+                                        <img id="yourImage" :src="imageSrc" @load="getSwatches" ref="theImage">
+                                    </div>
+                                    <div v-else>
+                                        <div class="u-full-width imagePreview"></div>
+                                    </div>
+
+                                    <label class="u-full-width button button-primary inputWrap" style="margin-top:20px;">
+                                        <p>Upload File</p>
+                                        <input id="readFileButton" type="file" capture="camera" accept="image/*" @change="gotPic"
+                                               style="visibility: hidden">
+                                    </label>
+
+                                    <!-- Show swathces of TOP THREE prominent colors -->
+                                    <div id="swatches" style="visibility: hidden">
+                                        <div v-for="swatch in swatches" class="swatch" :style="swatch.style"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section bottom-nav">
+                                <div class="container">
+                                    <div class="row">
+                                        <label for="addToCategory">Add to Category</label>
+
+
+                                        <select class="u-full-width" id="userSelect">
+                                            <option value="Top">Top</option>
+                                            <option value="Bottom">Bottom</option>
+                                            <option value="Outerwear">Outerwear</option>
+                                        </select>
+
+                                        <!--
+<input id="typeBox" type="text" size="20" />
+-->
+                                        <button type="button" class="button button-primary" id="uploadButton"
+                                                onclick="uploadFile()">
+                                            Add to Wardrobe
+                                        </button>
+
+                                        <a href="./library.html" class="button"
+                                           style="background-color: #ffffff;margin:auto"> View Library </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section colorCombo one-half column">
+                        <div class="container">
+                            <div class="row">
+                                <div class="inputRow" style="margin:auto">
+                                    <div class="u-full-width" id="status"></div>
+                                    <div class="u-full-width" id="jobDiv"></div>
+
+                                    <img id="petImage" style="display: inline-block; width: 30vw; min-width: 300px">
+                                    <div class="row">
+                                        <div id="color1" style="height:100px;width:100px"></div>
+                                        <div id="color2" style="height:100px;width:100px"></div>
+                                        <div id="color3" style="height:100px;width:100px"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div id="colorText1" style="height:100px;width:100px"></div>
+                                        <div id="colorText2" style="height:100px;width:100px"></div>
+                                        <div id="colorText3" style="height:100px;width:100px"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="section footer" style="text-align: center;">
+            <div class="container">
+            </div>
+        </div>
+
+        <!-- End Document
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+        <!-- Scripts
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <script type="text/javascript" charset="utf-8" src="./js/color-thief.js"></script>
+        <script src="./js/vue.min.js"></script>
+        <script src="./js/test.js"></script>
+        <script>
+
+
+            $("#readFileButton").click(function() {
+
+                $("#uploadButton").html("Add to Wardrobe")
+
+            });
+
+
+            // Create a root reference
+            function uploadFile() {
+                let storageRef = firebase.storage().ref();
+                let fileName = selectedFile.name;
+                console.log(fileName);
+
+                // Create the file metadata
+                var metadata = {
+                    contentType: 'image/jpeg'
+                };
+                // Upload file and metadata to the object 'images/mountains.jpg'
+                let uploadTask = storageRef.child('clothes/' + fileName).put(selectedFile, metadata);
+
+                // Register three observers:
+                // 1. 'state_changed' observer, called any time the state changes
+                // 2. Error observer, called on failure
+                // 3. Completion observer, called on successful completion
+                uploadTask.on('state_changed', function (snapshot) {
+                    // Observe state change events such as progress, pause, and resume
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case firebase.storage.TaskState.PAUSED: // or 'paused'
+                            console.log('Upload is paused');
+                            break;
+                        case firebase.storage.TaskState.RUNNING: // or 'running'
+                            console.log('Upload is running');
+                            break;
+                    }
+                }, function (error) {
+                    // Handle unsuccessful uploads
+                }, function () {
+                    // Handle successful uploads on complete
+                    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                    let postKey = firebase.database().ref('/Posts/').push().key;
+                    let downloadURL = uploadTask.snapshot.downloadURL;
+                    let updates = {};
+                    let postData = {
+                        url: downloadURL,
+                        type: $('#userSelect').val(),
+                        caption: fileName
+                        // user: user.uid
+                    }
+
+                    console.log("the option rn is: " + $('#userSelect').val());
+
+                    updates['/Posts/' + postKey] = postData;
+                    firebase.database().ref().update(updates);
+                    console.log("uploaded image");
+
+
+                    $("#uploadButton").html("Upload Complete ✓");
+
+
+
+                    // uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                    //     console.log('File available at', downloadURL);
+                    // });
+                });
+            }
+        </script>
+    </body>
 
 </html>
