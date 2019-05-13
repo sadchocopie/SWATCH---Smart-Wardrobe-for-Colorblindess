@@ -13,6 +13,7 @@
     "color-thief": "^2.2.3",
     "express": "^4.16.3",
     "multer": "^1.4.1",
-    "node-vibrant": "^3.2.0-alpha"
+    "node-vibrant": "^3.2.0-alpha",
+    "xmlhttprequest": "^1.8.0"
   }
 }
