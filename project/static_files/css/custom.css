@@ -156,7 +156,6 @@
     display: block;
 }
 
-<<<<<<< HEAD
 .sidenav {
   height: 100%;
   width: 100%;
@@ -184,13 +183,7 @@
   padding: 0px 10px;
 }
 
-=======
-.bottom-nav {
-    width: 100%;
-    max-width: 320px;
-    margin: auto;
-}
->>>>>>> ed6bceed46386678995ac94494e9a8cf15ed87d5
+
 
 .bottom-nav a {
     text-decoration: none !important;
