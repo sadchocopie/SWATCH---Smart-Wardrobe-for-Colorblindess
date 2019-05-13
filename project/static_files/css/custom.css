@@ -155,7 +155,37 @@
     display: block;
 }
 
+.sidenav {
+  height: 100%;
+  width: 100%;
+  /*position: fixed;  Fixed Sidebar (stay in place on scroll) */
+  background-color: #e9ecef; 
+  overflow-x: hidden; /* Disable horizontal scroll */
+}
+
+.sidenav a {
+  padding: 4px 4px 4px 10px;
+
+  text-decoration: none;
+  font-size: 1.5em;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #000;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
 
 .bottom-nav a {
     text-decoration: none !important;
 }
+
+@media only screen and (max-width: 500px) { .hideSmall { display: none; } }
+
