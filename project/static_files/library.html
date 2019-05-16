@@ -1,153 +1,187 @@
 <html>
 
-<head>
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyB_DRCJ9aj0qMJ_4UHIh2JMjXgohGdmhEY",
-            authDomain: "cogs121-color-blind.firebaseapp.com",
-            databaseURL: "https://cogs121-color-blind.firebaseio.com",
-            projectId: "cogs121-color-blind",
-            storageBucket: "cogs121-color-blind.appspot.com",
-            messagingSenderId: "29094890858",
-            appId: "1:29094890858:web:459b485133b61038"
-        };
-        // Initialize Firebase
-
-        firebase.initializeApp(firebaseConfig);
-        console.log("configed ");
-    </script>
-    <!-- Basic Page Needs
-        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta charset="utf-8">
-    <title>Color your wardrobe</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Mobile Specific Metas
-        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- FONT
-        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
-
-    <!-- CSS
-        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
-    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
-    <link rel="stylesheet" href="./css/custom.css">
-    <style>
-        .itemBox {
-            height: 30vw;
-            width: 20%;
-            max-height: 300px;
-            cursor: pointer !important;
-            margin-right: 2.5%;
-            margin-left: auto;
-            border-radius: 4px;
-            border: 1px solid lightgray;
-            box-sizing: border-box;
-            float: left;
-        }
-
-        .itemBox:hover {
-            border-color: #f5e0e0;
-        }
-
-        .itemBox.selected {
-            border-color: orange;
-        }
-    </style>
-
-    <!-- Scripts
-        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script src="./js/jquery-3.3.1.min.js"></script>
-
-    <!-- Favicon
-        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
-
-</head>
-
-<body>
+    <head>
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 
 
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyB_DRCJ9aj0qMJ_4UHIh2JMjXgohGdmhEY",
+                authDomain: "cogs121-color-blind.firebaseapp.com",
+                databaseURL: "https://cogs121-color-blind.firebaseio.com",
+                projectId: "cogs121-color-blind",
+                storageBucket: "cogs121-color-blind.appspot.com",
+                messagingSenderId: "29094890858",
+                appId: "1:29094890858:web:459b485133b61038"
+            };
+            // Initialize Firebase
 
-    <!-- User Profile  -->
-    <div class="top-nav">
-        <div class="container">
-            <div class="userProfile u-pull-right">
-                <a href="." class="UserProfile">User012 </a>
-                <img class="user " id="profilePic" src="./images/userProfile.png">
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <!-- Side Category bar -->
-        <div class="row">
-            <div class="three columns " style="display:block">Categories
-                <div class="sidenav ">
-                    <br>
-                    <a href="#">Shirt</a>
-                    <a href="#">Hoodie</a>
-                    <a href="#">Sweater</a>
-                    <a href="#">Jackets</a>
-                    <a href="#">Shorts</a>
-                    <a href="#">Long Pants</a>
-                    <a href="#">Dresses</a>
-                    <a href="#">Skirts</a>
-                    <a href="#">Shoes</a>
+            firebase.initializeApp(firebaseConfig);
+            console.log("configed ");
+        </script> 
+        <!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta charset="utf-8">
+        <title>Color your wardrobe</title>
+        <meta charset="utf-8">
+
+        <!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- FONT
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+        <!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
+        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
+        <link rel="stylesheet" href="./css/custom.css">
+        <style>
+
+            .cardView {
+                display: flex;
+                min-width: 100%;
+                min-height: 100px;
+                overflow-x: auto;
+            }
+
+            .cardView::-webkit-scrollbar {
+                display: none;
+            }
+
+            .card {
+                display: flex;
+                border-radius: 4px;
+                cursor: pointer !important;
+                border: 1px solid lightgray;
+                min-width: 200px;
+                height: 200px;
+                margin: 5px;
+                box-shadow: 3px 5px rgba(255,255,255,0.05);
+            }
+
+            .card img {
+                width: 100%;
+                height: auto;
+            }
+
+            .card:hover {
+                border-color: #f5e0e0;
+            }
+
+            .card.selected {
+                border-color: orange;
+            }
+
+            #deleteButton {
+
+                width: 250px;
+            }
+
+        </style>
+
+        <!-- Scripts
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <script src="./js/jquery-3.3.1.min.js"></script>
+
+        <!-- Favicon
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
+
+    </head>
+
+    <body>
+
+
+
+        <!-- User Profile  -->
+        <div class="top-nav">
+            <div class="container">
+                <div class="userProfile u-pull-right">
+                    <a href="." class="UserProfile">User012 </a>
+                    <img class="user " id="profilePic" src="./images/userProfile.png">
                 </div>
             </div>
+        </div>
 
 
-            <!-- Display side-->
-
-            <div style="display:block" class="nine columns">
-
-                <br>
-
-                <!-- Buttons -->
-
+        <!-- Buttons -->
+        <div class="navigation">
+            <div class="container">
                 <div class="row">
-                    <a href="./upload.html" class="button" style="background-color: #ffffff;margin:auto"> Scan</a>
+                    <a href="./upload.html" class="button" style="background-color: #ffffff;margin:auto; width: 150px"> Scan</a>
 
-                    <a href="./match.html" class="button" style="background-color: #ffffff;margin:auto"> Check </a>
-                    <button type="button" class="btn button-primary" id="deleteButton" onclick="deleteFile()">
+                    <a href="./match.html" class="button u-pull-right" style="background-color: #ffffff;margin:auto; width: 150px"> Check </a>
+                    <br>
+                    <br>
+                    <button type="button" class="button button-primary " id="deleteButton" onclick="deleteFile()">
                         Delete Selected Images
                     </button>
                 </div>
-                <br>
+            </div>
+        </div>
 
-                <div class="section libraryView">
 
-                    <!-- place library -->
+        <div class="container">
+            <div class="row">
+                <p>Please select 2 items</p>
 
-                    <div id="app">
-                        <p>{{ message }}</p>
+                <div id="app">
+
+                    <!--                    <p>{{ message }}</p>-->
+                    <p><b>TOP</b></p>
+                    <section class="cardView">
 
                         <obj v-for="object in objectTypes" @click.native="selectObjectType(object)" :key="object.id"
-                            :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
                         </obj>
-                    </div>
+
+                    </section>
+
+                    <p><b>BOTTOM</b></p>
+                    <section class="cardView">
+
+                        <obj v-for="object in objectTypes" @click.native="selectObjectType(object)" :key="object.id"
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                        </obj>
+
+                    </section>
+                    
+                    <p><b>OUTERWEAR</b></p>
+                    <section class="cardView">
+
+                        <obj v-for="object in objectTypes" @click.native="selectObjectType(object)" :key="object.id"
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                        </obj>
+
+                    </section>
+                    
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <!-- Side Category bar -->
+            <div class="row">
+                <div class="section libraryView">
+                    <!-- place library -->
 
                 </div>
             </div>
-            <br />
         </div>
-    </div>
 
-    <div class="section footer" style="text-align: center;">
-        <div class="container">
+
+        <div class="section footer" style="text-align: center;">
+            <div class="container">
+            </div>
         </div>
-    </div>
 
-    <script src="./js/vue.min.js"></script>
-    <script src="./js/loadLibrary.js"></script>
-</body>
+        <script src="./js/vue.min.js"></script>
+        <script src="./js/loadLibrary.js"></script>
+    </body>
 
 </html>

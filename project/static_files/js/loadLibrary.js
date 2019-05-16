@@ -51,7 +51,6 @@ function deleteFile() {
 const app = new Vue({
     el: '#app',
     data: {
-        message: 'Please select 2 items (do green shirt and gray pants for now):',
         objectTypes: clothesList,
     },
     methods: {
