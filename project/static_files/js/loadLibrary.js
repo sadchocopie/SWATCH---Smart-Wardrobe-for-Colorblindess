@@ -95,6 +95,27 @@ function deleteFile() {
     }
 }
 
+function checkMatch() {
+   let matchlist= [];
+        clothesList_TOP.forEach((element) => {
+            if (element.selected) {
+                matchlist.push(element.id);
+            }
+        });
+          clothesList_OUTERWEAR.forEach((element) => {
+            if (element.selected) {
+                matchlist.push(element.id);
+            }
+        });
+        clothesList_BOTTOM.forEach((element) => {
+            if (element.selected) {
+                matchlist.push(element.id);
+            }
+        });
+        console.log('list of id',matchlist );
+    location.href = './match.html?'+ matchlist;    
+}
+
 const app = new Vue({
     el: '#app',
     data: {
