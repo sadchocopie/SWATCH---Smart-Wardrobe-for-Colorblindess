@@ -64,11 +64,16 @@
             }
 
             .card img {
-                width: 100%;
+                margin: auto;
+                object-fit: contain;
+                max-width: 100%;
+                max-height: 100%;
+                width: auto;
                 height: auto;
             }
 
             .card:hover {
+                border: 2px solid;
                 border-color: #f5e0e0;
             }
 
@@ -77,7 +82,6 @@
             }
 
             #deleteButton {
-
                 width: 250px;
             }
 
@@ -130,12 +134,10 @@
                 <p>Please select 2 items</p>
 
                 <div id="app">
-
-                    <!--                    <p>{{ message }}</p>-->
                     <p><b>TOP</b></p>
                     <section class="cardView">
 
-                        <obj v-for="object in objectTypes" @click.native="selectObjectType(object)" :key="object.id"
+                        <obj v-for="object in categoryTop" @click.native="selectObjectType(object)" :key="object.id"
                              :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
                         </obj>
 
@@ -144,21 +146,21 @@
                     <p><b>BOTTOM</b></p>
                     <section class="cardView">
 
-                        <obj v-for="object in objectTypes" @click.native="selectObjectType(object)" :key="object.id"
+                        <obj v-for="object in categoryBottom" @click.native="selectObjectType(object)" :key="object.id"
                              :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
                         </obj>
 
                     </section>
-                    
+
                     <p><b>OUTERWEAR</b></p>
                     <section class="cardView">
 
-                        <obj v-for="object in objectTypes" @click.native="selectObjectType(object)" :key="object.id"
+                        <obj v-for="object in categoryOuterwear" @click.native="selectObjectType(object)" :key="object.id"
                              :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
                         </obj>
 
                     </section>
-                    
+
                 </div>
             </div>
         </div>

@@ -138,7 +138,7 @@
                 <div class="row">
                     <a href="./index.html" class="button" style="background-color: #ffffff;margin:auto; width: 150px"> Home</a>
 
-                    <a href="./page4.html" class="button u-pull-right" style="background-color: #ffffff;margin:auto; width: 150px"> Library </a>
+                    <a href="./libray.html" class="button u-pull-right" style="background-color: #ffffff;margin:auto; width: 150px"> Library </a>
                
                 </div>
             </div>
@@ -309,14 +309,12 @@
 
                     console.log("the option rn is: " + $('#userSelect').val());
 
-                    updates['/Posts/' + postKey] = postData;
+                    updates['/Posts/'+ $('#userSelect').val() +"/" + postKey] = postData;
                     firebase.database().ref().update(updates);
                     console.log("uploaded image");
 
 
                     $("#uploadButton").html("Upload Complete ✓");
-
-
 
                     // uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                     //     console.log('File available at', downloadURL);
