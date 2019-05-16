@@ -1,87 +1,268 @@
 <html>
 
+    <head>
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+
+
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyB_DRCJ9aj0qMJ_4UHIh2JMjXgohGdmhEY",
+                authDomain: "cogs121-color-blind.firebaseapp.com",
+                databaseURL: "https://cogs121-color-blind.firebaseio.com",
+                projectId: "cogs121-color-blind",
+                storageBucket: "cogs121-color-blind.appspot.com",
+                messagingSenderId: "29094890858",
+                appId: "1:29094890858:web:459b485133b61038"
+            };
+            // Initialize Firebase
+
+            firebase.initializeApp(firebaseConfig);
+            console.log("configed ");
+        </script> 
+        <!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta charset="utf-8">
+        <title>Color your wardrobe</title>
+        <meta charset="utf-8">
+
+        <!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- FONT
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+        <!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
+        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
+        <link rel="stylesheet" href="./css/custom.css">
+        <style>
+
+            .cardView {
+                display: flex;
+                min-width: 100%;
+                min-height: 100px;
+                overflow-x: auto;
+            }
+
+            .cardView::-webkit-scrollbar {
+                display: none;
+            }
+
+            .card {
+                display: flex;
+                border-radius: 4px;
+                cursor: pointer !important;
+                border: 1px solid lightgray;
+                min-width: 200px;
+                height: 200px;
+                margin: 5px;
+                box-shadow: 3px 5px rgba(255,255,255,0.05);
+            }
+
+            .card img {
+                width: 100%;
+                height: auto;
+            }
+
+            .card:hover {
+                border-color: #f5e0e0;
+            }
+
+            .card.selected {
+                border-color: orange;
+            }
+
+            #deleteButton {
+
+                width: 250px;
+            }
+
+        </style>
+
+        <!-- Scripts
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <script src="./js/jquery-3.3.1.min.js"></script>
+
+        <!-- Favicon
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
+
+    </head>
+
+    <body>
+
+
+
+        <!-- User Profile  -->
+        <div class="top-nav">
+            <div class="container">
+                <div class="userProfile u-pull-right">
+                    <a href="." class="UserProfile">User012 </a>
+                    <img class="user " id="profilePic" src="./images/userProfile.png">
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Buttons -->
+        <div class="navigation">
+            <div class="container">
+                <div class="row">
+                    <a href="./upload.html" class="button" style="background-color: #ffffff;margin:auto; width: 150px"> Scan</a>
+
+                    <a href="./match.html" class="button u-pull-right" style="background-color: #ffffff;margin:auto; width: 150px"> Check </a>
+                    <br>
+                    <br>
+                    <button type="button" class="button button-primary " id="deleteButton" onclick="deleteFile()">
+                        Delete Selected Images
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <p>Please select 2 items</p>
+
+                <div id="app">
+
+                    <!--                    <p>{{ message }}</p>-->
+                    <p><b>TOP</b></p>
+                    <section class="cardView">
+
+                        <obj v-for="object in objectTypes" @click.native="selectObjectType(object)" :key="object.id"
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                        </obj>
+
+                    </section>
+
+                    <p><b>BOTTOM</b></p>
+                    <section class="cardView">
+
+                        <obj v-for="object in objectTypes" @click.native="selectObjectType(object)" :key="object.id"
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                        </obj>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <!-- Side Category bar -->
+            <div class="row">
+                <div class="section libraryView">
+                    <!-- place library -->
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="section footer" style="text-align: center;">
+            <div class="container">
+            </div>
+        </div>
+
+        <script src="./js/vue.min.js"></script>
+        <script src="./js/loadLibrary.js"></script>
+    </body>
+
+</html>
+
+<!--
+<html>
+
 <head>
-    <title>ColorBlind App</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="./css/main.css" rel="stylesheet">
+<title>ColorBlind App</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="./css/main.css" rel="stylesheet">
 
-    <script src="./js/jquery-3.3.1.min.js"></script>
-    <script src="./js/image.js"></script>
-    <script type="text/javascript">
+<script src="./js/jquery-3.3.1.min.js"></script>
+<script src="./js/image.js"></script>
+<script type="text/javascript">
 
-        // jQuery convention for running when the document has been fully loaded:
-        $(document).ready(() => {
-            $('#readButton').click(() => {
-                const requestURL = 'colorCombo/' + $('#nameBox').val();
-                console.log('making ajax request to:', requestURL);
+// jQuery convention for running when the document has been fully loaded:
+$(document).ready(() => {
+$('#readButton').click(() => {
+const requestURL = 'colorCombo/' + $('#nameBox').val();
+console.log('making ajax request to:', requestURL);
 
-                // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
-                // Using the core $.ajax() method since it's the most flexible.
-                // ($.get() and $.getJSON() are nicer convenience functions)
-                $.ajax({
-                    // all URLs are relative to http://localhost:3000/
-                    url: requestURL,
-                    type: 'GET',
-                    dataType: 'json', // this URL returns data in JSON format
-                    success: (data) => {
-                        console.log('You received some data!', data);
+// From: http://learn.jquery.com/ajax/jquery-ajax-methods/
+// Using the core $.ajax() method since it's the most flexible.
+// ($.get() and $.getJSON() are nicer convenience functions)
+$.ajax({
+// all URLs are relative to http://localhost:3000/
+url: requestURL,
+type: 'GET',
+dataType: 'json', // this URL returns data in JSON format
+success: (data) => {
+console.log('You received some data!', data);
 
-                        if (data) {
-                            $('#status').html('Successfully fetched data at URL: ' + requestURL);
-                            $('#jobDiv').html('that color is ' + $('#nameBox').val());
-                            $('#petImage').attr('src', "./images/" + data.pic).attr('width', '300px');
-                            console.log('You received some data!', data.colors);
-                            $('#color1').css('background-color', data.colors[0]);
-                            $('#color1').html(data.colors[0]);
-                            $('#color2').css('background-color', data.colors[1]);
-                            $('#color2').html(data.colors[1]);
-                            $('#color3').css('background-color', data.colors[2]);
-                            $('#color3').html(data.colors[2]);
-                        } else {
-                            $('#status').html('Error: could not find color at URL: ' + requestURL);
-                            // clear the display
-                            $('#jobDiv').html('');
-                            $('#petImage').attr('src', '').attr('width', '0px');
-                        }
-                    },
-                });
-            });
+if (data) {
+$('#status').html('Successfully fetched data at URL: ' + requestURL);
+$('#jobDiv').html('that color is ' + $('#nameBox').val());
+$('#petImage').attr('src', "./images/" + data.pic).attr('width', '300px');
+console.log('You received some data!', data.colors);
+$('#color1').css('background-color', data.colors[0]);
+$('#color1').html(data.colors[0]);
+$('#color2').css('background-color', data.colors[1]);
+$('#color2').html(data.colors[1]);
+$('#color3').css('background-color', data.colors[2]);
+$('#color3').html(data.colors[2]);
+} else {
+$('#status').html('Error: could not find color at URL: ' + requestURL);
+// clear the display
+$('#jobDiv').html('');
+$('#petImage').attr('src', '').attr('width', '0px');
+}
+},
+});
+});
 
-            $('#allUsersButton').click(() => {
-                $.ajax({
-                    url: 'colorCombo',
-                    type: 'GET',
-                    dataType: 'json',
-                    success: (data) => {
-                        console.log('You received some data!', data);
-                        $('#status').html('All colors: ' + data);
-                    },
-                });
-            });
+$('#allUsersButton').click(() => {
+$.ajax({
+url: 'colorCombo',
+type: 'GET',
+dataType: 'json',
+success: (data) => {
+console.log('You received some data!', data);
+$('#status').html('All colors: ' + data);
+},
+});
+});
 
-            // define a generic Ajax error handler:
-            // http://api.jquery.com/ajaxerror/
-            $(document).ajaxError(() => {
-                $('#status').html('Error: unknown ajaxError!');
-            });
-        });
-    </script>
+// define a generic Ajax error handler:
+// http://api.jquery.com/ajaxerror/
+$(document).ajaxError(() => {
+$('#status').html('Error: unknown ajaxError!');
+});
+});
+</script>
 
 </head>
 
 <body>
-    <div class="container">
+<div class="container">
 
-        <h1 style="text-align: center">page 4</h1>
-        <div class="row">
-            <div class="col-md-12" style="text-align: center">
-                <a href="./library.html" class="btn btn-info" role="button"> Done</a>
-            </div>
-        </div>
-    </div>
+<h1 style="text-align: center">page 4</h1>
+<div class="row">
+<div class="col-md-12" style="text-align: center">
+<a href="./library.html" class="btn btn-info" role="button"> Done</a>
+</div>
+</div>
+</div>
 </body>
 
-</html>
+</html> -->
+
+

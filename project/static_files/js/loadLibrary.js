@@ -3,7 +3,10 @@ Vue.component('obj', {
         item: String,
         image: String
     },
-    template: '<div class="itemBox"><p> {{ item }} </p><img class="imgBox" v-bind:src="image" style="width:90%; margin:auto;" />       </div>'
+
+    //    template: '<div class="itemBox"><p> {{ item }} </p><img class="imgBox" v-bind:src="image" style="width:90%; margin:auto;" />       </div>'
+
+    template: '<div class="card"><img class="imgBox" v-bind:src="image" />'
 });
 
 const database = firebase.database();
@@ -28,15 +31,21 @@ database.ref('Posts/').on('value', (snapshot) => {
 });
 
 function deleteFile() {
-    console.log('test', clothesList);
-    let updates = {};
-    clothesList.forEach((element) => {
-        if (element.selected) {
-            updates['/Posts/' + element.id] = null;
-        }
-    });
-    database.ref().update(updates);
-    console.log('end of delete file', clothesList);
+
+    if (window.confirm("Delete this item from wardrobe?") == true ) {
+        console.log('test', clothesList);
+        let updates = {};
+        clothesList.forEach((element) => {
+            if (element.selected) {
+                updates['/Posts/' + element.id] = null;
+            }
+        });
+        database.ref().update(updates);
+        console.log('end of delete file', clothesList);
+    } else {
+
+    }
+
 }
 
 const app = new Vue({
@@ -44,14 +53,6 @@ const app = new Vue({
     data: {
         message: 'Please select 2 items (do green shirt and gray pants for now):',
         objectTypes: clothesList,
-        /*
-        [
-            { type: 'Green shirt', selected: false, imgSrc: '../images/shirt.jpg' },
-            { type: 'White shirt', selected: false, imgSrc: '../images/whiteTee.jpg' },
-            { type: 'gray pants', selected: false, imgSrc: '../images/pants.jpg' },
-            { type: 'Pink Hooide', selected: false, imgSrc: '../images/pinkHoodie.jpg' }
-        ]
-        */
     },
     methods: {
         selectObjectType: function (object) {

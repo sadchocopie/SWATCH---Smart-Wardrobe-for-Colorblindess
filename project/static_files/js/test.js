@@ -42,14 +42,14 @@ const app = new Vue({
 
                         if (data) {
                             if (count === 1) {
-                                $('#status').html('Successfully fetched data at URL: ' + requestURL);
+//                                $('#status').html('Successfully fetched data at URL: ' + requestURL);
                                 $('#jobDiv').html('the Dominant color is ' + data.name);
                             }
                             $('#color' + count).css('background-color', data.hex);
                             $('#colorText' + count).html(data.name);
                             count = count + 1;
                         } else {
-                            $('#status').html('Error: could not find color at URL: ' + requestURL);
+//                            $('#status').html('Error: could not find color at URL: ' + requestURL);
                             // clear the display
                             $('#jobDiv').html('');
                             $('#petImage').attr('src', '').attr('width', '0px');

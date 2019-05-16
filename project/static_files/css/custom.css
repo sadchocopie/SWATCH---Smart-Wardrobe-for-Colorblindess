@@ -38,6 +38,10 @@
     background-color: gray;
 }
 
+.navigation {
+    margin: 10px 0;
+}
+
 .upload {
     margin: auto;
 }
