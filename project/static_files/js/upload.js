@@ -132,8 +132,10 @@ function uploadFile() {
         }
 
         console.log("the option rn is: " + $('#userSelect').val());
-
-        updates['/Posts/' + $('#userSelect').val() + "/" + postKey] = postData;
+        let user = firebase.auth().currentUser;
+        console.log("user before upload is:" + user.displayName);
+        console.log("google user id: " + user.uid);
+        updates['/Posts/' + user.uid + '/' + $('#userSelect').val() + "/" + postKey] = postData;
         firebase.database().ref().update(updates);
         console.log("uploaded image");
 
