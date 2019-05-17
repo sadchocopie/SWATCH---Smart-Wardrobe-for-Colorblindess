@@ -42,14 +42,14 @@ const app = new Vue({
 
                         if (data) {
                             if (count === 1) {
-//                                $('#status').html('Successfully fetched data at URL: ' + requestURL);
-                                $('#jobDiv').html('the Dominant color is ' + data.name);
+                                //                                $('#status').html('Successfully fetched data at URL: ' + requestURL);
+                                $('#jobDiv').html('Dominant color is ' + data.name);
                             }
                             $('#color' + count).css('background-color', data.hex);
                             $('#colorText' + count).html(data.name);
                             count = count + 1;
                         } else {
-//                            $('#status').html('Error: could not find color at URL: ' + requestURL);
+                            //                            $('#status').html('Error: could not find color at URL: ' + requestURL);
                             // clear the display
                             $('#jobDiv').html('');
                             $('#petImage').attr('src', '').attr('width', '0px');
@@ -79,3 +79,69 @@ const app = new Vue({
     }
 });
 
+$("#readFileButton").click(function () {
+
+    $("#uploadButton").html("Add to Wardrobe")
+
+});
+
+
+// Create a root reference
+function uploadFile() {
+    let storageRef = firebase.storage().ref();
+    let fileName = selectedFile.name;
+    console.log(fileName);
+
+    // Create the file metadata
+    var metadata = {
+        contentType: 'image/jpeg'
+    };
+    // Upload file and metadata to the object 'images/mountains.jpg'
+    let uploadTask = storageRef.child('clothes/' + fileName).put(selectedFile, metadata);
+
+    // Register three observers:
+    // 1. 'state_changed' observer, called any time the state changes
+    // 2. Error observer, called on failure
+    // 3. Completion observer, called on successful completion
+    uploadTask.on('state_changed', function (snapshot) {
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED: // or 'paused'
+                console.log('Upload is paused');
+                break;
+            case firebase.storage.TaskState.RUNNING: // or 'running'
+                console.log('Upload is running');
+                break;
+        }
+    }, function (error) {
+        // Handle unsuccessful uploads
+    }, function () {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        let postKey = firebase.database().ref('/Posts/').push().key;
+        let downloadURL = uploadTask.snapshot.downloadURL;
+        let updates = {};
+        let postData = {
+            url: downloadURL,
+            type: $('#userSelect').val(),
+            caption: fileName
+            // user: user.uid
+        }
+
+        console.log("the option rn is: " + $('#userSelect').val());
+
+        updates['/Posts/' + $('#userSelect').val() + "/" + postKey] = postData;
+        firebase.database().ref().update(updates);
+        console.log("uploaded image");
+
+
+        $("#uploadButton").html("Upload Complete ✓");
+
+        // uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+        //     console.log('File available at', downloadURL);
+        // });
+    });
+}

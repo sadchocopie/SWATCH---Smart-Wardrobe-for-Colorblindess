@@ -1,140 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
 
-        <!-- Basic Page Needs
+    <!-- Basic Page Needs
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <meta charset="utf-8">
-        <title>Color your wardrobe</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Color your wardrobe</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Mobile Specific Metas
+    <!-- Mobile Specific Metas
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- FONT
+    <!-- FONT
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
 
-        <!-- CSS
+    <!-- CSS
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <link href="./css/bootstrap.min.css" rel="stylesheet">
-        <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
-        <!--        <link href="./css/main.css" rel="stylesheet">-->
-        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
-        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
-        <link rel="stylesheet" href="./css/custom.css">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--        <link href="./css/main.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
+    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
+    <link rel="stylesheet" href="./css/custom.css">
 
-        <!-- Scripts
+    <!-- Scripts
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <script src="./js/jquery-3.3.1.min.js"></script>
-        <script src="./js/image.js"></script>
-        <script type="text/javascript">
-
-            // jQuery convention for running when the document has been fully loaded:
-            $(document).ready(() => {
-                $('#readButton').click(() => {
-                    const requestURL = 'colorCombo/' + $('#nameBox').val();
-                    console.log('making ajax request to:', requestURL);
-
-                    // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
-                    // Using the core $.ajax() method since it's the most flexible.
-                    // ($.get() and $.getJSON() are nicer convenience functions)
-                    $.ajax({
-                        // all URLs are relative to http://localhost:3000/
-                        url: requestURL,
-                        type: 'GET',
-                        dataType: 'json', // this URL returns data in JSON format
-                        success: (data) => {
-                            console.log('You received some data!', data);
-
-                            if (data) {
-                                $('#status').html('Successfully fetched data at URL: ' + requestURL);
-                                $('#jobDiv').html('that color is ' + $('#nameBox').val());
-                                $('#petImage').attr('src', "./images/" + data.pic).attr('width', '300px');
-                                console.log('You received some data!', data.colors);
-                                $('#color1').css('background-color', data.colors[0]);
-                                $('#color1').html(data.colors[0]);
-                                $('#color2').css('background-color', data.colors[1]);
-                                $('#color2').html(data.colors[1]);
-                                $('#color3').css('background-color', data.colors[2]);
-                                $('#color3').html(data.colors[2]);
-                            } else {
-                                $('#status').html('Error: could not find color at URL: ' + requestURL);
-                                // clear the display
-                                $('#jobDiv').html('');
-                                $('#petImage').attr('src', '').attr('width', '0px');
-                            }
-                        },
-                    });
-                });
-
-                $('#allUsersButton').click(() => {
-                    $.ajax({
-                        url: 'colorCombo',
-                        type: 'GET',
-                        dataType: 'json',
-                        success: (data) => {
-                            console.log('You received some data!', data);
-                            $('#status').html('All colors: ' + data);
-                        },
-                    });
-                });
-
-                // define a generic Ajax error handler:
-                // http://api.jquery.com/ajaxerror/
-                $(document).ajaxError(() => {
-                    $('#status').html('Error: unknown ajaxError!');
-                });
-            });
-        </script>
-
-
-        <!-- Favicon
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/image.js"></script>
+    <!-- Favicon
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
+    <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
 
-    </head>
+</head>
 
-    <body style="background-color:powderblue" >
-        <div class="container" style="background-color:powderblue; padding-top: 20%; padding-bottom: 30%" align="center">
-
-
-
-            <div class="section intro" style="text-align: center;">
-                <div class="container">
-                    <div class="row">
-                        <br>
-                        <h1 style="text-align: center; margin: auto">Get your day started right!</h1>
-                        <br>
-                        <img src="./images/templogo.png" style="width:40%; height:40%;margin-left: auto; margin-right: auto; " >
-                    </div>
+<body style="background-color:powderblue">
+    <div class="container" style="background-color:powderblue; padding-top: 20%; padding-bottom: 30%" align="center">
+        <div class="section intro" style="text-align: center;">
+            <div class="container">
+                <div class="row">
+                    <br>
+                    <h1 style="text-align: center; margin: auto">Get your day started right!</h1>
+                    <br>
+                    <img id="googleImg" src="./images/templogo.png"
+                        style="width:40%; height:40%;margin-left: auto; margin-right: auto; ">
                 </div>
             </div>
-
-
-
-            <div class="section bottom-nav" style="text-align: center;">
-                <div class="container">
-                    <div class="row">
-
-                        <a href="./library.html" class="button" style="background-color: #ffffff;margin:auto"> View Library</a>
-
-                        <a href="./upload.html" class="button" style="background-color: #ffffff;margin:auto"> Scan </a>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="section footer" style="text-align: center;">
-                <div class="container">
-                </div>
-            </div>
-
         </div>
 
-    </body>
+
+
+        <div class="section bottom-nav" style="text-align: center;">
+            <div class="container">
+                <div class="row">
+
+                    <a href="./library.html" class="button" style="background-color: #ffffff;margin:auto"> View
+                        Library</a>
+
+                    <a href="./upload.html" class="button" style="background-color: #ffffff;margin:auto"> Scan </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="section footer" style="text-align: center;">
+            <div class="container">
+            </div>
+        </div>
+
+    </div>
+
+</body>
 
 </html>

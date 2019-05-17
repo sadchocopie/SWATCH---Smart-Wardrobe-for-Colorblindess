@@ -1,189 +1,128 @@
 <html>
 
-    <head>
-        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-
-
-        <script>
-            // Your web app's Firebase configuration
-            var firebaseConfig = {
-                apiKey: "AIzaSyB_DRCJ9aj0qMJ_4UHIh2JMjXgohGdmhEY",
-                authDomain: "cogs121-color-blind.firebaseapp.com",
-                databaseURL: "https://cogs121-color-blind.firebaseio.com",
-                projectId: "cogs121-color-blind",
-                storageBucket: "cogs121-color-blind.appspot.com",
-                messagingSenderId: "29094890858",
-                appId: "1:29094890858:web:459b485133b61038"
-            };
-            // Initialize Firebase
-
-            firebase.initializeApp(firebaseConfig);
-            console.log("configed ");
-        </script> 
-        <!-- Basic Page Needs
+<head>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script src="./js/firebaseInit.js"></script>
+    <script src="./js/login.js"></script>
+    <!-- Basic Page Needs
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <meta charset="utf-8">
-        <title>Color your wardrobe</title>
-        <meta charset="utf-8">
+    <meta charset="utf-8">
+    <title>Color your wardrobe</title>
+    <meta charset="utf-8">
 
-        <!-- Mobile Specific Metas
+    <!-- Mobile Specific Metas
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- FONT
+    <!-- FONT
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
 
-        <!-- CSS
+    <!-- CSS
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
-        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
-        <link rel="stylesheet" href="./css/custom.css">
-        <style>
+    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
+    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
+    <link rel="stylesheet" href="./css/custom.css">
 
-            .cardView {
-                display: flex;
-                min-width: 100%;
-                min-height: 100px;
-                overflow-x: auto;
-            }
-
-            .cardView::-webkit-scrollbar {
-                display: none;
-            }
-
-            .card {
-                display: flex;
-                border-radius: 4px;
-                cursor: pointer !important;
-                border: 1px solid lightgray;
-                min-width: 200px;
-                height: 200px;
-                margin: 5px;
-                box-shadow: 3px 5px rgba(255,255,255,0.05);
-            }
-
-            .card img {
-                margin: auto;
-                object-fit: contain;
-                max-width: 100%;
-                max-height: 100%;
-                width: auto;
-                height: auto;
-            }
-
-            .card:hover {
-                border: 2px solid;
-                border-color: #f5e0e0;
-            }
-
-            .card.selected {
-                border-color: orange;
-            }
-
-            #deleteButton {
-                width: 250px;
-            }
-
-        </style>
-
-        <!-- Scripts
+    <!-- Scripts
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/jquery-3.3.1.min.js"></script>
 
-        <!-- Favicon
+    <!-- Favicon
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
+    <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
 
-    </head>
+</head>
 
-    <body>
+<body>
 
 
 
-        <!-- User Profile  -->
-        <div class="top-nav">
-            <div class="container">
-                <div class="userProfile u-pull-right">
-                    <a href="." class="UserProfile">User012 </a>
-                    <img class="user " id="profilePic" src="./images/userProfile.png">
-                </div>
+    <!-- User Profile  -->
+    <div class="top-nav">
+        <div class="container">
+            <div class="userProfile u-pull-right">
+                <a href="." id="googleUser" class="UserProfile">User012 </a>
+                <img class="user" id="googleImg" src="./images/userProfile.png">
             </div>
         </div>
+    </div>
 
 
-        <!-- Buttons -->
-        <div class="navigation">
-            <div class="container">
-                <div class="row">
-                    <a href="./upload.html" class="button" style="background-color: #ffffff;margin:auto; width: 150px"> Scan</a>
-
-                   <button type="button" class="button" id="matchButton" onclick="checkMatch()" style="background-color: #ffffff;margin:auto; width: 150px"> Check</button>
-                    <br>
-                    <br>
-                    <button type="button" class="button button-primary " id="deleteButton" onclick="deleteFile()">
-                        Delete Selected Images
-                    </button>
-                </div>
-            </div>
-        </div>
-
-
+    <!-- Buttons -->
+    <div class="navigation">
         <div class="container">
             <div class="row">
-                <p>Please select 2 items</p>
+                <a href="./upload.html" class="button" style="background-color: #ffffff;margin:auto; width: 150px">
+                    Scan</a>
 
-                <div id="app">
-                    <p><b>TOP</b></p>
-                    <section class="cardView">
-
-                        <obj v-for="object in categoryTop" @click.native="selectObjectType(object)" :key="object.id"
-                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
-                        </obj>
-
-                    </section>
-
-                    <p><b>BOTTOM</b></p>
-                    <section class="cardView">
-
-                        <obj v-for="object in categoryBottom" @click.native="selectObjectType(object)" :key="object.id"
-                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
-                        </obj>
-
-                    </section>
-
-                    <p><b>OUTERWEAR</b></p>
-                    <section class="cardView">
-
-                        <obj v-for="object in categoryOuterwear" @click.native="selectObjectType(object)" :key="object.id"
-                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
-                        </obj>
-
-                    </section>
-
-                </div>
+                <button type="button" class="button" id="matchButton" onclick="checkMatch()"
+                    style="background-color: #ffffff;margin:auto; width: 150px"> Check</button>
+                <br>
+                <br>
+                <button type="button" class="button button-primary " id="deleteButton" onclick="deleteFile()">
+                    Delete Selected Images
+                </button>
             </div>
         </div>
+    </div>
 
 
+    <div class="container">
+        <div class="row">
+            <p>Please select 2 items</p>
+
+            <div id="app">
+                <p><b>TOP</b></p>
+                <section class="cardView">
+
+                    <obj v-for="object in categoryTop" @click.native="selectObjectType(object)" :key="object.id"
+                        :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                    </obj>
+
+                </section>
+
+                <p><b>BOTTOM</b></p>
+                <section class="cardView">
+
+                    <obj v-for="object in categoryBottom" @click.native="selectObjectType(object)" :key="object.id"
+                        :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                    </obj>
+
+                </section>
+
+                <p><b>OUTERWEAR</b></p>
+                <section class="cardView">
+
+                    <obj v-for="object in categoryOuterwear" @click.native="selectObjectType(object)" :key="object.id"
+                        :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                    </obj>
+
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <!-- Side Category bar -->
+        <div class="row">
+            <div class="section libraryView">
+                <!-- place library -->
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section footer" style="text-align: center;">
         <div class="container">
-            <!-- Side Category bar -->
-            <div class="row">
-                <div class="section libraryView">
-                    <!-- place library -->
-
-                </div>
-            </div>
         </div>
+    </div>
 
-
-        <div class="section footer" style="text-align: center;">
-            <div class="container">
-            </div>
-        </div>
-
-        <script src="./js/vue.min.js"></script>
-        <script src="./js/loadLibrary.js"></script>
-    </body>
+    <script src="./js/vue.min.js"></script>
+    <script src="./js/loadLibrary.js"></script>
+</body>
 
 </html>
