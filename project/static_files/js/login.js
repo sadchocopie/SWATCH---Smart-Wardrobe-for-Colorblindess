@@ -40,8 +40,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     } else {
         // No user is signed in.
-        console.log("No user logged in")
-        //document.getElementById("googleUser").innerHTML = "" + name;
+        console.log("No user logged in");
+        document.getElementById("googleUser").innerHTML = "" + name;
     }
 });
 

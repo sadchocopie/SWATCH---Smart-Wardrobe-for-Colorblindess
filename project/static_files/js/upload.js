@@ -42,6 +42,7 @@ const app = new Vue({
 
                         if (data) {
                             if (count === 1) {
+                                localStorage.setItem("mainColor", data.name);
                                 //                                $('#status').html('Successfully fetched data at URL: ' + requestURL);
                                 $('#jobDiv').html('Dominant color is ' + data.name);
                             }
@@ -49,7 +50,6 @@ const app = new Vue({
                             $('#colorText' + count).html(data.name);
                             count = count + 1;
                         } else {
-                            //                            $('#status').html('Error: could not find color at URL: ' + requestURL);
                             // clear the display
                             $('#jobDiv').html('');
                             $('#petImage').attr('src', '').attr('width', '0px');
@@ -84,8 +84,6 @@ $("#readFileButton").click(function () {
     $("#uploadButton").html("Add to Wardrobe")
 
 });
-
-
 // Create a root reference
 function uploadFile() {
     let storageRef = firebase.storage().ref();
@@ -124,11 +122,14 @@ function uploadFile() {
         let postKey = firebase.database().ref('/Posts/').push().key;
         let downloadURL = uploadTask.snapshot.downloadURL;
         let updates = {};
+        let dominant = localStorage.getItem("mainColor");
+        console.log(dominant);
         let postData = {
             url: downloadURL,
             type: $('#userSelect').val(),
-            caption: fileName
+            caption: fileName,
             // user: user.uid
+            color: localStorage.getItem("mainColor")
         }
 
         console.log("the option rn is: " + $('#userSelect').val());

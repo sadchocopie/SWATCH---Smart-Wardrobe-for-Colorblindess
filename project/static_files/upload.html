@@ -7,7 +7,24 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
     <script src="./js/firebaseInit.js"></script>
-    <script src="./js/login.js"></script>
+
+    <script> // 
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                let user = firebase.auth().currentUser;
+                if (user != null) {
+                    let name = user.displayName;
+                    document.getElementById("googleUser").innerHTML = "" + name;
+                    let imgUrl = user.photoURL;
+                    $("#googleImg").attr("src", imgUrl);
+                }
+            } else {
+                // No user is signed in.
+                console.log("No user logged in");
+                window.location.href = "./";
+            }
+        });
+    </script>
 
     <!-- Basic Page Needs
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -110,6 +127,7 @@
                                         <option value="Top">Top</option>
                                         <option value="Bottom">Bottom</option>
                                         <option value="Outerwear">Outerwear</option>
+                                        <option value="Other">Other</option>
                                     </select>
 
                                     <!--
