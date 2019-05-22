@@ -1,160 +1,166 @@
 <html>
 
-<head>
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script src="./js/firebaseInit.js"></script>
-    <script src="./js/login.js"></script>
-    <!-- Basic Page Needs
+    <head>
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+        <script src="./js/firebaseInit.js"></script>
+        <script src="./js/login.js"></script>
+        <!-- Basic Page Needs
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta charset="utf-8">
-    <title>Color your wardrobe</title>
-    <meta charset="utf-8">
+        <meta charset="utf-8">
+        <title>Color your wardrobe</title>
+        <meta charset="utf-8">
 
-    <!-- Mobile Specific Metas
+        <!-- Mobile Specific Metas
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- FONT
+        <!-- FONT
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
 
-    <!-- CSS
+        <!-- CSS
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
-    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
-    <link rel="stylesheet" href="./css/custom.css">
+        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
+        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
+        <link rel="stylesheet" href="./css/custom.css">
 
-    <!-- Scripts
+        <!-- Scripts
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script src="./js/jquery-3.3.1.min.js"></script>
+        <script src="./js/jquery-3.3.1.min.js"></script>
 
-    <!-- Favicon
+        <!-- Favicon
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
+        <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
 
-</head>
+    </head>
 
-<body>
-    <!-- User Profile  -->
-    <div class="top-nav">
-        <div class="container">
-            <div class="userProfile u-pull-right">
-                <a href="." id="googleUser" class="UserProfile">User012 </a>
-                <img class="user" id="googleImg" src="./images/userProfile.png">
+    <body>
+        <!-- User Profile  -->
+        <div class="top-nav">
+            <div class="container">
+                <div class="row userProfile u-pull-right">
+                    <div class="dropdown">
+                        <div class="dropbtn"><a href="." id="googleUser" class="UserProfile">User012 </a>
+                            <div class="divider" style="width: 2vw; display:inline-block"></div>
+                            <img class="user" id="googleImg" src="./images/userProfile.png"></div>
+                        <div class="dropdown-content">
+                            <p onclick="logout()">Log Out</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--
+<div class="row u-pull-right">
+<button type="button" class="button u-pull-right" id="logoutButton" onclick="logout()"
+style="margin:auto; width: 150px"> Log out</button>
+</div>
+-->
             </div>
         </div>
-    </div>
+
+        <!-- Buttons -->
+        <div class="navigation">
+            <div class="container">
+                <div class="row">
+                    <a href="./upload.html" class="button" style="background-color: #ffffff;margin-right:10px; width: 150px;">
+                        Scan</a>
+
+                    <button type="button" class="button u-pull-right" id="matchButton" onclick="checkMatch()"
+                            style="background-color: #ffffff;margin:auto; width: 150px"> Check</button>
+                </div>
+
+                <div>
+                    <button type="button" class="button button-primary u-pull-left" id="deleteButton" onclick="deleteFile()">
+                        Delete Selected Images
+                    </button>
+                    <button type="button" class="button u-pull-right" id="recommendButton" onclick="checkRecommendation()"
+                            style="background-color: #ffffff;margin:auto; width: 240px "> Find Recommendation</button>
+                </div>
+            </div>
+        </div>
 
 
-    <!-- Buttons -->
-    <div class="navigation">
         <div class="container">
             <div class="row">
-                <a href="./upload.html" class="button" style="background-color: #ffffff;margin-right:10px; width: 150px;">
-                    Scan</a>
-                
+                <h4>Please select 2 items: </h4>
 
-                <button type="button" class="button" id="matchButton" onclick="checkMatch()"
-                    style="background-color: #ffffff;margin:auto; width: 150px"> Check</button>
-                
-                <button type="button" class="button" id="matchButton" onclick="logout()"
-                    style="background-color: #ffffff;margin:auto; width: 150px"> Log out</button>
-                <br>
-                <br>
-                <button type="button" class="button" id="matchButton" onclick="checkRecommendation()"
-                    style="background-color: #ffffff;margin:auto; width: 240px "> Find Recommendation</button>
-                <br>
+                <div id="app">
+                    <hr style="height: 2px; width: 100%;"/>
+                    <p><b>TOP</b></p>
+                    <section class="cardView">
 
-                <br>
-                <button type="button" class="button button-primary " id="deleteButton" onclick="deleteFile()">
-                    Delete Selected Images
-                </button>
+                        <obj v-for="object in categoryTop" @click.native="selectObjectType(object)" :key="object.id"
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                        </obj>
+
+                    </section>
+                    <section class="cardView">
+                        <colorText v-for="object in categoryTop" :color="object.color">
+                        </colorText>
+                    </section>
+                    <hr style="height: 2px; width: 100%;"/>
+                    <p><b>BOTTOM</b></p>
+                    <section class="cardView">
+
+                        <obj v-for="object in categoryBottom" @click.native="selectObjectType(object)" :key="object.id"
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                        </obj>
+
+                    </section>
+                    <section class="cardView">
+                        <colorText v-for="object in categoryBottom" :color="object.color">
+                        </colorText>
+                    </section>
+                    <hr style="height: 2px; width: 100%;"/>
+                    <p><b>OUTERWEAR</b></p>
+                    <section class="cardView">
+                        <obj v-for="object in categoryOuterwear" @click.native="selectObjectType(object)" :key="object.id"
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                        </obj>
+                    </section>
+                    <hr style="height: 2px; width: 100%; color: aqua; aqua;"/>
+                    <section class="cardView">
+                        <colorText v-for="object in categoryOuterwear" :color="object.color">
+                        </colorText>
+                    </section>
+                    <hr style="height: 2px; width: 100%;"/>
+                    <p><b>Others</b></p>
+                    <!--                <hr>-->
+                    <section class="cardView">
+
+                        <obj v-for="object in categoryOther" @click.native="selectObjectType(object)" :key="object.id"
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                        </obj>
+
+
+                    </section>
+                    <section class="cardView">
+                        <colorText v-for="object in categoryOther" :color="object.color">
+                        </colorText>
+                    </section>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="container">
-        <div class="row">
-            <p>Please select 2 items</p>
-
-            <div id="app">
-                <p><b>TOP</b></p>
-                <hr style="height:1px;border:none;color:#fff;background-color:#fff;">
-                <section class="cardView">
-
-                    <obj v-for="object in categoryTop" @click.native="selectObjectType(object)" :key="object.id"
-                        :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
-                    </obj>
-
-
-                </section>
-                <section class="cardView">
-                    <colorText v-for="object in categoryTop" :color="object.color">
-                    </colorText>
-                </section>
-                <p><b>BOTTOM</b></p>
-                <hr style="height:1px;border:none;color:#fff;background-color:#fff;">
-                <section class="cardView">
-
-                    <obj v-for="object in categoryBottom" @click.native="selectObjectType(object)" :key="object.id"
-                        :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
-                    </obj>
-
-                </section>
-                <section class="cardView">
-                    <colorText v-for="object in categoryBottom" :color="object.color">
-                    </colorText>
-                </section>
-                <p><b>OUTERWEAR</b></p>
-                <hr style="height:1px;border:none;color:#fff;background-color:#fff;">
-                <section class="cardView">
-                    <obj v-for="object in categoryOuterwear" @click.native="selectObjectType(object)" :key="object.id"
-                        :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
-                    </obj>
-
-                </section>
-                <section class="cardView">
-                    <colorText v-for="object in categoryOuterwear" :color="object.color">
-                    </colorText>
-                </section>
-                <p><b>Others</b></p>
-                <hr style="height:1px;border:none;color:#fff;background-color:#fff;">
-                <section class="cardView">
-
-                    <obj v-for="object in categoryOther" @click.native="selectObjectType(object)" :key="object.id"
-                        :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
-                    </obj>
-
-
-                </section>
-                <section class="cardView">
-                    <colorText v-for="object in categoryOther" :color="object.color">
-                    </colorText>
-                </section>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container">
-        <!-- Side Category bar -->
-        <div class="row">
-            <div class="section libraryView">
-                <!-- place library -->
-
-            </div>
-        </div>
-    </div>
-
-
-    <div class="section footer" style="text-align: center;">
         <div class="container">
-        </div>
-    </div>
+            <!-- Side Category bar -->
+            <div class="row">
+                <div class="section libraryView">
+                    <!-- place library -->
 
-    <script src="./js/vue.min.js"></script>
-    <script src="./js/loadLibrary.js"></script>
-</body>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="section footer" style="text-align: center;">
+            <div class="container">
+            </div>
+        </div>
+
+        <script src="./js/vue.min.js"></script>
+        <script src="./js/loadLibrary.js"></script>
+    </body>
 
 </html>
