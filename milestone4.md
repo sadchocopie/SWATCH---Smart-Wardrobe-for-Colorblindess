@@ -10,11 +10,11 @@ Home Page: ![](./milestone-Images/m4login.png)
 Scan Page: ![](./milestone-Images/m4upload.png)
 
 
-### We now uses a horizontal scroll to look through the pictures users upload to their wardrobe.
+### 3. We now uses a horizontal scroll to look through the pictures users upload to their wardrobe.
 Wardrobe Page: ![](./milestone-Images/m4wardrobe.png)
 
-### Users can select one item from their wardrobe to see other color combo/recommendations.  We will add the names of each color to accomendate people with various degrees of color-blindness.
-Recommend page: ![](./milestone-Images/m4recommendation.png)
+### 4. Users can select one item from their wardrobe to see other color combo/recommendations.  We will add the names of each color to accomendate people with various degrees of color-blindness.
+Recommendation page: ![](./milestone-Images/m4recommendation.png)
 
 
 
