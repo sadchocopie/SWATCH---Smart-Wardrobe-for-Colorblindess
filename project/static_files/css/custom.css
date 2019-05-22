@@ -5,7 +5,7 @@
     z-index: 999;
     width: 100%;
     height: 48px;
-    background-color:powderblue;
+    background-color:#2257DD;
 }
 
 .top-nav h1 {
@@ -24,7 +24,7 @@
 }
 
 .userProfile a {
-    color: black;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -97,12 +97,31 @@
     padding-bottom: 100%;
 }
 
+body {
+    background-color: #3B3B3B !important;
+    color: #fff;
+}
+
+.button {
+    color:#FDB32B !important;
+    background-color:#3B3B3B !important;
+    border-color: #fff !important;
+
+
+}
+
 .button-primary {
     display:inline-block;
     width: 100%;
     max-width: 500px;
     margin-top:-5px;
+    color:#fff !important;
+    background-color:#2257DD !important;
+    border-color: #fff !important;
+
 }
+
+
 
 .imgUpload {
     margin-bottom:15px;
