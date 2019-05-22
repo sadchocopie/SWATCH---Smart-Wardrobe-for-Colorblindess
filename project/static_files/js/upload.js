@@ -1,4 +1,11 @@
 let selectedFile = "";
+let rgbToHex = function (value) {
+    let hex = Number(value).toString(16);
+    if (hex.length < 2) {
+        hex = '0' + hex;
+    }
+    return hex
+}
 const app = new Vue({
     el: '#app',
     data() {
@@ -23,13 +30,7 @@ const app = new Vue({
                 let style = {
                     backgroundColor: "rgb(" + c[0] + "," + c[1] + "," + c[2] + ")"
                 }
-                let rgbToHex = function (value) {
-                    let hex = Number(value).toString(16);
-                    if (hex.length < 2) {
-                        hex = '0' + hex;
-                    }
-                    return hex
-                }
+
                 const requestURL = 'nearestColor/' + rgbToHex(c[0]) + rgbToHex(c[1]) + rgbToHex(c[2]);
                 console.log('making ajax request to:', requestURL);
                 $.ajax({
@@ -43,6 +44,8 @@ const app = new Vue({
                         if (data) {
                             if (count === 1) {
                                 localStorage.setItem("mainColor", data.name);
+                                localStorage.setItem("mainColorRGB", JSON.stringify(c));
+
                                 //                                $('#status').html('Successfully fetched data at URL: ' + requestURL);
                                 $('#jobDiv').html('Dominant color is ' + data.name);
                             }
@@ -123,19 +126,25 @@ function uploadFile() {
         let downloadURL = uploadTask.snapshot.downloadURL;
         let updates = {};
         let dominant = localStorage.getItem("mainColor");
+        let dominantRGB = JSON.parse(localStorage.getItem("mainColorRGB"));
         console.log(dominant);
+        console.log(dominantRGB);
+        let dominantHex = "" + rgbToHex(dominantRGB[0]) + rgbToHex(dominantRGB[1]) + rgbToHex(dominantRGB[2]);
+        console.log(dominantHex)
         let postData = {
             url: downloadURL,
             type: $('#userSelect').val(),
             caption: fileName,
             // user: user.uid
-            color: localStorage.getItem("mainColor")
+            color: dominant,
+            colorHex: dominantHex
         }
 
         console.log("the option rn is: " + $('#userSelect').val());
         let user = firebase.auth().currentUser;
         console.log("user before upload is:" + user.displayName);
         console.log("google user id: " + user.uid);
+        console.log(postData);
         updates['/Posts/' + user.uid + '/' + $('#userSelect').val() + "/" + postKey] = postData;
         firebase.database().ref().update(updates);
         console.log("uploaded image");

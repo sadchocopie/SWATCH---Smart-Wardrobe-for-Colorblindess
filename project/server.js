@@ -47,23 +47,37 @@ const colorDatabase = {
 
 
 app.get('/recommendColors', (req, res) => {
-  console.log(req.query.array);
+  console.log(req.query.sColors);
 
   let starterColors = [];
-  for (let i = 0; i < req.query.array.length; i++) {
-    if (req.query.array[i]) { 
-      let hexs = req.query.array[i].match(/..?/g);
-      console.log(hexs);
-      //split hex values into rgb FFFFFF => ['FF', 'FF', 'FF']
-      let rgb = hexs.map((val) => {return parseInt("0x"+ val)});
-      console.log(rgb);
-      //parseInt("0xFF")
-      starterColors.push(rgb);
+  if(typeof req.query.sColors === 'string') {
+    let hex = req.query.sColors.match(/..?/g);
+    console.log(hex);
+    //split hex values into rgb FFFFFF => ['FF', 'FF', 'FF']
+    let rgb = hex.map((val) => {return parseInt("0x"+ val)});
+    console.log(rgb);
+    starterColors.push(rgb);
+    for (let i = 0; i < 4; i++) {
+      starterColors.push("N");
+    }
+
+  } else {
+    for (let i = 0; i < req.query.sColors.length; i++) {
+      if (req.query.sColors[i]) { 
+        let hexs = req.query.sColors[i].match(/..?/g);
+        console.log(hexs);
+        //split hex values into rgb FFFFFF => ['FF', 'FF', 'FF']
+        let rgb = hexs.map((val) => {return parseInt("0x"+ val)});
+        console.log(rgb);
+        //parseInt("0xFF")
+        starterColors.push(rgb);
+      }
+    }
+    for (let i = 0; i < 5-req.query.sColors.length; i++) {
+      starterColors.push("N");
     }
   }
-  for (let i = 0; i < 5-req.query.array.length; i++) {
-    starterColors.push("N");
-  }
+
 
 
   var url = "http://colormind.io/api/";
@@ -86,7 +100,7 @@ app.get('/recommendColors', (req, res) => {
     if(http.readyState == 4 && http.status == 200) {
       var palette = JSON.parse(http.responseText).result;
       console.log(palette);
-      res.send("recommended colors" + palette);
+      res.send(palette);
 
 
     }
