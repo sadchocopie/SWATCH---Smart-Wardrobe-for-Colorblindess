@@ -53,14 +53,16 @@
     <div class="navigation">
         <div class="container">
             <div class="row">
-                <a href="./upload.html" class="button" style="background-color: #ffffff;margin:auto; width: 150px">
+                <a href="./upload.html" class="button" style="background-color: #ffffff;margin-right:10px; width: 150px;">
                     Scan</a>
+                
 
                 <button type="button" class="button" id="matchButton" onclick="checkMatch()"
                     style="background-color: #ffffff;margin:auto; width: 150px"> Check</button>
                 <br>
+                <br>
                 <button type="button" class="button" id="matchButton" onclick="checkRecommendation()"
-                    style="background-color: #ffffff;margin:auto; width: 150px"> Find Recommendation</button>
+                    style="background-color: #ffffff;margin:auto; width: 240px "> Find Recommendation</button>
                 <br>
 
                 <br>
@@ -78,7 +80,7 @@
 
             <div id="app">
                 <p><b>TOP</b></p>
-                <hr style="height:1px;border:none;color:#333;background-color:#333;">
+                <hr style="height:1px;border:none;color:#fff;background-color:#fff;">
                 <section class="cardView">
 
                     <obj v-for="object in categoryTop" @click.native="selectObjectType(object)" :key="object.id"
@@ -92,7 +94,7 @@
                     </colorText>
                 </section>
                 <p><b>BOTTOM</b></p>
-                <hr style="height:1px;border:none;color:#333;background-color:#333;">
+                <hr style="height:1px;border:none;color:#fff;background-color:#fff;">
                 <section class="cardView">
 
                     <obj v-for="object in categoryBottom" @click.native="selectObjectType(object)" :key="object.id"
@@ -105,7 +107,7 @@
                     </colorText>
                 </section>
                 <p><b>OUTERWEAR</b></p>
-                <hr style="height:1px;border:none;color:#333;background-color:#333;">
+                <hr style="height:1px;border:none;color:#fff;background-color:#fff;">
                 <section class="cardView">
                     <obj v-for="object in categoryOuterwear" @click.native="selectObjectType(object)" :key="object.id"
                         :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
@@ -117,7 +119,7 @@
                     </colorText>
                 </section>
                 <p><b>Others</b></p>
-                <hr style="height:1px;border:none;color:#333;background-color:#333;">
+                <hr style="height:1px;border:none;color:#fff;background-color:#fff;">
                 <section class="cardView">
 
                     <obj v-for="object in categoryOther" @click.native="selectObjectType(object)" :key="object.id"
