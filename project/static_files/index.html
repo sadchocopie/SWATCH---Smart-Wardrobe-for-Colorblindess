@@ -102,7 +102,7 @@ In</a>
                                 <span id="googleUser"></span>
                                 <img id="googleImg" src=""/>
                             </div>
-                            
+
                             <div style="margin: 20px; 0;">
                                 <p id="redirectMessage"></p>
                                 <button type="button" class="button" onclick="logout()">Logout</button>
@@ -111,7 +111,7 @@ In</a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="section footer" style="text-align: center;">
                 <div class="container">
                 </div>
@@ -135,7 +135,7 @@ In</a>
                 $("#googleImg").css("width", "50px");
                 $("#signInButton").css("visibility", "hidden");
                 $("#user_div").css("visibility", "");
-                document.getElementById("redirectMessage").innerHTML = "Redirecting to Wardrobe...";
+                document.getElementById("redirectMessage").innerHTML = "Redirecting to Wardrobe now...";
             }
 
             setTimeout(function(){
@@ -153,9 +153,15 @@ In</a>
 </script>
 
 <style>
-
     body {
         background-color: #002c3a !important;
         color: white;
+    }
+
+    .button {
+        color:#fff !important;
+        background-color:transparent!important;
+        border-color: #fff!important;
+        width: 250px;
     }
 </style>
