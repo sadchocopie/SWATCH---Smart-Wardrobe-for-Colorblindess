@@ -4,17 +4,17 @@ We have further improved User Interface since milestone3.  For example we selec
 ## New UI Screenshots
 
 ### 1. We added a login page and have implemented Gmail authentication through Google Firebase.
-Home Page: ![](./milestone-Images/milestone3login.PNG)
+Home Page: ![](./milestone-Images/m4login.PNG)
 
 ### 2. We now We fixed the layout of the page and modified the color scheme.
-Scan Page: ![](./milestone-Images/milestone3upload.PNG)
+Scan Page: ![](./milestone-Images/m4upload.PNG)
 
 
 ### We now uses a horizontal scroll to look through the pictures users upload to their wardrobe.
-Wardrobe Page: ![](./milestone-Images/milestone3library.PNG)
+Wardrobe Page: ![](./milestone-Images/m4wardrobe.PNG)
 
 ### Users can select one item from their wardrobe to see other color combo/recommendations.  We will add the names of each color to accomendate people with various degrees of color-blindness.
-Recommend page: ![](./milestone-Images/milestone3check.PNG)
+Recommend page: ![](./milestone-Images/m4recommendation.PNG)
 
 
 
