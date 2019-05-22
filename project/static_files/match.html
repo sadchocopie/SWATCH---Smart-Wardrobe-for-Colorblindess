@@ -31,68 +31,70 @@
         <!-- Scripts
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         <script src="./js/jquery-3.3.1.min.js"></script>
-        <!--        <script src="./js/image.js"></script> -->
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+        <script src="./js/firebaseInit.js"></script>
+        <script src="./js/login.js"></script>
 
 
-<script type="text/javascript">
+        <script type="text/javascript">
 
-// jQuery convention for running when the document has been fully loaded:
-$(document).ready(() => {
-$('#readButton').click(() => {
-const requestURL = 'colorCombo/' + $('#nameBox').val();
-console.log('making ajax request to:', requestURL);
+            // jQuery convention for running when the document has been fully loaded:
+            $(document).ready(() => {
+                $('#readButton').click(() => {
+                    const requestURL = 'colorCombo/' + $('#nameBox').val();
+                    console.log('making ajax request to:', requestURL);
 
-// From: http://learn.jquery.com/ajax/jquery-ajax-methods/
-// Using the core $.ajax() method since it's the most flexible.
-// ($.get() and $.getJSON() are nicer convenience functions)
-$.ajax({
-// all URLs are relative to http://localhost:3000/
-url: requestURL,
-type: 'GET',
-dataType: 'json', // this URL returns data in JSON format
-success: (data) => {
-console.log('You received some data!', data);
+                    // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
+                    // Using the core $.ajax() method since it's the most flexible.
+                    // ($.get() and $.getJSON() are nicer convenience functions)
+                    $.ajax({
+                        // all URLs are relative to http://localhost:3000/
+                        url: requestURL,
+                        type: 'GET',
+                        dataType: 'json', // this URL returns data in JSON format
+                        success: (data) => {
+                            console.log('You received some data!', data);
 
-if (data) {
-$('#status').html('Successfully fetched data at URL: ' + requestURL);
-$('#jobDiv').html('that color is ' + $('#nameBox').val());
-$('#petImage').attr('src', "./images/" + data.pic).attr('width', '300px');
-console.log('You received some data!', data.colors);
-$('#color1').css('background-color', data.colors[0]);
-$('#color1').html(data.colors[0]);
-$('#color2').css('background-color', data.colors[1]);
-$('#color2').html(data.colors[1]);
-$('#color3').css('background-color', data.colors[2]);
-$('#color3').html(data.colors[2]);
-} else {
-$('#status').html('Error: could not find color at URL: ' + requestURL);
-// clear the display
-$('#jobDiv').html('');
-$('#petImage').attr('src', '').attr('width', '0px');
-}
-},
-});
-});
+                            if (data) {
+                                $('#status').html('Successfully fetched data at URL: ' + requestURL);
+                                $('#jobDiv').html('that color is ' + $('#nameBox').val());
+                                $('#petImage').attr('src', "./images/" + data.pic).attr('width', '300px');
+                                console.log('You received some data!', data.colors);
+                                $('#color1').css('background-color', data.colors[0]);
+                                $('#color1').html(data.colors[0]);
+                                $('#color2').css('background-color', data.colors[1]);
+                                $('#color2').html(data.colors[1]);
+                                $('#color3').css('background-color', data.colors[2]);
+                                $('#color3').html(data.colors[2]);
+                            } else {
+                                $('#status').html('Error: could not find color at URL: ' + requestURL);
+                                // clear the display
+                                $('#jobDiv').html('');
+                                $('#petImage').attr('src', '').attr('width', '0px');
+                            }
+                        },
+                    });
+                });
 
-$('#allUsersButton').click(() => {
-$.ajax({
-url: 'colorCombo',
-type: 'GET',
-dataType: 'json',
-success: (data) => {
-console.log('You received some data!', data);
-$('#status').html('All colors: ' + data);
-},
-});
-});
+                $('#allUsersButton').click(() => {
+                    $.ajax({
+                        url: 'colorCombo',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: (data) => {
+                            console.log('You received some data!', data);
+                            $('#status').html('All colors: ' + data);
+                        },
+                    });
+                });
 
-// define a generic Ajax error handler:
-// http://api.jquery.com/ajaxerror/
-$(document).ajaxError(() => {
-$('#status').html('Error: unknown ajaxError!');
-});
-});
-</script>
+                // define a generic Ajax error handler:
+                // http://api.jquery.com/ajaxerror/
+                $(document).ajaxError(() => {
+                    $('#status').html('Error: unknown ajaxError!');
+                });
+            });
+        </script>
 
 
 
@@ -108,26 +110,34 @@ $('#status').html('Error: unknown ajaxError!');
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         <div class="top-nav">
             <div class="container">
-                <div class="userProfile u-pull-right">
-                    <a href="." class="UserProfile">User012 </a>
-                    <img class="user "id="profilePic" src="./images/userProfile.png">
+                <div class="row userProfile u-pull-right">
+                    <div class="row userProfile u-pull-right">
+                        <div class="dropdown">
+                            <div class="dropbtn"><a href="." id="googleUser" class="UserProfile">User012 </a>
+                                <div class="divider" style="width: 2vw; display:inline-block"></div>
+                                <img class="user" id="googleImg" src="./images/userProfile.png"></div>
+                            <div class="dropdown-content">
+                                <p onclick="logout()">Log Out</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <br>
-        
-              <div class="match colors">
-                <div class="container" style="vertical-align: middle;" align=center>
+
+        <div class="match colors">
+            <div class="container" style="vertical-align: middle;" align=center>
                 <div class="row">      
                     <h3 style="margin: auto" >It'a match!</h3></div>
-                    <br>
+                <br>
                 <div class="row">
-                       
-                        <img src="./images/shirt.jpg" style="width:auto; height:100%; max-height: 200px;margin-left: auto; margin-right: auto;  border: 2px solid powderblue" >
-                     
-                        <img src="./images/pants.jpg" style="width:auto; height:100%;max-height: 200px;margin-left: auto; margin-right: auto; ;  border: 2px solid powderblue">
+
+                    <img src="./images/shirt.jpg" style="width:auto; height:100%; max-height: 200px;margin-left: auto; margin-right: auto;  border: 2px solid powderblue" >
+
+                    <img src="./images/pants.jpg" style="width:auto; height:100%;max-height: 200px;margin-left: auto; margin-right: auto; ;  border: 2px solid powderblue">
                 </div>
-                
+
                 <div class="row"> 
                     <h5 style="margin: auto" >Color: Mint Green</h5>
                     <h5 style="margin: auto" >Color: Dark Grey</h5>
@@ -137,29 +147,29 @@ $('#status').html('Error: unknown ajaxError!');
                 <div class="row">
                     <!-- <div class =six columns> -->
                     <span class=smallerswatch style="margin-left: auto; margin-right: auto">
-                       <span class=swatchsmall style="background-color:#00e2d3"></span>
-                       <span class=swatchsmall style="background-color:#37a6a0"></span>
-                       <span class=swatchsmall style="background-color:#90cdd0"></span>
-                       <span class=swatchsmall style="background-color:#fffea8"></span>
+                        <span class=swatchsmall style="background-color:#00e2d3"></span>
+                        <span class=swatchsmall style="background-color:#37a6a0"></span>
+                        <span class=swatchsmall style="background-color:#90cdd0"></span>
+                        <span class=swatchsmall style="background-color:#fffea8"></span>
                     </span>
                     <hr>
-                   <!--  <div class =six columns> -->
+                    <!--  <div class =six columns> -->
                     <span class=smallerswatch style="margin-left: auto; margin-right: auto">
-                          <span class=swatchsmall style="background-color:#FBF6F3"></span>
-                       <span class=swatchsmall style="background-color:#feb06a"></span>
-                       <span class=swatchsmall style="background-color:#36d6e7"></span>
-                       <span class=swatchsmall style="background-color:#5d6c89"></span>
-                      
+                        <span class=swatchsmall style="background-color:#FBF6F3"></span>
+                        <span class=swatchsmall style="background-color:#feb06a"></span>
+                        <span class=swatchsmall style="background-color:#36d6e7"></span>
+                        <span class=swatchsmall style="background-color:#5d6c89"></span>
+
                     </span>
                 </div>
 
-               <a href="library.html"><button type="button" class="button">Done!</button></a>
+                <a href="library.html"><button type="button" class="button">Done!</button></a>
 
             </div>
         </div>
 
-             
-<!-- Color: <input id="nameBox" type="text" size="20" />
+
+        <!-- Color: <input id="nameBox" type="text" size="20" />
 <button id="readButton">Get color specific data</button>
 <button id="allUsersButton">Get All Color data </button>
 
@@ -178,10 +188,10 @@ $('#status').html('Error: unknown ajaxError!');
 
 
 
-        <div class="section footer" style="text-align: center;">
-            <div class="container">
-            </div>
-        </div> -->
+<div class="section footer" style="text-align: center;">
+<div class="container">
+</div>
+</div> -->
 
         <!-- End Document
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
