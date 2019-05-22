@@ -29,9 +29,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         //document.getElementById("login_div").style.display = "none";
 
         let user = firebase.auth().currentUser;
-
         if (user != null) {
-
             let name = user.displayName;
             document.getElementById("googleUser").innerHTML = "" + name;
             let imgUrl = user.photoURL;
