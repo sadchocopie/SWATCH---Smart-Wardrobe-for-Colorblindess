@@ -41,7 +41,7 @@
     </head>
 
     <body style="background-color:powderblue">
-        <div class="container" style="background-color:powderblue; padding-top: 10%; padding-bottom: 30%" align="center">
+        <div class="container" style="background-color:#3B3B3B; padding-top: 10%; padding-bottom: 30%" align="center">
 
 
 
@@ -49,8 +49,8 @@
                 <div class="container">
                     <div class="row">
 
-                        <img src="./images/templogo.png"
-                             style="width:25%; height:25%;margin-left: auto; margin-right: auto; ">
+                        <img src="./images/swatch_logo.png"
+                             style="width:50%; height:50%;margin-left: auto; margin-right: auto; ">
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@ In</a>
 
                         <div id="login_div" class="main-div">
                             <h4>Sign in with Gmail !</h4>
-                            <button onclick="googleSignIn()" id="signInButton"> Sign In </button>
+                            <button type="button" class="button"  onclick="googleSignIn()" id="signInButton"> Sign In </button>
                         </div>
 
                         <div id="user_div" class="loggedin-div">
@@ -107,7 +107,7 @@ In</a>
                             
                             <div style="margin: 20px; 0;">
                                 <p id="redirectMessage"></p>
-                                <button onclick="logout()">Logout</button>
+                                <button type="button" class="button" onclick="logout()">Logout</button>
                             </div>
                         </div>
                     </div>
