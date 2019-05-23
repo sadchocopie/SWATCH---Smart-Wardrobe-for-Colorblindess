@@ -212,6 +212,13 @@ body {
     background-color:rgba(255,255,255,0.6);
     cursor:pointer;
 }
+h3 {
+    margin:auto !important;
+}
+
+h5 {
+    margin:auto !important;
+}
 
 .imgAdd {
     width:30px;
@@ -238,13 +245,14 @@ body {
 }
 
 .swatchsmall {
-    height: 40px;
-    width: 40px;
+    height: 90px;
+    width: 90px;
     /*border-style: solid;*/
     border-width: thin;
     float: left;
     margin-right: 3px;
     display: block;
+    font-size: 20px;
 }
 
 .sidenav {
