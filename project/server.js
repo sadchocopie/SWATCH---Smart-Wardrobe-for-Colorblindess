@@ -124,17 +124,6 @@ app.get('/nearestColor/:colorHex', (req, res) => {
 });
 
 
-app.get('/nearestColor/:colorHex', (req, res) => {
-  const colorToName = req.params.colorHex;
-  const ntc = require("ntc.js").ntc;
-
-  const match = ntc.name(colorToName);
-
-  const name = match[1];
-  res.send(name);
-
-});
-
 app.get('/colorCombo', (req, res) => {
   const allColorCombo = Object.keys(colorDatabase); // returns a list of object keys
   console.log('allColorCombo is:', allColorCombo);
