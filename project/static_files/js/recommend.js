@@ -8,6 +8,14 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+let rgbToHex = function (value) {
+    let hex = Number(value).toString(16);
+    if (hex.length < 2) {
+        hex = '0' + hex;
+    }
+    return hex
+}
+
 function callRecommend(textColorHex, urlList) {
     console.log("before adjax call", textColorHex);
     $.ajax({
@@ -15,6 +23,7 @@ function callRecommend(textColorHex, urlList) {
         url: 'recommendColors/?' + textColorHex,
         dataType: 'json',
         success: (data) => {
+            let count = 0;
             console.log('Recommended colors:', data);
             $("#articleimg").attr('src', urlList[0]);
             $("#s0").css('background-color', 'rgb(' + data[0] + ')');
@@ -25,6 +34,26 @@ function callRecommend(textColorHex, urlList) {
             $("#rectext").replaceWith("<h3>Recommendations</h3>");
             $("#loadtext").replaceWith("<h5>Recommended Colors</h5>");
 
+            data.forEach(c => {
+                const requestURL = 'nearestColor/' + rgbToHex(c[0]) + rgbToHex(c[1]) + rgbToHex(c[2]);
+                console.log('making ajax request to:', requestURL);
+                $.ajax({
+                    // all URLs are relative to http://localhost:3000/
+                    url: requestURL,
+                    type: 'GET',
+                    dataType: 'json', // this URL returns data in JSON format
+                    success: (data) => {
+                        console.log('You received some data!', data);
+
+                        if (data) {
+                            $('#t' + count).html(data.name);
+
+                            count = count + 1;
+                        } else {
+                        }
+                    },
+                });
+            });
 
         }
     });
