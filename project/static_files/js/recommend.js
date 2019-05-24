@@ -22,6 +22,10 @@ function callRecommend(textColorHex, urlList) {
             $("#s2").css('background-color', 'rgb(' + data[2] + ')');
             $("#s3").css('background-color', 'rgb(' + data[3] + ')');
             $("#s4").css('background-color', 'rgb(' + data[4] + ')');
+            $("#rectext").replaceWith("<h3>Recommendations</h3>");
+            $("#loadtext").replaceWith("<h5>Recommended Colors</h5>");
+
+
         }
     });
     console.log("finished recommend");
