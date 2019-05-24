@@ -82,6 +82,32 @@ $(document).ready(() => {
         }
     });
 
+    $('#s0').click(() => {
+        let colorToSearch = $(this).attr('background-color');
+        firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                        googleUser = firebase.auth().currentUser;
+                        datebase(googleUser);
+                } else {
+                        // No user is signed in.
+                        console.log("no user logined");
+                        window.location.href = "./";
+                }
+                let allArticlesMatch = [];
+                database.ref('Posts/' + googleUser.uid).once('value', (snapshot) => {
+                        const allClothes = snapshot.val();
+                        // console.log(allClothes);
+                        const flattenedAll = [];
+                        flattenedAll.push(allClothes['Top']);
+                        flattenedAll.push(allClothes['Bottom']);
+                        flattenedAll.push(allClothes['Outerwear']);
+
+                        
+                        console.log(flattenedAll);
+                        
+                });
+        });
+    });
 
     $('#readButton').click(() => {
         const requestURL = 'colorCombo/' + $('#nameBox').val();
