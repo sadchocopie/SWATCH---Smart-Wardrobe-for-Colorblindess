@@ -330,10 +330,17 @@ body {
     border-color: #f5e0e0;
 }
 
-.card.selected {
+.outerCard.selected .card{
     border: 2px solid;
     border-color: #FDB32B;
 }
+
+
+.imgColorTag {
+    text-align: center;
+    font-weight: bold;
+}
+
 
 #deleteButton {
     width: 250px;
