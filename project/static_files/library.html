@@ -64,9 +64,6 @@ style="margin:auto; width: 150px"> Log out</button>
                 <div class="row">
                     <a href="./upload.html" class="button" style="background-color: #ffffff;margin-right:10px; width: 150px;">
                         Scan</a>
-
-                    <button type="button" class="button u-pull-right" id="matchButton" onclick="checkMatch()"
-                            style="background-color: #ffffff;margin:auto; width: 150px"> Check</button>
                 </div>
 
                 <div>
@@ -82,46 +79,37 @@ style="margin:auto; width: 150px"> Log out</button>
 
         <div class="container">
             <div class="row">
-                <h4>Please select 2 items: </h4>
 
                 <div id="app">
+
+                    <h4>{{ msg }}</h4>
+
                     <hr style="height: 2px; width: 100%;"/>
                     <p><b>TOP</b></p>
-                    <section class="cardView">
 
+                    <section class="cardView">
                         <obj v-for="object in categoryTop" @click.native="selectObjectType(object)" :key="object.id"
-                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc"
+                             :color="object.color">
                         </obj>
-
-                    </section>
-                    <section class="cardView">
-                        <colorText v-for="object in categoryTop" :color="object.color">
-                        </colorText>
-                    </section>
+                    </section>        
                     <hr style="height: 2px; width: 100%;"/>
                     <p><b>BOTTOM</b></p>
                     <section class="cardView">
 
                         <obj v-for="object in categoryBottom" @click.native="selectObjectType(object)" :key="object.id"
-                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc"
+                             :color="object.color">
                         </obj>
+                    </section>
 
-                    </section>
-                    <section class="cardView">
-                        <colorText v-for="object in categoryBottom" :color="object.color">
-                        </colorText>
-                    </section>
                     <hr style="height: 2px; width: 100%;"/>
                     <p><b>OUTERWEAR</b></p>
                     <section class="cardView">
                         <obj v-for="object in categoryOuterwear" @click.native="selectObjectType(object)" :key="object.id"
-                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc"
+                             :color="object.color">
                         </obj>
-                    </section>
-                    <hr style="height: 2px; width: 100%; color: aqua; aqua;"/>
-                    <section class="cardView">
-                        <colorText v-for="object in categoryOuterwear" :color="object.color">
-                        </colorText>
                     </section>
                     <hr style="height: 2px; width: 100%;"/>
                     <p><b>Others</b></p>
@@ -129,15 +117,11 @@ style="margin:auto; width: 150px"> Log out</button>
                     <section class="cardView">
 
                         <obj v-for="object in categoryOther" @click.native="selectObjectType(object)" :key="object.id"
-                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc">
+                             :class="object.selected ? 'selected' : ''" :image="object.imgSrc"
+                             :color="object.color">
                         </obj>
-
-
                     </section>
-                    <section class="cardView">
-                        <colorText v-for="object in categoryOther" :color="object.color">
-                        </colorText>
-                    </section>
+
                 </div>
             </div>
         </div>

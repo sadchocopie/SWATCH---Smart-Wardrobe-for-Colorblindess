@@ -1,6 +1,3 @@
-
-
-
 Vue.component('obj', {
     props: {
         item: String,
@@ -8,17 +5,7 @@ Vue.component('obj', {
         color: String
     },
 
-    template: '<div class="card"><img class="imgBox" v-bind:src="image" />'
-});
-
-Vue.component('colorText', {
-    props: {
-        item: String,
-        image: String,
-        color: ['text']
-    },
-
-    template: '<div class="card">{{ color }}</div>'
+    template: '<div class="outerCard"><div class="card"><img class="imgBox" v-bind:src="image" /></div> <div class="imgColorTag"><p>{{ color }}</p></div></div>'
 });
 
 var googleUser = "";
@@ -43,6 +30,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 });
 
 function datebase(googleUser) {
+    // UPDATE TOP LIST
     database.ref('Posts/' + googleUser.uid + '/Top/').on('value', (snapshot) => {
         const allTops = snapshot.val();
         console.log('Posts/ changed:', allTops);
@@ -212,6 +200,7 @@ function checkRecommendation() {
 const app = new Vue({
     el: '#app',
     data: {
+        msg: 'Select one item to get recommendations!',
         categoryTop: clothesList_TOP,
         categoryBottom: clothesList_BOTTOM,
         categoryOuterwear: clothesList_OUTERWEAR,
