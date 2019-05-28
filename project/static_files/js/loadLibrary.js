@@ -220,7 +220,8 @@ const app = new Vue({
         categoryTop: clothesList_TOP,
         categoryBottom: clothesList_BOTTOM,
         categoryOuterwear: clothesList_OUTERWEAR,
-        categoryOther: clothesList_Other
+        categoryOther: clothesList_Other,
+        selectedArticles: {}
     },
     methods: {
         selectObjectType: function (object) {
@@ -231,8 +232,6 @@ const app = new Vue({
                     this.categoryTop.forEach(obj => {
                         if (obj.id != object.id) {
                             obj.selected = false;
-                            console.log(obj.colorRGB);
-
                         }
                     });
                     break;
@@ -264,7 +263,14 @@ const app = new Vue({
                 // code block
             }
             object.selected = !object.selected;
+            if (!object.selected) {
+                delete this.selectedArticles[object.type]
+            } else {
+                this.selectedArticles[object.type] = {id : object.id, rgb: object.colorRGB}
+            }
             console.log('Selected:', object.type + object.selected);
+            console.log('AllSelected', this.selectedArticles);
+            console.log('number of things selected', Object.keys(this.selectedArticles).length);
 
             
         }
