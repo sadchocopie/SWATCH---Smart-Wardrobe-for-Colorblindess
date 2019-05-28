@@ -43,7 +43,11 @@ function datebase(googleUser) {
                         selected: false,
                         imgSrc: allTops[key].url,
                         id: key,
-                        color: allTops[key].color
+                        color: allTops[key].color,
+                        colorHex: allTops[key].colorHex,
+                        colorRGB: allTops[key].colorRGB
+
+
                     }
                 );
             });
@@ -63,7 +67,10 @@ function datebase(googleUser) {
                         selected: false,
                         imgSrc: allBottoms[key].url,
                         id: key,
-                        color: allBottoms[key].color
+                        color: allBottoms[key].color,
+                        colorHex: allBotoms[key].colorHex,
+                        colorRGB: allBotoms[key].colorRGB
+
                     }
                 );
             });
@@ -83,7 +90,10 @@ function datebase(googleUser) {
                         selected: false,
                         imgSrc: allOuterwears[key].url,
                         id: key,
-                        color: allOuterwears[key].color
+                        color: allOuterwears[key].color,
+                        colorHex: allOuterwears[key].colorHex,
+                        colorRGB: allOuterwears[key].colorGRB
+
                     }
                 );
             });
@@ -103,7 +113,11 @@ function datebase(googleUser) {
                         selected: false,
                         imgSrc: allOtherwears[key].url,
                         id: key,
-                        color: allOtherwears[key].color
+                        color: allOtherwears[key].color,
+                        colorHex: allOtherwears[key].colorHex,
+                        colorRGB: allOtherwears[key].colorRGB
+
+
                     }
                 );
             });
@@ -239,6 +253,8 @@ const app = new Vue({
             }
             object.selected = !object.selected;
             console.log('Selected:', object.type + object.selected);
+
+            
         }
     }
 });
