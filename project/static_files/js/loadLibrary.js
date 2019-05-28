@@ -209,7 +209,9 @@ function checkRecommendation() {
     console.log('list of id', recclist);
     location.href = './recommend.html?image=' + recclist;
 }
-
+function test() {
+    console.log("test")
+}
 
 const app = new Vue({
     el: '#app',
@@ -227,25 +229,33 @@ const app = new Vue({
                 case "Top":
                     console.log("top selected");
                     this.categoryTop.forEach(obj => {
-                        obj.selected = false;
+                        if (obj.id != object.id) {
+                            obj.selected = false;
+                        }
                     });
                     break;
                 case "Bottom":
                     console.log("Bottom selected");
                     this.categoryBottom.forEach(obj => {
-                        obj.selected = false;
+                        if (obj.id != object.id) {
+                            obj.selected = false;
+                        }
                     });
                     break;
                 case "Outerwear":
                     console.log("outerwear selected");
                     this.categoryOuterwear.forEach(obj => {
-                        obj.selected = false;
+                        if (obj.id != object.id) {
+                            obj.selected = false;
+                        }
                     });
                     break;
                 case "Others":
                     console.log("other selected");
                     this.categoryOther.forEach(obj => {
-                        obj.selected = false;
+                        if (obj.id != object.id) {
+                            obj.selected = false;
+                        }
                     });
                     break;
                 default:
