@@ -208,6 +208,35 @@ const app = new Vue({
     },
     methods: {
         selectObjectType: function (object) {
+            console.log("test object selected", object);
+            switch (object.type) {
+                case "Top":
+                    console.log("top selected");
+                    this.categoryTop.forEach(obj => {
+                        obj.selected = false;
+                    });
+                    break;
+                case "Bottom":
+                    console.log("Bottom selected");
+                    this.categoryBottom.forEach(obj => {
+                        obj.selected = false;
+                    });
+                    break;
+                case "Outerwear":
+                    console.log("outerwear selected");
+                    this.categoryOuterwear.forEach(obj => {
+                        obj.selected = false;
+                    });
+                    break;
+                case "Others":
+                    console.log("other selected");
+                    this.categoryOther.forEach(obj => {
+                        obj.selected = false;
+                    });
+                    break;
+                default:
+                // code block
+            }
             object.selected = !object.selected;
             console.log('Selected:', object.type + object.selected);
         }
