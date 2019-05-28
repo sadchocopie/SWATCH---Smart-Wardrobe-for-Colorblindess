@@ -92,7 +92,7 @@ function datebase(googleUser) {
                         id: key,
                         color: allOuterwears[key].color,
                         colorHex: allOuterwears[key].colorHex,
-                        colorRGB: allOuterwears[key].colorGRB
+                        colorRGB: allOuterwears[key].colorRGB
 
                     }
                 );
@@ -231,6 +231,8 @@ const app = new Vue({
                     this.categoryTop.forEach(obj => {
                         if (obj.id != object.id) {
                             obj.selected = false;
+                            console.log(obj.colorRGB);
+
                         }
                     });
                     break;
