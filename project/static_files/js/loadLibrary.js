@@ -70,8 +70,8 @@ function datebase(googleUser) {
                         imgSrc: allBottoms[key].url,
                         id: key,
                         color: allBottoms[key].color,
-                        colorHex: allBotoms[key].colorHex,
-                        colorRGB: allBotoms[key].colorRGB
+                        colorHex: allBottoms[key].colorHex,
+                        colorRGB: allBottoms[key].colorRGB
 
                     }
                 );
