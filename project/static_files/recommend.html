@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
         <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
         <script src="./js/firebaseInit.js"></script>
         <script src="./js/login.js"></script>
@@ -42,67 +42,74 @@
         <!-- Favicon
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
-</head>
+    </head>
 
-<body>
+    <body>
 
         <!-- Primary Page Layout
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         <!-- User Profile  -->
         <div class="top-nav">
-                <div class="container">
-                        <div class="userProfile u-pull-right">
-                                <a href="." id="googleUser" class="UserProfile">User012 </a>
-                                <img class="user" id="googleImg" src="./images/userProfile.png">
-                        </div>
+            <div class="container">
+                <div class="userProfile u-pull-right">
+                    <a href="." id="googleUser" class="UserProfile">User012 </a>
+                    <img class="user" id="googleImg" src="./images/userProfile.png">
                 </div>
+            </div>
         </div>
         <br>
 
         <div class="match colors">
-                <div class="container" style="vertical-align: middle;" align=center>
-                        <div class="row">
-                                <h3 id="rectext" style="margin: auto">Loading Recommendation ...</h3>
-                        </div>
-                        <br>
-                        <div class="row">
+            <div class="container" style="vertical-align: middle;" align=center>
+                <div class="row">
+                    <h3 id="rectext" style="margin: auto">Loading Recommendation ...</h3>
+                </div>
+                <br>
+                <div class="row" style="text-align: center;">
 
-                                <img id="articleimg" src=""
-                                        style="width:auto; height:100%; max-height: 200px;margin-left: auto; margin-right: auto;">
+                    <img id="articleimg0" class="u-max-full-width" src=""
+                         style="width:auto; height:100%; max-height: 200px;margin-left: auto; margin-right: auto;display: none;">
+                    <img id="articleimg1" class="u-max-full-width" src=""
+                         style="width:auto; height:100%; max-height: 200px;margin-left: auto; margin-right: auto;display: none;">
+                    <img id="articleimg2" class="u-max-full-width" src=""
+                         style="width:auto; height:100%; max-height: 200px;margin-left: auto; margin-right: auto;display: none;">
+                    <img id="articleimg3" class="u-max-full-width" src=""
+                         style="width:auto; height:100%; max-height: 200px;margin-left: auto; margin-right: auto;display: none;">
 
-                        </div>
-
-                        <div class="row">
-<!--                                <h5 id="loadtext" style="margin: auto">Finding Colors ...</h5>-->
-                            <img id="loadtext" style="margin:auto" src="./images/loading.gif"/>
-                        </div>
-                        <br>
-
-                        <div class="row">
-                                <!--  <div class =six columns> -->
-                                <span class=smallerswatch style="margin-left: auto; margin-right: auto">
-                                        <span id="s0" class=swatchsmall style="background-color:#f0f7ff">
-                                                <h6 id="t0"></h6>
-                                        </span>
-                                        <span id="s1" class=swatchsmall style="background-color:#f0f7ff">
-                                                <h6 id="t1"></h6>
-                                        </span>
-                                        <span id="s2" class=swatchsmall style="background-color:#f0f7ff">
-                                                <h6 id="t2"></h6>
-                                        </span>
-                                        <span id="s3" class=swatchsmall style="background-color:#f0f7ff">
-                                                <h6 id="t3"></h6>
-                                        </span>
-                                        <span id="s4" class=swatchsmall style="background-color:#f0f7ff">
-                                                <h6 id="t4"></h6>
-                                        </span>
-                                </span>
-                        </div>
-
-                        <hr>
-                        <a href="library.html"><button type="button" class="button">Done!</button></a>
 
                 </div>
+
+                <div class="row">
+                    <!--                                <h5 id="loadtext" style="margin: auto">Finding Colors ...</h5>-->
+                    <img id="loadtext" style="margin:auto" src="./images/loading.gif"/>
+                </div>
+                <br>
+
+                <div class="row">
+                    <!--  <div class =six columns> -->
+                    <span class=smallerswatch style="margin-left: auto; margin-right: auto">
+                        <span id="s0" class=swatchsmall style="background-color:#f0f7ff">
+                            <h6 id="t0"></h6>
+                        </span>
+                        <span id="s1" class=swatchsmall style="background-color:#f0f7ff">
+                            <h6 id="t1"></h6>
+                        </span>
+                        <span id="s2" class=swatchsmall style="background-color:#f0f7ff">
+                            <h6 id="t2"></h6>
+                        </span>
+                        <span id="s3" class=swatchsmall style="background-color:#f0f7ff">
+                            <h6 id="t3"></h6>
+                        </span>
+                        <span id="s4" class=swatchsmall style="background-color:#f0f7ff">
+                            <h6 id="t4"></h6>
+                        </span>
+                    </span>
+                </div>
+
+                <hr>
+                <a href="library.html"><button type="button" class="button">Done!</button></a>
+
+            </div>
         </div>
 
 
@@ -125,10 +132,10 @@
 
 
 
-        <div class="section footer" style="text-align: center;">
-            <div class="container">
-            </div>
-        </div> -->
+<div class="section footer" style="text-align: center;">
+<div class="container">
+</div>
+</div> -->
 
         <!-- End Document
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -140,6 +147,6 @@
         <script src="./js/vue.min.js"></script>
         <script src="./js/loadLibrary.js"></script>
 
-</body>
+    </body>
 
 </html>

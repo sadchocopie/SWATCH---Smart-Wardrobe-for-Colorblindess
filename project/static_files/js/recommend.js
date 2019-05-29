@@ -25,7 +25,13 @@ function callRecommend(textColorHex, urlList) {
         success: (data) => {
             let count = 0;
             console.log('Recommended colors:', data);
-            $("#articleimg").attr('src', urlList[0]);
+
+            var listSize;
+            for ( listSize=0; listSize < urlList.length; listSize++) {
+                $("#articleimg" + listSize).attr('src', urlList[listSize]);
+                $("#articleimg" + listSize).css("display","block");      
+            }
+
             $("#s0").css('background-color', 'rgb(' + data[0] + ')');
             $("#s1").css('background-color', 'rgb(' + data[1] + ')');
             $("#s2").css('background-color', 'rgb(' + data[2] + ')');
@@ -33,6 +39,7 @@ function callRecommend(textColorHex, urlList) {
             $("#s4").css('background-color', 'rgb(' + data[4] + ')');
             $("#rectext").replaceWith("<h3>Recommendations</h3>");
             $("#loadtext").replaceWith("<h5>Recommended Colors</h5>");
+
 
             data.forEach(c => {
                 const requestURL = 'nearestColor/' + rgbToHex(c[0]) + rgbToHex(c[1]) + rgbToHex(c[2]);
@@ -44,11 +51,10 @@ function callRecommend(textColorHex, urlList) {
                     dataType: 'json', // this URL returns data in JSON format
                     success: (data) => {
                         console.log('You received some data!', data);
-
                         if (data) {
                             $('#t' + count).html(data.name);
-
                             count = count + 1;
+                            console.log("the count is now " + count);
                         } else {
                         }
                     },
@@ -165,7 +171,7 @@ $(document).ready(() => {
                 }
             }
 
-            );
+                   );
         }
     });
 
