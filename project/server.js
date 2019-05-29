@@ -89,6 +89,45 @@ app.get('/recommendColors', (req, res) => {
   }
 });
 
+app.get('/recommendOneColor', (req, res) => {
+  console.log(req.query.sColors);
+  let starterColors = [];
+
+  starterColors = JSON.parse(req.query.sColors);
+
+  starterColors.push("N");
+  
+  
+
+
+
+  var url = "http://colormind.io/api/";
+  var data = {
+    model: "default",
+    input: starterColors
+  }
+
+  console.log(data);
+
+
+  var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
+  var http = new XMLHttpRequest();
+
+  http.open("POST", url, true);
+  http.send(JSON.stringify(data));
+
+  http.onreadystatechange = function () {
+    if (http.readyState == 4 && http.status == 200) {
+      var palette = JSON.parse(http.responseText).result;
+      console.log(palette);
+      res.send(palette);
+
+
+    }
+  }
+});
+
 
 app.get('/nearestColor/:colorHex', (req, res) => {
   const colorToName = '#' + req.params.colorHex;
