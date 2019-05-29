@@ -267,12 +267,21 @@ const app = new Vue({
             if (!object.selected) {
                 delete this.selectedArticles[object.type]
             } else {
-                this.selectedArticles[object.type] = {id : object.id, rgb: object.colorRGB}
+                this.selectedArticles[object.type] = object.colorRGB
             }
             console.log('Selected:', object.type + object.selected);
             console.log('AllSelected', this.selectedArticles);
             console.log('number of things selected', Object.keys(this.selectedArticles).length);
-
+            let rgbArray = Object.values(this.selectedArticles); 
+            let arrStr = encodeURIComponent(JSON.stringify(rgbArray));
+            $.ajax({
+                type: 'GET',
+                url: 'recommendOneColor/?sColors=' + arrStr,
+                dataType: 'json',
+                success: (data) => {
+                    console.log(data)
+                }
+            });
             
         }
     }
