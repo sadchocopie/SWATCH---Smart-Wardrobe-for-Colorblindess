@@ -10,12 +10,12 @@
 .grayed {
     background-color: #002c3a;
     opacity: 0.5;
-  }
+}
 
-  .outerCard.grayed .card{
+.outerCard.grayed .card{
     border: 2px solid;
     border-color: #FDB32B;
-  
+
     opacity: 0.4;
 
 }
@@ -350,8 +350,9 @@ h5 {
     border-color: #f5e0e0;
 }
 
-.outerCard.selected .card{
+.outerCard.selected {
     border: 2px solid;
+    background-color: #FDB32B;
     border-color: #FDB32B;
 }
 
