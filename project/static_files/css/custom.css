@@ -7,7 +7,10 @@
     height: 48px;
     background-color:#002c3a;
 }
-
+.grayed {
+    background-color: gray;
+    opacity: .8;
+  }
 .top-nav h1 {
     font-size: 20px;
 }

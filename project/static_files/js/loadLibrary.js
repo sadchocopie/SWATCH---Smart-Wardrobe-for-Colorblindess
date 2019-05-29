@@ -41,6 +41,7 @@ function datebase(googleUser) {
                     {
                         type: allTops[key].type,
                         selected: false,
+                        grayed: false,
                         imgSrc: allTops[key].url,
                         id: key,
                         color: allTops[key].color,
@@ -65,6 +66,7 @@ function datebase(googleUser) {
                     {
                         type: allBottoms[key].type,
                         selected: false,
+                        grayed: false,
                         imgSrc: allBottoms[key].url,
                         id: key,
                         color: allBottoms[key].color,
@@ -88,6 +90,7 @@ function datebase(googleUser) {
                     {
                         type: allOuterwears[key].type,
                         selected: false,
+                        grayed: false,
                         imgSrc: allOuterwears[key].url,
                         id: key,
                         color: allOuterwears[key].color,
@@ -111,6 +114,7 @@ function datebase(googleUser) {
                     {
                         type: allOtherwears[key].type,
                         selected: false,
+                        grayed: false,
                         imgSrc: allOtherwears[key].url,
                         id: key,
                         color: allOtherwears[key].color,
@@ -208,9 +212,6 @@ function checkRecommendation() {
     });
     console.log('list of id', recclist);
     location.href = './recommend.html?image=' + recclist;
-}
-function test() {
-    console.log("test")
 }
 
 const app = new Vue({
