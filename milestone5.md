@@ -9,7 +9,8 @@ With swatch, colorblind people can easily upload a piece of clothing they would 
 Colorblind people can pick out matching outfits within minutes, saving them both time and effort in the morning. 
 
 ## New UI Screenshots
-
+Library Help: ![](./milestone-Images/m5 help.png)
+Recommend Color: ![](./milestone-Images/m5 find color.png)
 ## How UI has improved (paragraph)
 We updated our UI by adjusting the position of buttons and impelmenting both the library page and recommendation page.
 #### Library: 
@@ -17,7 +18,7 @@ We added a new help button with a pop up box with instruction regarding each but
 #### Recommendation/Find matching colors:
 We changed our find recommendation page to find matching colors. Users have the option to select multiple items and check for other matching colors to the selected items, if they wish to.
 ## Visualized Data Screenshots
-
+Library Match: ![](./milestone-Images/m5 match.png)
 ## Implementation of Data Display (paragraph)
 We implemented our data display to show users matches to their selected items instantly on the library page, instead of displaying just matching colors on a different page as we did in milestone 4.
 #### Library:
