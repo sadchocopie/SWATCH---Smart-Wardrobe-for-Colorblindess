@@ -44,7 +44,11 @@ function datebase(googleUser) {
                         grayed: false,
                         imgSrc: allTops[key].url,
                         id: key,
-                        color: allTops[key].color
+                        color: allTops[key].color,
+                        colorHex: allTops[key].colorHex,
+                        colorRGB: allTops[key].colorRGB
+
+
                     }
                 );
             });
@@ -65,7 +69,10 @@ function datebase(googleUser) {
                         grayed: false,
                         imgSrc: allBottoms[key].url,
                         id: key,
-                        color: allBottoms[key].color
+                        color: allBottoms[key].color,
+                        colorHex: allBotoms[key].colorHex,
+                        colorRGB: allBotoms[key].colorRGB
+
                     }
                 );
             });
@@ -86,7 +93,10 @@ function datebase(googleUser) {
                         grayed: false,
                         imgSrc: allOuterwears[key].url,
                         id: key,
-                        color: allOuterwears[key].color
+                        color: allOuterwears[key].color,
+                        colorHex: allOuterwears[key].colorHex,
+                        colorRGB: allOuterwears[key].colorRGB
+
                     }
                 );
             });
@@ -107,7 +117,11 @@ function datebase(googleUser) {
                         grayed: false,
                         imgSrc: allOtherwears[key].url,
                         id: key,
-                        color: allOtherwears[key].color
+                        color: allOtherwears[key].color,
+                        colorHex: allOtherwears[key].colorHex,
+                        colorRGB: allOtherwears[key].colorRGB
+
+
                     }
                 );
             });
@@ -207,7 +221,8 @@ const app = new Vue({
         categoryTop: clothesList_TOP,
         categoryBottom: clothesList_BOTTOM,
         categoryOuterwear: clothesList_OUTERWEAR,
-        categoryOther: clothesList_Other
+        categoryOther: clothesList_Other,
+        selectedArticles: {}
     },
     methods: {
         selectObjectType: function (object) {
@@ -249,7 +264,16 @@ const app = new Vue({
                 // code block
             }
             object.selected = !object.selected;
+            if (!object.selected) {
+                delete this.selectedArticles[object.type]
+            } else {
+                this.selectedArticles[object.type] = {id : object.id, rgb: object.colorRGB}
+            }
             console.log('Selected:', object.type + object.selected);
+            console.log('AllSelected', this.selectedArticles);
+            console.log('number of things selected', Object.keys(this.selectedArticles).length);
+
+            
         }
     }
 });

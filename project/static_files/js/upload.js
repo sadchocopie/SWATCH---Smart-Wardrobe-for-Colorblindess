@@ -137,7 +137,9 @@ function uploadFile() {
             caption: fileName,
             // user: user.uid
             color: dominant,
-            colorHex: dominantHex
+            colorHex: dominantHex,
+            colorRGB: dominantRGB
+            
         }
 
         console.log("the option rn is: " + $('#userSelect').val());
