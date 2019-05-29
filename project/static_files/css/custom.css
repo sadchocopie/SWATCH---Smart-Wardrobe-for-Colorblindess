@@ -355,6 +355,10 @@ h5 {
     border-color: #FDB32B;
 }
 
+.outerCard.grayed .card {
+    border: 2px solid;
+    opacity: 0.4;
+}
 
 .imgColorTag {
     text-align: center;

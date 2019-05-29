@@ -292,7 +292,7 @@ const app = new Vue({
                         this.categoryTop.forEach(obj => {
                             obj.grayed = false;
 
-                            if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                            if (deltaE(obj.colorRGB, data[numSelected]) > 35) {
                                 if (obj.selected) {
                                     obj.grayed = false;
                                 } else {
@@ -307,7 +307,7 @@ const app = new Vue({
                         this.categoryBottom.forEach(obj => {
 
                             obj.grayed = false;
-                            if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                            if (deltaE(obj.colorRGB, data[numSelected]) > 35) {
                                 if (obj.selected) {
                                     obj.grayed = false;
                                 } else {
@@ -320,7 +320,7 @@ const app = new Vue({
 
                         this.categoryOuterwear.forEach(obj => {
                             obj.grayed = false;
-                            if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                            if (deltaE(obj.colorRGB, data[numSelected]) > 35) {
                                 if (obj.selected) {
                                     obj.grayed = false;
                                 } else {
@@ -333,7 +333,7 @@ const app = new Vue({
 
                         this.categoryOther.forEach(obj => {
                             obj.grayed = false;
-                            if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                            if (deltaE(obj.colorRGB, data[numSelected]) > 35) {
                                 if (obj.selected) {
                                     obj.grayed = false;
                                 } else {
