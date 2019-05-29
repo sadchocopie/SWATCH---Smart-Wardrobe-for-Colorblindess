@@ -233,6 +233,7 @@ const app = new Vue({
                     this.categoryTop.forEach(obj => {
                         if (obj.id != object.id) {
                             obj.selected = false;
+                            obj.grayed = true;
                         }
                     });
                     break;
@@ -241,6 +242,7 @@ const app = new Vue({
                     this.categoryBottom.forEach(obj => {
                         if (obj.id != object.id) {
                             obj.selected = false;
+                            obj.grayed = true;
                         }
                     });
                     break;
@@ -249,6 +251,7 @@ const app = new Vue({
                     this.categoryOuterwear.forEach(obj => {
                         if (obj.id != object.id) {
                             obj.selected = false;
+                            obj.grayed = true;
                         }
                     });
                     break;
@@ -257,6 +260,7 @@ const app = new Vue({
                     this.categoryOther.forEach(obj => {
                         if (obj.id != object.id) {
                             obj.selected = false;
+                            obj.grayed = true;
                         }
                     });
                     break;
@@ -269,9 +273,12 @@ const app = new Vue({
             } else {
                 this.selectedArticles[object.type] = object.colorRGB
             }
+            object.grayed = false;
+
             console.log('Selected:', object.type + object.selected);
             console.log('AllSelected', this.selectedArticles);
-            console.log('number of things selected', Object.keys(this.selectedArticles).length);
+            let numSelected = Object.keys(this.selectedArticles).length;
+            console.log('number of things selected', numSelected);
             let rgbArray = Object.values(this.selectedArticles); 
             let arrStr = encodeURIComponent(JSON.stringify(rgbArray));
             $.ajax({
@@ -279,7 +286,45 @@ const app = new Vue({
                 url: 'recommendOneColor/?sColors=' + arrStr,
                 dataType: 'json',
                 success: (data) => {
-                    console.log(data)
+                    console.log(data);
+                    if (object.type != "Top") {
+
+                        this.categoryTop.forEach(obj => {
+                            obj.grayed = false;
+
+                            if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                                obj.grayed = true;
+                            }
+                        });
+                    }
+                    if (object.type != "Bottom") {
+
+                        this.categoryBottom.forEach(obj => {
+
+                            obj.grayed = false;
+                            if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                                obj.grayed = true;
+                            }
+                        });
+                    }
+                    if (object.type != "Outerwear") {
+
+                        this.categoryOuterwear.forEach(obj => {
+                            obj.grayed = false;
+                            if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                                obj.grayed = true;
+                            }
+                        });
+                    }
+                    if (object.type != "Others") {
+
+                        this.categoryOther.forEach(obj => {
+                            obj.grayed = false;
+                            if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                                obj.grayed = true;
+                            }
+                        });
+                    }
                 }
             });
             
@@ -287,5 +332,9 @@ const app = new Vue({
     }
 });
 
+// deltaE([128, 0, 255], [128, 0, 255]); // 0
+// deltaE([128, 0, 255], [128, 0, 230]); // 3.175
+// deltaE([128, 0, 255], [128, 0, 230]); // 21.434
+// deltaE([0, 0, 255], [255, 0, 0]); // 61.24
 
 
