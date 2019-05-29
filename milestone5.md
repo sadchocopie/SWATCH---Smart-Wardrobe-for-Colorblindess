@@ -22,7 +22,7 @@ Library Match: ![](./milestone-Images/m5match.png)
 ## Implementation of Data Display (paragraph)
 We implemented our data display to show users matches to their selected items instantly on the library page, instead of displaying just matching colors on a different page as we did in milestone 4.
 #### Library:
-We displayed our data so that, once users select an item, the box for that items will turn yellow, and other items whose colors don't match that of the selected item will grey out, and those with matches will display normally on the page. 
+We displayed our data so that, once users select an item, the box for that items will turn yellow, and other items whose colors don't match that of the selected item will grey out, and those with matches will display normally on the page. User can build up to an entire outfit by selecting the suggested item(s) along with the initial item!
 
 ## More Ambitious Data Display (paragraph)
 1. Display the hierarchy of matched items. For example, marking the best match, second best match and third best match on the page. This way, we can better help colorblind people tailor outfits to their needs, since there could be multiple pieces of clothing that could match the selected item if the database grows, and they could be stuck on which item to choose with the hierarchy marking.
