@@ -98,6 +98,7 @@ body {
     color:#fff !important;
     background-color: #FDB32B!important;
     border-color: #FDB32B !important;
+    margin-bottom: 10px !important;
 }
 
 #recommendButton:hover {
@@ -388,4 +389,44 @@ h5 {
     border-color: #fff !important;
 }
 
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
 
+/* Modal Content */
+.modal-content {
+ /* background-color: #fefefe;*/
+  margin: auto;
+  padding: 40px;
+  border: 2px solid #FDB32B;
+  width: 40%;
+  color:#fff;
+  background-color: #002c3a;
+  border-radius: 8px;
+
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}

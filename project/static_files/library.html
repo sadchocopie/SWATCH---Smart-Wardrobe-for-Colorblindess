@@ -1,154 +1,210 @@
 <html>
 
 <head>
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script src="./js/firebaseInit.js"></script>
-    <script src="./js/login.js"></script>
-    <!-- Basic Page Needs
+	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+	<script src="./js/firebaseInit.js"></script>
+	<script src="./js/login.js"></script>
+	<!-- Basic Page Needs
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta charset="utf-8">
-    <title>Color your wardrobe</title>
-    <meta charset="utf-8">
+	<meta charset="utf-8">
+	<title>Color your wardrobe</title>
+	<meta charset="utf-8">
 
-    <!-- Mobile Specific Metas
+	<!-- Mobile Specific Metas
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- FONT
+	<!-- FONT
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
 
-    <!-- CSS
+	<!-- CSS
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
-    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
-    <link rel="stylesheet" href="./css/custom.css">
+	<link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
+	<link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
+	<link rel="stylesheet" href="./css/custom.css">
 
-    <!-- Scripts
+	<!-- Scripts
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script src="./js/jquery-3.3.1.min.js"></script>
+	<script src="./js/jquery-3.3.1.min.js"></script>
 
-    <!-- Favicon
+	<!-- Favicon
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
+	<!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
 
 </head>
 
 <body>
-    <!-- User Profile  -->
-    <div class="top-nav">
-        <div class="container">
-            <div class="row userProfile u-pull-right">
-                <div class="dropdown">
-                    <div class="dropbtn"><a href="." id="googleUser" class="UserProfile">User012 </a>
-                        <div class="divider" style="width: 2vw; display:inline-block"></div>
-                        <img class="user" id="googleImg" src="./images/userProfile.png">
-                    </div>
-                    <div class="dropdown-content">
-                        <p onclick="logout()">Log Out</p>
-                    </div>
-                </div>
-            </div>
+	<!-- User Profile  -->
+	<div class="top-nav">
+		<div class="container">
+			<div class="row userProfile u-pull-right">
+				<div class="dropdown">
+					<div class="dropbtn"><a href="." id="googleUser" class="UserProfile">User012 </a>
+						<div class="divider" style="width: 2vw; display:inline-block"></div>
+						<img class="user" id="googleImg" src="./images/userProfile.png">
+					</div>
+					<div class="dropdown-content">
+						<p onclick="logout()">Log Out</p>
+					</div>
+				</div>
+			</div>
 
-            <!--
+			<!--
 <div class="row u-pull-right">
 <button type="button" class="button u-pull-right" id="logoutButton" onclick="logout()"
 style="margin:auto; width: 150px"> Log out</button>
 </div>
 -->
-        </div>
-    </div>
+		</div>
+	</div>
 
-    <!-- Buttons -->
-    <div class="navigation">
-        <div class="container">
-            <div class="row">
-                <a href="./upload.html" class="button"
-                    style="background-color: #ffffff;margin-right:10px; width: 150px;">
-                    Scan</a>
-            </div>
+	<!-- Buttons -->
+	<div class="navigation">
+		<div class="container">
+			<div class="row">
+				<a href="./upload.html" class="button"
+					style="background-color: #ffffff;margin-right:10px; width: 150px;">
+					Scan</a>
+			</div>
 
-            <div>
-                <button type="button" class="button button-primary u-pull-left" id="deleteButton"
-                    onclick="deleteFile()">
-                    Delete Selected Images
-                </button>
-                <button type="button" class="button u-pull-right" id="recommendButton" onclick="checkRecommendation()"
-                    style="background-color: #ffffff;margin:auto; width: 240px "> Find Recommendation</button>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container">
-        <div class="row">
-
-            <div id="app">
-
-                <h4>{{ msg }}</h4>
-
-                <hr style="height: 2px; width: 100%;" />
-                <p><b>TOP</b></p>
-
-                <section class="cardView">
-                    <obj v-for="object in categoryTop" @click.native="selectObjectType(object)" :key="object.id"
-                        v-bind:class="{'selected': object.selected, 'grayed': object.grayed}" :image="object.imgSrc"
-                        :color="object.color">
-                    </obj>
-                </section>
-                <hr style="height: 2px; width: 100%;" />
-                <p><b>BOTTOM</b></p>
-                <section class="cardView">
-
-                    <obj v-for="object in categoryBottom" @click.native="selectObjectType(object)" :key="object.id"
-                        v-bind:class="{'selected': object.selected, 'grayed': object.grayed}" :image="object.imgSrc"
-                        :color="object.color">
-                    </obj>
-                </section>
-
-                <hr style="height: 2px; width: 100%;" />
-                <p><b>OUTERWEAR</b></p>
-                <section class="cardView">
-                    <obj v-for="object in categoryOuterwear" @click.native="selectObjectType(object)" :key="object.id"
-                        v-bind:class="{'selected': object.selected, 'grayed': object.grayed}" :image="object.imgSrc"
-                        :color="object.color">
-                    </obj>
-                </section>
-                <hr style="height: 2px; width: 100%;" />
-                <p><b>Others</b></p>
-                <!--                <hr>-->
-                <section class="cardView">
-
-                    <obj v-for="object in categoryOther" @click.native="selectObjectType(object)" :key="object.id"
-                        v-bind:class="{'selected': object.selected, 'grayed': object.grayed}" :image="object.imgSrc"
-                        :color="object.color">
-                    </obj>
-                </section>
-
-            </div>
-        </div>
-    </div>
+			<div>
+				<button type="button" class="button button-primary u-pull-left" id="deleteButton"
+					onclick="deleteFile()">
+					Delete Selected Images
+				</button>
+				<button type="button" class="button u-pull-right" id="recommendButton" onclick="checkRecommendation()"
+					style="background-color: #ffffff;margin:auto; width: 240px "> Find Matching Colors</button>
+			</div>
+		</div>
+	</div>
 
 
-    <div class="container">
-        <!-- Side Category bar -->
-        <div class="row">
-            <div class="section libraryView">
-                <!-- place library -->
+	<div class="container">
+		<div class="row">
 
-            </div>
-        </div>
-    </div>
+			<div id="app">
+
+				<div>
+
+				<h4>{{ msg }}</h4>
+				<button class = "button" id="myBtn">Need Help?</button>
+
+				<!-- The Modal -->
+				<div id="myModal" class="modal">
+
+ 				 <!-- Modal content -->
+ 				 <div class="modal-content">
+    			<span class="close">&times;</span>
+    			<h4>Need Help?</h4>
+    		    <span class="button"
+					style="background-color: #f0f7ff !important;margin-right:10px; width: 150px;">
+					Scan</span>
+    		    <p>Use the Scan button to upload an image of the item you would like to wear!</p>
+    		    <span class="button" id="deleteButton">Delete Selected Images</span>
+    		    <p>Press the Delete Selection button to delete an item from your closet aka library.</p>
+    		    <span class="button" id="recommendButton" style="background-color: #ffffff;margin:auto; width: 240px "> Find Matching Colors</span>
+    		    <p>Use the Find Matching Colors button to explore colors matching the color of your selected item.</p>
 
 
-    <div class="section footer" style="text-align: center;">
-        <div class="container">
-        </div>
-    </div>
+    			
 
-    <script src="./js/vue.min.js"></script>
-    <script src="./js/colors.js"></script>
-    <script src="./js/loadLibrary.js"></script>
+    			
+  				</div>
+
+				</div>
+				<!-- End of Modal -->
+			</div>
+
+				<hr style="height: 2px; width: 100%;" />
+				<p><b>TOP</b></p>
+
+				<section class="cardView">
+					<obj v-for="object in categoryTop" @click.native="selectObjectType(object)" :key="object.id"
+						v-bind:class="{'selected': object.selected, 'grayed': object.grayed}" :image="object.imgSrc"
+						:color="object.color">
+					</obj>
+				</section>
+				<hr style="height: 2px; width: 100%;" />
+				<p><b>BOTTOM</b></p>
+				<section class="cardView">
+
+					<obj v-for="object in categoryBottom" @click.native="selectObjectType(object)" :key="object.id"
+						v-bind:class="{'selected': object.selected, 'grayed': object.grayed}" :image="object.imgSrc"
+						:color="object.color">
+					</obj>
+				</section>
+
+				<hr style="height: 2px; width: 100%;" />
+				<p><b>OUTERWEAR</b></p>
+				<section class="cardView">
+					<obj v-for="object in categoryOuterwear" @click.native="selectObjectType(object)" :key="object.id"
+						v-bind:class="{'selected': object.selected, 'grayed': object.grayed}" :image="object.imgSrc"
+						:color="object.color">
+					</obj>
+				</section>
+				<hr style="height: 2px; width: 100%;" />
+				<p><b>Others</b></p>
+				<!--                <hr>-->
+				<section class="cardView">
+
+					<obj v-for="object in categoryOther" @click.native="selectObjectType(object)" :key="object.id"
+						v-bind:class="{'selected': object.selected, 'grayed': object.grayed}" :image="object.imgSrc"
+						:color="object.color">
+					</obj>
+				</section>
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<!-- Side Category bar -->
+		<div class="row">
+			<div class="section libraryView">
+				<!-- place library -->
+
+			</div>
+		</div>
+	</div>
+
+
+	<div class="section footer" style="text-align: center;">
+		<div class="container">
+		</div>
+	</div>
+
+	<script src="./js/vue.min.js"></script>
+	<script src="./js/colors.js"></script>
+	<script src="./js/loadLibrary.js"></script>
+	<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+	modal.style.display = "none";
+}
+}
+</script>
 
 </body>
 
