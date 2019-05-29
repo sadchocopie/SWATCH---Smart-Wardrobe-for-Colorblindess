@@ -8,9 +8,18 @@
     background-color:#002c3a;
 }
 .grayed {
-    background-color: gray;
-    opacity: .8;
+    background-color: #002c3a;
+    opacity: 0.5;
   }
+
+  .outerCard.grayed .card{
+    border: 2px solid;
+    border-color: #FDB32B;
+  
+    opacity: 0.4;
+
+}
+
 .top-nav h1 {
     font-size: 20px;
 }
