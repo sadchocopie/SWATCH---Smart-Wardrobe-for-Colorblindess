@@ -293,8 +293,13 @@ const app = new Vue({
                             obj.grayed = false;
 
                             if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                                if (obj.selected) {
+                                    obj.grayed = false;
+                                } else {
                                 obj.grayed = true;
+                                }
                             }
+            
                         });
                     }
                     if (object.type != "Bottom") {
@@ -303,7 +308,11 @@ const app = new Vue({
 
                             obj.grayed = false;
                             if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                                if (obj.selected) {
+                                    obj.grayed = false;
+                                } else {
                                 obj.grayed = true;
+                                }
                             }
                         });
                     }
@@ -312,7 +321,11 @@ const app = new Vue({
                         this.categoryOuterwear.forEach(obj => {
                             obj.grayed = false;
                             if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                                if (obj.selected) {
+                                    obj.grayed = false;
+                                } else {
                                 obj.grayed = true;
+                                }
                             }
                         });
                     }
@@ -321,7 +334,11 @@ const app = new Vue({
                         this.categoryOther.forEach(obj => {
                             obj.grayed = false;
                             if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                                if (obj.selected) {
+                                    obj.grayed = false;
+                                } else {
                                 obj.grayed = true;
+                                }
                             }
                         });
                     }
