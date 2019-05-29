@@ -98,6 +98,7 @@ body {
     color:#fff !important;
     background-color: #FDB32B!important;
     border-color: #FDB32B !important;
+    margin-bottom: 10px !important;
 }
 
 #recommendButton:hover {

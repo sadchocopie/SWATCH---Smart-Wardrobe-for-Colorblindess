@@ -74,7 +74,7 @@ style="margin:auto; width: 150px"> Log out</button>
 					Delete Selected Images
 				</button>
 				<button type="button" class="button u-pull-right" id="recommendButton" onclick="checkRecommendation()"
-					style="background-color: #ffffff;margin:auto; width: 240px "> Find Recommendation</button>
+					style="background-color: #ffffff;margin:auto; width: 240px "> Find Matching Colors</button>
 			</div>
 		</div>
 	</div>
@@ -97,12 +97,14 @@ style="margin:auto; width: 150px"> Log out</button>
  				 <div class="modal-content">
     			<span class="close">&times;</span>
     			<h4>Need Help?</h4>
-    		    <h5>Scan</h5>
+    		    <span class="button"
+					style="background-color: #f0f7ff !important;margin-right:10px; width: 150px;">
+					Scan</span>
     		    <p>Use the Scan button to upload an image of the item you would like to wear!</p>
-    		    <h5>Delete Selection</h5>
+    		    <span class="button" id="deleteButton">Delete Selected Images</span>
     		    <p>Press the Delete Selection button to delete an item from your closet aka library.</p>
-    		    <h5>Find Recommendation</h5>
-    		    <p>Use the Find Recommendation button to explore colors matching the color of your selected item.</p>
+    		    <span class="button" id="recommendButton" style="background-color: #ffffff;margin:auto; width: 240px "> Find Matching Colors</span>
+    		    <p>Use the Find Matching Colors button to explore colors matching the color of your selected item.</p>
 
 
     			
