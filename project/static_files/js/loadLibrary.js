@@ -287,7 +287,7 @@ const app = new Vue({
                 dataType: 'json',
                 success: (data) => {
                     console.log(data);
-                    if (object.type != "Top") {
+                    if (!("Top" in this.selectedArticles)) {
 
                         this.categoryTop.forEach(obj => {
                             obj.grayed = false;
@@ -302,7 +302,7 @@ const app = new Vue({
             
                         });
                     }
-                    if (object.type != "Bottom") {
+                    if (!("Bottom" in this.selectedArticles)) {
 
                         this.categoryBottom.forEach(obj => {
 
@@ -316,7 +316,7 @@ const app = new Vue({
                             }
                         });
                     }
-                    if (object.type != "Outerwear") {
+                    if (!("Outerwear" in this.selectedArticles)) {
 
                         this.categoryOuterwear.forEach(obj => {
                             obj.grayed = false;
@@ -329,7 +329,7 @@ const app = new Vue({
                             }
                         });
                     }
-                    if (object.type != "Others") {
+                    if (!("Others" in this.selectedArticles)) {
 
                         this.categoryOther.forEach(obj => {
                             obj.grayed = false;
