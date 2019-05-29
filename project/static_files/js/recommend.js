@@ -86,19 +86,77 @@ $(document).ready(() => {
             database.ref('Posts/' + googleUser.uid + '/Top/').once('value', (snapshot) => {
                 const allTops = snapshot.val();
                 let articleName = articleList[i];
+                if (allTops) {
+                    if (allTops[articleName]) {
+                        article.push(allTops[articleName]);
+                        console.log("test");
+                        if (textColorHex.length == 0) {
+                            textColorHex = 'sColors=' + allTops[articleName].colorHex;
+                        }
+                        else {
+                            textColorHex = textColorHex + '&sColors=' + allTops[articleName].colorHex;
+                        }
 
-                if (allTops[articleName]) {
-                    article.push(allTops[articleName]);
-                    console.log("test");
-                    if (textColorHex.length == 0) {
-                        textColorHex = 'sColors=' + allTops[articleName].colorHex;
+                        urlList.push(allTops[articleName].url);
+                        console.log('article:', article);
                     }
-                    else {
-                        textColorHex = textColorHex + '&sColors=' + allTops[articleName].colorHex;
-                    }
+                }
+            });
+            database.ref('Posts/' + googleUser.uid + '/Bottom/').once('value', (snapshot) => {
+                const allTops = snapshot.val();
+                let articleName = articleList[i];
+                if (allTops) {
+                    if (allTops[articleName]) {
+                        article.push(allTops[articleName]);
+                        console.log("test");
+                        if (textColorHex.length == 0) {
+                            textColorHex = 'sColors=' + allTops[articleName].colorHex;
+                        }
+                        else {
+                            textColorHex = textColorHex + '&sColors=' + allTops[articleName].colorHex;
+                        }
 
-                    urlList.push(allTops[articleName].url);
-                    console.log('article:', article);
+                        urlList.push(allTops[articleName].url);
+                        console.log('article:', article);
+                    }
+                }
+            });
+            database.ref('Posts/' + googleUser.uid + '/Outerwear/').once('value', (snapshot) => {
+                const allTops = snapshot.val();
+                let articleName = articleList[i];
+                if (allTops) {
+                    if (allTops[articleName]) {
+                        article.push(allTops[articleName]);
+                        console.log("test");
+                        if (textColorHex.length == 0) {
+                            textColorHex = 'sColors=' + allTops[articleName].colorHex;
+                        }
+                        else {
+                            textColorHex = textColorHex + '&sColors=' + allTops[articleName].colorHex;
+                        }
+
+                        urlList.push(allTops[articleName].url);
+                        console.log('article:', article);
+                    }
+                }
+            });
+            database.ref('Posts/' + googleUser.uid + '/Other/').once('value', (snapshot) => {
+                const allTops = snapshot.val();
+                let articleName = articleList[i];
+                if (allTops) {
+                    if (allTops[articleName]) {
+                        article.push(allTops[articleName]);
+                        console.log("test");
+                        if (textColorHex.length == 0) {
+                            textColorHex = 'sColors=' + allTops[articleName].colorHex;
+                        }
+                        else {
+                            textColorHex = textColorHex + '&sColors=' + allTops[articleName].colorHex;
+                        }
+
+                        urlList.push(allTops[articleName].url);
+                        console.log('article:', article);
+                    }
                 }
             }).then(function () {
                 if (i == articleList.length - 1) {
@@ -114,27 +172,27 @@ $(document).ready(() => {
     $('#s0').click(() => {
         let colorToSearch = $(this).attr('background-color');
         firebase.auth().onAuthStateChanged(function (user) {
-                if (user) {
-                        googleUser = firebase.auth().currentUser;
-                        datebase(googleUser);
-                } else {
-                        // No user is signed in.
-                        console.log("no user logined");
-                        window.location.href = "./";
-                }
-                let allArticlesMatch = [];
-                database.ref('Posts/' + googleUser.uid).once('value', (snapshot) => {
-                        const allClothes = snapshot.val();
-                        // console.log(allClothes);
-                        const flattenedAll = [];
-                        flattenedAll.push(allClothes['Top']);
-                        flattenedAll.push(allClothes['Bottom']);
-                        flattenedAll.push(allClothes['Outerwear']);
+            if (user) {
+                googleUser = firebase.auth().currentUser;
+                datebase(googleUser);
+            } else {
+                // No user is signed in.
+                console.log("no user logined");
+                window.location.href = "./";
+            }
+            let allArticlesMatch = [];
+            database.ref('Posts/' + googleUser.uid).once('value', (snapshot) => {
+                const allClothes = snapshot.val();
+                // console.log(allClothes);
+                const flattenedAll = [];
+                flattenedAll.push(allClothes['Top']);
+                flattenedAll.push(allClothes['Bottom']);
+                flattenedAll.push(allClothes['Outerwear']);
 
-                        
-                        console.log(flattenedAll);
-                        
-                });
+
+                console.log(flattenedAll);
+
+            });
         });
     });
 
