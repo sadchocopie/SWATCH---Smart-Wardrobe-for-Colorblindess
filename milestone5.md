@@ -11,10 +11,17 @@ Colorblind people can pick out matching outfits within minutes, saving them both
 ## New UI Screenshots
 
 ## How UI has improved (paragraph)
-
+We updated our UI by adjusting the position of buttons and impelmenting both the library page and recommendation page.
+#### Library: 
+We added a new help button with a pop up box with instruction regarding each button on the library page. This pop up help page is desgined to help users better navigate through our app.
+#### Recommendation/Find matching colors:
+We changed our find recommendation page to find matching colors. Users have the option to select multiple items and check for other matching colors to the selected items, if they wish to.
 ## Visualized Data Screenshots
 
 ## Implementation of Data Display (paragraph)
+We implemented our data display to show users matches to their selected items instantly on the library page, instead of displaying just matching colors on a different page as we did in milestone 4.
+#### Library:
+We displayed our data so that, once users select an item, the box for that items will turn yellow, and other items whose colors don't match that of the selected item will grey out, and those with matches will display normally on the page. 
 
 ## More Ambitious Data Display (paragraph)
 1. Display the hierarchy of matched items. For example, marking the best match, second best match and third best match on the page. This way, we can better help colorblind people tailor outfits to their needs, since there could be multiple pieces of clothing that could match the selected item if the database grows, and they could be stuck on which item to choose with the hierarchy marking.
