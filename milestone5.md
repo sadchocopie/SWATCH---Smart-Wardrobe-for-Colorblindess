@@ -1,9 +1,12 @@
 # Milestone 5
 ## Target Population Usage of App (paragraph)(setting+sequence+satisfaction)
 Our target population is colorblind people. 
-Setting: Our target population often encounter difficulties matching the color of outfits, and might need their parents' or friends' help, which could be inefficient and time consuming when in a rush. We often hear our color blind friends helplessly complaining about this tricky situation.
-Sequence: With swatch, colorblind people can easily upload a piece of clothing they would like to wear and our app will instantly check the user's existing closet database for clothes in other categories (such as "Bottom", "Outerwear")that have matching colors, and display those matching pieces by greying out other unmatched items. 
-Satisfaction: Colorblind people can pick out matching outfits within minutes, saving them both time and effort in the morning. 
+#### Setting: 
+Our target population often encounter difficulties matching the color of outfits, and might need their parents' or friends' help, which could be inefficient and time consuming when in a rush. We often hear our color blind friends helplessly complaining about this tricky situation.
+#### Sequence: 
+With swatch, colorblind people can easily upload a piece of clothing they would like to wear and our app will instantly check the user's existing closet database for clothes in other categories (such as "Bottom", "Outerwear")that have matching colors, and display those matching pieces by greying out other unmatched items. 
+#### Satisfaction: 
+Colorblind people can pick out matching outfits within minutes, saving them both time and effort in the morning. 
 
 ## New UI Screenshots
 

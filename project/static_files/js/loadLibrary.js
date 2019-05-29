@@ -162,32 +162,6 @@ function deleteFile() {
     }
 }
 
-function checkMatch() {
-    let matchlist = [];
-    clothesList_TOP.forEach((element) => {
-        if (element.selected) {
-            matchlist.push(element.id);
-        }
-    });
-    clothesList_OUTERWEAR.forEach((element) => {
-        if (element.selected) {
-            matchlist.push(element.id);
-        }
-    });
-    clothesList_BOTTOM.forEach((element) => {
-        if (element.selected) {
-            matchlist.push(element.id);
-        }
-    });
-    clothesList_Other.forEach((element) => {
-        if (element.selected) {
-            matchlist.push(element.id);
-        }
-    });
-    console.log('list of id', matchlist);
-    location.href = './match.html?match=' + matchlist;
-}
-
 function checkRecommendation() {
     let recclist = [];
     clothesList_TOP.forEach((element) => {
@@ -279,7 +253,7 @@ const app = new Vue({
             console.log('AllSelected', this.selectedArticles);
             let numSelected = Object.keys(this.selectedArticles).length;
             console.log('number of things selected', numSelected);
-            let rgbArray = Object.values(this.selectedArticles); 
+            let rgbArray = Object.values(this.selectedArticles);
             let arrStr = encodeURIComponent(JSON.stringify(rgbArray));
             $.ajax({
                 type: 'GET',
@@ -287,64 +261,64 @@ const app = new Vue({
                 dataType: 'json',
                 success: (data) => {
                     console.log(data);
-                    if (object.type != "Top") {
+                    if (!("Top" in this.selectedArticles)) {
 
                         this.categoryTop.forEach(obj => {
                             obj.grayed = false;
 
-                            if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                            if (deltaE(obj.colorRGB, data[numSelected]) > 35) {
                                 if (obj.selected) {
                                     obj.grayed = false;
                                 } else {
-                                obj.grayed = true;
+                                    obj.grayed = true;
                                 }
                             }
-            
+
                         });
                     }
-                    if (object.type != "Bottom") {
+                    if (!("Bottom" in this.selectedArticles)) {
 
                         this.categoryBottom.forEach(obj => {
 
                             obj.grayed = false;
-                            if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                            if (deltaE(obj.colorRGB, data[numSelected]) > 35) {
                                 if (obj.selected) {
                                     obj.grayed = false;
                                 } else {
-                                obj.grayed = true;
+                                    obj.grayed = true;
                                 }
                             }
                         });
                     }
-                    if (object.type != "Outerwear") {
+                    if (!("Outerwear" in this.selectedArticles)) {
 
                         this.categoryOuterwear.forEach(obj => {
                             obj.grayed = false;
-                            if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                            if (deltaE(obj.colorRGB, data[numSelected]) > 35) {
                                 if (obj.selected) {
                                     obj.grayed = false;
                                 } else {
-                                obj.grayed = true;
+                                    obj.grayed = true;
                                 }
                             }
                         });
                     }
-                    if (object.type != "Others") {
+                    if (!("Others" in this.selectedArticles)) {
 
                         this.categoryOther.forEach(obj => {
                             obj.grayed = false;
-                            if (deltaE(obj.colorRGB, data[numSelected]) > 15) {
+                            if (deltaE(obj.colorRGB, data[numSelected]) > 35) {
                                 if (obj.selected) {
                                     obj.grayed = false;
                                 } else {
-                                obj.grayed = true;
+                                    obj.grayed = true;
                                 }
                             }
                         });
                     }
                 }
             });
-            
+
         }
     }
 });
