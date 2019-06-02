@@ -99,7 +99,7 @@ app.get('/recommendOneColor', (req, res) => {
   }
 });
 
-
+// gets a nearest name for the color to help the color blind user tell what color it is. WE use NTC.JS to help determine it
 app.get('/nearestColor/:colorHex', (req, res) => {
   const colorToName = '#' + req.params.colorHex;
   const ntc = require("./ntc.js");
