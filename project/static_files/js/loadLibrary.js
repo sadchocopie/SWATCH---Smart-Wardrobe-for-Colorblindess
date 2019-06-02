@@ -1,22 +1,19 @@
+// template for each clothes
 Vue.component('obj', {
     props: {
         item: String,
         image: String,
         color: String
     },
-
     template: '<div class="outerCard"><div class="card"><img class="imgBox" v-bind:src="image" /></div> <div class="imgColorTag"><p>{{ color }}</p></div></div>'
 });
 
 var googleUser = "";
-
 let clothesList_TOP = [];
-
 let clothesList_BOTTOM = [];
-
 let clothesList_OUTERWEAR = [];
-
 let clothesList_Other = [];
+
 const database = firebase.database();
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -29,8 +26,9 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
 });
 
+// this gets the stored images for the user from the database for each of our 4 categories of clothes. 
 function datebase(googleUser) {
-    // UPDATE TOP LIST
+    // UPDATE TOP LIST from database
     database.ref('Posts/' + googleUser.uid + '/Top/').on('value', (snapshot) => {
         const allTops = snapshot.val();
         console.log('Posts/ changed:', allTops);
@@ -55,7 +53,7 @@ function datebase(googleUser) {
         }
     });
 
-    // UPDATE BOTTOM LIST
+    // UPDATE BOTTOM LIST from database
     database.ref('Posts/' + googleUser.uid + '/Bottom/').on('value', (snapshot) => {
         const allBottoms = snapshot.val();
         console.log('Posts/ changed:', allBottoms);
@@ -79,7 +77,7 @@ function datebase(googleUser) {
         }
     });
 
-    // UPDATE OUTERWEAR LIST
+    // UPDATE OUTERWEAR LIST from database
     database.ref('Posts/' + googleUser.uid + '/Outerwear/').on('value', (snapshot) => {
         const allOuterwears = snapshot.val();
         console.log('Posts/ changed:', allOuterwears);
@@ -103,7 +101,7 @@ function datebase(googleUser) {
         }
     });
 
-    // UPDATE other LIST
+    // UPDATE other LIST from database
     database.ref('Posts/' + googleUser.uid + '/Other/').on('value', (snapshot) => {
         const allOtherwears = snapshot.val();
         console.log('Posts/ changed:', allOtherwears);
@@ -129,7 +127,10 @@ function datebase(googleUser) {
     });
 }
 
-
+/**
+ * delete all files selected
+ * Due to other functionality you can only delete only one item from each row
+ */
 function deleteFile() {
 
     if (window.confirm("Delete this item from wardrobe?") == true) {
@@ -156,12 +157,14 @@ function deleteFile() {
             }
         });
         database.ref().update(updates);
-
-        console.log('end of delete file');
     } else {
     }
 }
 
+/**
+ * this allows the user to push the image id as parameters for the recommend page
+ * called by the recommend button
+ */
 function checkRecommendation() {
     let recclist = [];
     clothesList_TOP.forEach((element) => {
@@ -322,10 +325,3 @@ const app = new Vue({
         }
     }
 });
-
-// deltaE([128, 0, 255], [128, 0, 255]); // 0
-// deltaE([128, 0, 255], [128, 0, 230]); // 3.175
-// deltaE([128, 0, 255], [128, 0, 230]); // 21.434
-// deltaE([0, 0, 255], [255, 0, 0]); // 61.24
-
-

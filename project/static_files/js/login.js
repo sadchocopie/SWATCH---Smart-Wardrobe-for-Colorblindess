@@ -1,4 +1,6 @@
-
+/**
+ * code provided from Google firebase online documenation 
+ */
 function googleSignIn() {
     let provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function (result) {

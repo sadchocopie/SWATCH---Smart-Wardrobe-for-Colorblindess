@@ -1,128 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-        <script src="./js/firebaseInit.js"></script>
-        <script src="./js/login.js"></script>
-        <!-- Basic Page Needs
+<head>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script src="./js/firebaseInit.js"></script>
+    <script src="./js/login.js"></script>
+    <!-- Basic Page Needs
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <meta charset="utf-8">
-        <title>Color your wardrobe</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Color your wardrobe</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Mobile Specific Metas
+    <!-- Mobile Specific Metas
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- FONT
+    <!-- FONT
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
 
-        <!-- CSS
+    <!-- CSS
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <link href="./css/bootstrap.min.css" rel="stylesheet">
-        <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
-        <!--        <link href="./css/main.css" rel="stylesheet">-->
-        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
-        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
-        <link rel="stylesheet" href="./css/custom.css">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
+    <!--        <link href="./css/main.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
+    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
+    <link rel="stylesheet" href="./css/custom.css">
 
-        <!-- Scripts
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <script src="./js/jquery-3.3.1.min.js"></script>
+    <!-- Scripts–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="./js/jquery-3.3.1.min.js"></script>
 
-        <!-- Favicon
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
+</head>
 
-    </head>
+<body>
+    <div class="container" style="padding-top: 10%; padding-bottom: 30%" align="center">
 
-    <body>
-        <div class="container" style="padding-top: 10%; padding-bottom: 30%" align="center">
+        <div class="section intro" style="text-align: center;">
+            <div class="container">
+                <div class="row">
 
-            <div class="section intro" style="text-align: center;">
-                <div class="container">
-                    <div class="row">
-
-                        <img src="./images/swatch_logo.png"
-                             style="width:50%; height:50%;margin-left: auto; margin-right: auto; ">
-                    </div>
+                    <img src="./images/swatch_logo.png"
+                        style="width:50%; height:50%;margin-left: auto; margin-right: auto; ">
                 </div>
             </div>
-
-
-            <div class="row">
-
-                <div class="twelve columns">
-                    <!--
-<form id="rsvpForm">
-<div class="" style="border: 2px solid white; border-radius: 4px; width: 80%; max-width: 300px; height: 30vh; max-height: 500px; padding: 30px 0px;">
-
-<input type="inputloyaltycard"  placeholder="User Name *" value=""/>
-<br>
-
-<input type="inputloyaltycard" placeholder="Password *" value=""/>
-
-<br>
-
-<a href="./library.html" class="button" style="background-color: #ffffff;margin:auto"> Log In</a>
-
-</div>
-<br>
-
-</form>
--->
-
-
-                    <div class="row"
-                         style="border: 2px solid white; border-radius: 4px; width: 80%; max-width: 300px; max-height: 500px; padding: 30px 20px; color:white !important;">
-
-                        <!--
-<label for="exampleEmailInput">Username</label>
-<input class="u-full-width" type="text" name="username" placeholder="User012" id="Username">
-
-<label for="userPassword">Password</label>
-<input class="u-full-width" type="password" placeholder="******" id="userPassword">
-
-
-<a href="./library.html" class="button" style="background-color: #ffffff;margin:auto"> Log
-In</a>
--->
-
-                        <div id="login_div" class="main-div">
-                            <h4>Sign in with Gmail !</h4>
-                            <button type="button" class="button"  onclick="googleSignIn()" id="signInButton"> Sign In </button>
-                        </div>
-
-                        <div id="user_div" class="loggedin-div">
-                            <div>
-                                <span id="googleUser"></span>
-                                <img id="googleImg" src=""/>
-                            </div>
-
-                            <div style="margin: auto; 0;">
-                                <p id="redirectMessage"></p>
-                                <button type="button" class="button" onclick="logout()">Logout</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section footer" style="text-align: center;">
-                <div class="container">
-                </div>
-            </div>
-
         </div>
-    </body>
+
+
+        <div class="row">
+
+            <div class="twelve columns">
+                <div class="row"
+                    style="border: 2px solid white; border-radius: 4px; width: 80%; max-width: 300px; max-height: 500px; padding: 30px 20px; color:white !important;">
+                    <div id="login_div" class="main-div">
+                        <h4>Sign in with Gmail !</h4>
+                        <button type="button" class="button" onclick="googleSignIn()" id="signInButton"> Sign In
+                        </button>
+                    </div>
+
+                    <div id="user_div" class="loggedin-div">
+                        <div>
+                            <span id="googleUser"></span>
+                            <img id="googleImg" src="" />
+                        </div>
+
+                        <div style="margin: auto; 0;">
+                            <p id="redirectMessage"></p>
+                            <button type="button" class="button" onclick="logout()">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section footer" style="text-align: center;">
+            <div class="container">
+            </div>
+        </div>
+
+    </div>
+</body>
 
 </html>
 
 <script>
+    // for the nice ui in the frontend.
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // User is signed in.
@@ -138,7 +102,7 @@ In</a>
                 document.getElementById("redirectMessage").innerHTML = "Redirecting to Wardrobe now...";
             }
 
-            setTimeout(function(){
+            setTimeout(function () {
                 window.location.href = "./library.html";
             }, 3000);
 
@@ -159,9 +123,9 @@ In</a>
     }
 
     .button {
-        color:#fff !important;
-        background-color:transparent!important;
-        border-color: #fff!important;
+        color: #fff !important;
+        background-color: transparent !important;
+        border-color: #fff !important;
         width: 250px;
     }
 </style>

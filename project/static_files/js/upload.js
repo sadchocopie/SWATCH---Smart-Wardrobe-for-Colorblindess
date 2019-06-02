@@ -17,12 +17,11 @@ const app = new Vue({
     methods: {
         gotPic(event) {
             this.imageSrc = URL.createObjectURL(event.target.files[0]);
-            console.log("it works!");
             selectedFile = event.target.files[0];
         },
         getSwatches() {
+            // this allow us to get the 3 dominant colors of the image
             let count = 1;
-            console.log("getPalettes")
             let colorThief = new ColorThief();
             let colorArr = colorThief.getPalette(this.$refs.theImage, 2);
             this.swatches = [];
@@ -45,8 +44,6 @@ const app = new Vue({
                             if (count === 1) {
                                 localStorage.setItem("mainColor", data.name);
                                 localStorage.setItem("mainColorRGB", JSON.stringify(c));
-
-                                //                                $('#status').html('Successfully fetched data at URL: ' + requestURL);
                                 $('#jobDiv').html('Dominant color is ' + data.name);
                             }
                             $('#color' + count).css('background-color', data.hex);
@@ -83,11 +80,12 @@ const app = new Vue({
 });
 
 $("#readFileButton").click(function () {
-
     $("#uploadButton").html("Add to Wardrobe")
-
 });
-// Create a root reference
+
+// Create a root reference to upload image to firebase storage and create a
+// reference to the stored image for each user in the realtime database
+// code is from firebase documentation with several changes
 function uploadFile() {
     let storageRef = firebase.storage().ref();
     let fileName = selectedFile.name;
@@ -135,27 +133,16 @@ function uploadFile() {
             url: downloadURL,
             type: $('#userSelect').val(),
             caption: fileName,
-            // user: user.uid
             color: dominant,
             colorHex: dominantHex,
             colorRGB: dominantRGB
-            
         }
-
         console.log("the option rn is: " + $('#userSelect').val());
         let user = firebase.auth().currentUser;
-        console.log("user before upload is:" + user.displayName);
-        console.log("google user id: " + user.uid);
         console.log(postData);
         updates['/Posts/' + user.uid + '/' + $('#userSelect').val() + "/" + postKey] = postData;
         firebase.database().ref().update(updates);
-        console.log("uploaded image");
-
-
+        console.log("uploaded image"); // check for TA, HI
         $("#uploadButton").html("Upload Complete ✓");
-
-        // uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
-        //     console.log('File available at', downloadURL);
-        // });
     });
 }

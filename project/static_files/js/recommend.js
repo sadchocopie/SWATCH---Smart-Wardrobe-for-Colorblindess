@@ -1,3 +1,12 @@
+/**
+ * this js file is meant for recommend.html page 
+ */
+
+
+
+/**
+  * get the parameters you have sent to the reccomend page of the clothes
+  */
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -8,6 +17,9 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+/**
+  * convert rgb to hex value helper method
+  */
 let rgbToHex = function (value) {
     let hex = Number(value).toString(16);
     if (hex.length < 2) {
@@ -16,22 +28,27 @@ let rgbToHex = function (value) {
     return hex
 }
 
+
+/**
+ * uses a ajax call into the backend with a urllist of images we need color recommendations
+ * then load the recommended colors.
+ * @param {String} textColorHex 
+ * @param {Array} urlList 
+ */
 function callRecommend(textColorHex, urlList) {
-    console.log("before adjax call", textColorHex);
+    console.log("before ajax call, TextcolorHex:", textColorHex);
     $.ajax({
         type: 'GET',
         url: 'recommendColors/?' + textColorHex,
         dataType: 'json',
         success: (data) => {
             let count = 0;
-            console.log('Recommended colors:', data);
-
+            console.log('Recommended colors from ajax request:', data);
             var listSize;
-            for ( listSize=0; listSize < urlList.length; listSize++) {
+            for (listSize = 0; listSize < urlList.length; listSize++) {
                 $("#articleimg" + listSize).attr('src', urlList[listSize]);
-                $("#articleimg" + listSize).css("display","block");      
+                $("#articleimg" + listSize).css("display", "block");
             }
-
             $("#s0").css('background-color', 'rgb(' + data[0] + ')');
             $("#s1").css('background-color', 'rgb(' + data[1] + ')');
             $("#s2").css('background-color', 'rgb(' + data[2] + ')');
@@ -39,8 +56,6 @@ function callRecommend(textColorHex, urlList) {
             $("#s4").css('background-color', 'rgb(' + data[4] + ')');
             $("#rectext").replaceWith("<h3>Recommendations</h3>");
             $("#loadtext").replaceWith("<h5>Recommended Colors</h5>");
-
-
             data.forEach(c => {
                 const requestURL = 'nearestColor/' + rgbToHex(c[0]) + rgbToHex(c[1]) + rgbToHex(c[2]);
                 console.log('making ajax request to:', requestURL);
@@ -63,7 +78,6 @@ function callRecommend(textColorHex, urlList) {
 
         }
     });
-    console.log("finished recommend");
 }
 
 
@@ -88,6 +102,8 @@ $(document).ready(() => {
         let textColorHex = "";
         console.log(articleList.length);
 
+        // The next couple of loops allow us to get the list of clothes that the user wants recommendations for
+        // we will then call a ajax function to then get the recommended colors.
         for (let i = 0; i < articleList.length; i++) {
             database.ref('Posts/' + googleUser.uid + '/Top/').once('value', (snapshot) => {
                 const allTops = snapshot.val();
@@ -170,86 +186,9 @@ $(document).ready(() => {
                     callRecommend(textColorHex, urlList);
                 }
             }
-
-                   );
+            );
         }
     });
-
-    $('#s0').click(() => {
-        let colorToSearch = $(this).attr('background-color');
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                googleUser = firebase.auth().currentUser;
-                datebase(googleUser);
-            } else {
-                // No user is signed in.
-                console.log("no user logined");
-                window.location.href = "./";
-            }
-            let allArticlesMatch = [];
-            database.ref('Posts/' + googleUser.uid).once('value', (snapshot) => {
-                const allClothes = snapshot.val();
-                // console.log(allClothes);
-                const flattenedAll = [];
-                flattenedAll.push(allClothes['Top']);
-                flattenedAll.push(allClothes['Bottom']);
-                flattenedAll.push(allClothes['Outerwear']);
-
-
-                console.log(flattenedAll);
-
-            });
-        });
-    });
-
-    $('#readButton').click(() => {
-        const requestURL = 'colorCombo/' + $('#nameBox').val();
-        console.log('making ajax request to:', requestURL);
-
-        // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
-        // Using the core $.ajax() method since it's the most flexible.
-        // ($.get() and $.getJSON() are nicer convenience functions)
-        $.ajax({
-            // all URLs are relative to http://localhost:3000/
-            url: requestURL,
-            type: 'GET',
-            dataType: 'json', // this URL returns data in JSON format
-            success: (data) => {
-                console.log('You received some data!', data);
-
-                if (data) {
-                    $('#status').html('Successfully fetched data at URL: ' + requestURL);
-                    $('#jobDiv').html('that color is ' + $('#nameBox').val());
-                    $('#petImage').attr('src', "./images/" + data.pic).attr('width', '300px');
-                    console.log('You received some data!', data.colors);
-                    $('#color1').css('background-color', data.colors[0]);
-                    $('#color1').html(data.colors[0]);
-                    $('#color2').css('background-color', data.colors[1]);
-                    $('#color2').html(data.colors[1]);
-                    $('#color3').css('background-color', data.colors[2]);
-                    $('#color3').html(data.colors[2]);
-                } else {
-                    $('#status').html('Error: could not find color at URL: ' + requestURL);
-                    // clear the display
-                    $('#jobDiv').html('');
-                    $('#petImage').attr('src', '').attr('width', '0px');
-                }
-            },
-        });
-    });
-
-    $('#allUsersButton').click(() => {
-        $.ajax({
-            url: 'colorCombo',
-            type: 'GET',
-            dataType: 'json',
-            success: (data) => {
-                console.log('You received some data!', data);
-                $('#status').html('All colors: ' + data);
-            },
-        });
-    });
-
     // define a generic Ajax error handler:
     // http://api.jquery.com/ajaxerror/
     $(document).ajaxError(() => {

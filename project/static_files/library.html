@@ -63,14 +63,12 @@ style="margin:auto; width: 150px"> Log out</button>
 	<div class="navigation">
 		<div class="container">
 			<div class="row">
-				<a href="./upload.html" class="button"
-					style="background-color: #ffffff;margin-right:10px; width: 150px;">
+				<a href="./upload.html" class="button" style="background-color: #ffffff;margin-right:10px; width: 150px;">
 					Scan</a>
 			</div>
 
 			<div>
-				<button type="button" class="button button-primary u-pull-left" id="deleteButton"
-					onclick="deleteFile()">
+				<button type="button" class="button button-primary u-pull-left" id="deleteButton" onclick="deleteFile()">
 					Delete Selected Images
 				</button>
 				<button type="button" class="button u-pull-right" id="recommendButton" onclick="checkRecommendation()"
@@ -87,34 +85,28 @@ style="margin:auto; width: 150px"> Log out</button>
 
 				<div>
 
-				<h4>{{ msg }}</h4>
-				<button class = "button" id="myBtn">Need Help?</button>
+					<h4>{{ msg }}</h4>
+					<button class="button" id="myBtn">Need Help?</button>
 
-				<!-- The Modal -->
-				<div id="myModal" class="modal">
+					<!-- The Modal -->
+					<div id="myModal" class="modal">
 
- 				 <!-- Modal content -->
- 				 <div class="modal-content">
-    			<span class="close">&times;</span>
-    			<h4>Need Help?</h4>
-    		    <span class="button"
-					style="background-color: #f0f7ff !important;margin-right:10px; width: 150px;">
-					Scan</span>
-    		    <p>Use the Scan button to upload an image of the item you would like to wear!</p>
-    		    <span class="button" id="deleteButton">Delete Selected Images</span>
-    		    <p>Press the Delete Selection button to delete an item from your closet aka library.</p>
-    		    <span class="button" id="recommendButton" style="background-color: #ffffff;margin:auto; width: 240px "> Find Matching Colors</span>
-    		    <p>Use the Find Matching Colors button to explore colors matching the color of your selected item.</p>
-
-
-    			
-
-    			
-  				</div>
-
+						<!-- Modal content -->
+						<div class="modal-content">
+							<span class="close">&times;</span>
+							<h4>Need Help?</h4>
+							<span class="button" style="background-color: #f0f7ff !important;margin-right:10px; width: 150px;">
+								Scan</span>
+							<p>Use the Scan button to upload an image of the item you would like to wear!</p>
+							<span class="button" id="deleteButton">Delete Selected Images</span>
+							<p>Press the Delete Selection button to delete an item from your closet aka library.</p>
+							<span class="button" id="recommendButton" style="background-color: #ffffff;margin:auto; width: 240px ">
+								Find Matching Colors</span>
+							<p>Use the Find Matching Colors button to explore colors matching the color of your selected item.</p>
+						</div>
+					</div>
+					<!-- End of Modal -->
 				</div>
-				<!-- End of Modal -->
-			</div>
 
 				<hr style="height: 2px; width: 100%;" />
 				<p><b>TOP</b></p>
@@ -179,32 +171,28 @@ style="margin:auto; width: 150px"> Log out</button>
 	<script src="./js/colors.js"></script>
 	<script src="./js/loadLibrary.js"></script>
 	<script>
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-	modal.style.display = "none";
-}
-}
-</script>
+		// this is for the help button
+		// Get the modal 
+		var modal = document.getElementById("myModal");
+		// Get the button that opens the modal
+		var btn = document.getElementById("myBtn");
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+		// When the user clicks the button, open the modal 
+		btn.onclick = function () {
+			modal.style.display = "block";
+		}
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function () {
+			modal.style.display = "none";
+		}
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
 
 </body>
 

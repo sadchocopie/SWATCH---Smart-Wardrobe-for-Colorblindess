@@ -1,181 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
 
 
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-        <script src="./js/firebaseInit.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script src="./js/firebaseInit.js"></script>
 
-        <script> // 
-            firebase.auth().onAuthStateChanged(function (user) {
-                if (user) {
-                    let user = firebase.auth().currentUser;
-                    if (user != null) {
-                        let name = user.displayName;
-                        document.getElementById("googleUser").innerHTML = "" + name;
-                        let imgUrl = user.photoURL;
-                        $("#googleImg").attr("src", imgUrl);
-                    }
-                } else {
-                    // No user is signed in.
-                    console.log("No user logged in");
-                    window.location.href = "./";
+    <script> // 
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                let user = firebase.auth().currentUser;
+                if (user != null) {
+                    let name = user.displayName;
+                    document.getElementById("googleUser").innerHTML = "" + name;
+                    let imgUrl = user.photoURL;
+                    $("#googleImg").attr("src", imgUrl);
                 }
-            });
-        </script>
-        <script src="./js/login.js"></script>
+            } else {
+                // No user is signed in.
+                console.log("No user logged in");
+                window.location.href = "./";
+            }
+        });
+    </script>
+    <script src="./js/login.js"></script>
 
-        <!-- Basic Page Needs
+    <!-- Basic Page Needs
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <meta charset="utf-8">
-        <title>Color your wardrobe</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Color your wardrobe</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Mobile Specific Metas
+    <!-- Mobile Specific Metas
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- FONT
+    <!-- FONT
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
 
-        <!-- CSS
+    <!-- CSS
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <link href="./css/bootstrap.min.css" rel="stylesheet">
-        <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
-        <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
-        <link rel="stylesheet" href="./css/custom.css">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/normalize.css">
+    <link rel="stylesheet" href="./css/Skeleton-2.0.4/css/skeleton.css">
+    <link rel="stylesheet" href="./css/custom.css">
 
-        <!-- Scripts
+    <!-- Scripts
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <script src="./js/jquery-3.3.1.min.js"></script>
-        <!--        <script src="./js/image.js"></script> -->
-        <!-- Favicon
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <!-- Favicon
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
-    </head>
+    <!-- <link rel="icon" type="image/png" href="./assets/img/favicon.png"> -->
+</head>
 
-    <body>
+<body>
 
-        <!-- Primary Page Layout
+    <!-- Primary Page Layout
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <div class="top-nav">
+    <div class="top-nav">
+        <div class="container">
             <div class="container">
-                <div class="container">
-                    <div class="row userProfile u-pull-right">
-                        <div class="dropdown">
-                            <div class="dropbtn"><a href="." id="googleUser" class="UserProfile">User012 </a>
-                                <div class="divider" style="width: 2vw; display:inline-block"></div>
-                                <img class="user" id="googleImg" src="./images/userProfile.png"></div>
-                            <div class="dropdown-content">
-                                <p onclick="logout()">Log Out</p>
-                            </div>
+                <div class="row userProfile u-pull-right">
+                    <div class="dropdown">
+                        <div class="dropbtn"><a href="." id="googleUser" class="UserProfile">User012 </a>
+                            <div class="divider" style="width: 2vw; display:inline-block"></div>
+                            <img class="user" id="googleImg" src="./images/userProfile.png">
+                        </div>
+                        <div class="dropdown-content">
+                            <p onclick="logout()">Log Out</p>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="navigation">
-                <div class="container">
-                    <div class="row">
-                        <a href="./index.html" class="button" style="background-color: #ffffff;margin:auto; margin-top: 10px;width: 150px">
-                            Home</a>
+        <div class="navigation">
+            <div class="container">
+                <div class="row">
+                    <a href="./index.html" class="button"
+                        style="background-color: #ffffff;margin:auto; margin-top: 10px;width: 150px">
+                        Home</a>
 
-                        <a href="./library.html" class="button u-pull-right"
-                           style="background-color: #ffffff;margin:auto; margin-top: 10px;width: 150px"> Library </a>
+                    <a href="./library.html" class="button u-pull-right"
+                        style="background-color: #ffffff;margin:auto; margin-top: 10px;width: 150px"> Library </a>
 
-                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="section mainView" style="margin: auto 0">
-                <div class="container">
+        <div class="section mainView" style="margin: auto 0">
+            <div class="container">
 
-                    <div class="row">
-                        <div class="section upload one-half column">
-                            <div class="container">
+                <div class="row">
+                    <div class="section upload one-half column">
+                        <div class="container">
 
-                                <div class="row">
-                                    <h5 style="margin: auto">Upload image of clothing</h5>
-                                </div>
-                                <div class="row">
-                                    <div id="app" class="imgUpload" v-cloak>
-                                        <!-- Vue Conditional Rendering -->
-                                        <div v-if="imageSrc">
-                                            <img id="yourImage" :src="imageSrc" @load="getSwatches" ref="theImage">
-                                        </div>
-                                        <div v-else>
-                                            <div class="u-full-width imagePreview"></div>
-                                        </div>
+                            <div class="row">
+                                <h5 style="margin: auto">Upload image of clothing</h5>
+                            </div>
+                            <div class="row">
+                                <div id="app" class="imgUpload" v-cloak>
+                                    <!-- Vue Conditional Rendering -->
+                                    <div v-if="imageSrc">
+                                        <img id="yourImage" :src="imageSrc" @load="getSwatches" ref="theImage">
+                                    </div>
+                                    <div v-else>
+                                        <div class="u-full-width imagePreview"></div>
+                                    </div>
 
-                                        <label class="u-full-width button button-primary inputWrap" id="uploadFileButton" style="margin-top:20px;">
-                                            <p>Upload File</p>
-                                            <input id="readFileButton" type="file" capture="camera" accept="image/*"
-                                                   @change="gotPic" style="visibility: hidden">
-                                        </label>
+                                    <label class="u-full-width button button-primary inputWrap" id="uploadFileButton"
+                                        style="margin-top:20px;">
+                                        <p>Upload File</p>
+                                        <input id="readFileButton" type="file" capture="camera" accept="image/*"
+                                            @change="gotPic" style="visibility: hidden">
+                                    </label>
 
-                                        <!-- Show swathces of TOP THREE prominent colors -->
-                                        <div id="swatches" style="visibility: hidden">
-                                            <div v-for="swatch in swatches" class="swatch" :style="swatch.style"></div>
-                                        </div>
+                                    <!-- Show swathces of TOP THREE prominent colors -->
+                                    <div id="swatches" style="visibility: hidden">
+                                        <div v-for="swatch in swatches" class="swatch" :style="swatch.style"></div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="section bottom-nav">
-                                    <div class="container">
-                                        <div class="row">
-                                            <label for="addToCategory">Add to Category</label>
+                            <div class="section bottom-nav">
+                                <div class="container">
+                                    <div class="row">
+                                        <label for="addToCategory">Add to Category</label>
 
 
-                                            <select class="u-full-width" id="userSelect">
-                                                <option value="Top">Top</option>
-                                                <option value="Bottom">Bottom</option>
-                                                <option value="Outerwear">Outerwear</option>
-                                                <option value="Other">Other</option>
-                                            </select>
+                                        <select class="u-full-width" id="userSelect">
+                                            <option value="Top">Top</option>
+                                            <option value="Bottom">Bottom</option>
+                                            <option value="Outerwear">Outerwear</option>
+                                            <option value="Other">Other</option>
+                                        </select>
 
-                                            <!--
+                                        <!--
 <input id="typeBox" type="text" size="20" />
 -->
-                                            <button type="button" class="button button-primary" id="uploadButton"
-                                                    onclick="uploadFile()">
-                                                Add to Wardrobe
-                                            </button>
+                                        <button type="button" class="button button-primary" id="uploadButton"
+                                            onclick="uploadFile()">
+                                            Add to Wardrobe
+                                        </button>
 
-                                            <!--
+                                        <!--
 <a href="./library.html" class="button"
 style="background-color: #ffffff;margin:auto"> View Library </a>
 -->
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="section colorCombo one-half column">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="inputRow" style="margin:auto">
-                                        <div class="u-full-width" id="status"></div>
-                                        <div class="u-full-width" id="jobDiv"></div>
+                    <div class="section colorCombo one-half column">
+                        <div class="container">
+                            <div class="row">
+                                <div class="inputRow" style="margin:auto">
+                                    <div class="u-full-width" id="status"></div>
+                                    <div class="u-full-width" id="jobDiv"></div>
 
-                                        <img id="petImage" style="display: inline-block; width: 30vw; min-width: 300px">
-                                        <div class="row">
-                                            <div id="color1" style="height:100px;width:100px"></div>
-                                            <div id="color2" style="height:100px;width:100px"></div>
-                                            <div id="color3" style="height:100px;width:100px"></div>
-                                        </div>
-                                        <div class="row">
-                                            <div id="colorText1" style="height:100px;width:100px"></div>
-                                            <div id="colorText2" style="height:100px;width:100px"></div>
-                                            <div id="colorText3" style="height:100px;width:100px"></div>
-                                        </div>
-
+                                    <img id="petImage" style="display: inline-block; width: 30vw; min-width: 300px">
+                                    <div class="row">
+                                        <div id="color1" style="height:100px;width:100px"></div>
+                                        <div id="color2" style="height:100px;width:100px"></div>
+                                        <div id="color3" style="height:100px;width:100px"></div>
                                     </div>
+                                    <div class="row">
+                                        <div id="colorText1" style="height:100px;width:100px"></div>
+                                        <div id="colorText2" style="height:100px;width:100px"></div>
+                                        <div id="colorText3" style="height:100px;width:100px"></div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -183,23 +184,24 @@ style="background-color: #ffffff;margin:auto"> View Library </a>
                 </div>
             </div>
         </div>
+    </div>
 
 
 
-        <div class="section footer" style="text-align: center;">
-            <div class="container">
-            </div>
+    <div class="section footer" style="text-align: center;">
+        <div class="container">
         </div>
+    </div>
 
-        <!-- End Document
+    <!-- End Document
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
 
-        <!-- Scripts
+    <!-- Scripts
 –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <script type="text/javascript" charset="utf-8" src="./js/color-thief.js"></script>
-        <script src="./js/vue.min.js"></script>
-        <script src="./js/upload.js"></script>
-    </body>
+    <script type="text/javascript" charset="utf-8" src="./js/color-thief.js"></script>
+    <script src="./js/vue.min.js"></script>
+    <script src="./js/upload.js"></script>
+</body>
 
 </html>

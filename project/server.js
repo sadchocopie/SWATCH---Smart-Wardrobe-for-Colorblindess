@@ -1,32 +1,19 @@
 const http = require("http");
 const path = require("path");
 const fs = require("fs");
-
-
 const express = require('express');
 const app = express();
-// Learn more: http://expressjs.com/en/starter/static-files.html
-// To learn more about server routing:
-// Express - Hello world: http://expressjs.com/en/starter/hello-world.html
-// Express - basic routing: http://expressjs.com/en/starter/basic-routing.html
-// Express - routing: https://expressjs.com/en/guide/routing.html
 app.use(express.static('static_files'));
-
-
 const multer = require("multer");
-
 const handleError = (err, res) => {
   res
     .status(500)
     .contentType("text/plain")
     .end("Oops! Something went wrong!");
 };
-
 const upload = multer({
   dest: "/tmp/"
-  // you might also want to set some limits: https://github.com/expressjs/multer#limits
 });
-
 
 app.get('/recommendColors', (req, res) => {
   console.log(req.query.sColors);
@@ -60,16 +47,12 @@ app.get('/recommendColors', (req, res) => {
     }
   }
 
-
-
   var url = "http://colormind.io/api/";
   var data = {
     model: "default",
     input: starterColors
   }
-
   console.log(data);
-
 
   var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
@@ -89,41 +72,29 @@ app.get('/recommendColors', (req, res) => {
   }
 });
 
+// calls the colormind api and only gets one of the images
+// api didn't match with expected output as we expected n+1 colors but got no matter what 5 colors
+// n is the nnumber of inputed colors.
 app.get('/recommendOneColor', (req, res) => {
   console.log(req.query.sColors);
   let starterColors = [];
-
   starterColors = JSON.parse(req.query.sColors);
-
   starterColors.push("N");
-  
-  
-
-
-
   var url = "http://colormind.io/api/";
   var data = {
     model: "default",
     input: starterColors
   }
-
   console.log(data);
-
-
   var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-
   var http = new XMLHttpRequest();
-
   http.open("POST", url, true);
   http.send(JSON.stringify(data));
-
   http.onreadystatechange = function () {
     if (http.readyState == 4 && http.status == 200) {
       var palette = JSON.parse(http.responseText).result;
       console.log(palette);
       res.send(palette);
-
-
     }
   }
 });
@@ -143,35 +114,6 @@ app.get('/nearestColor/:colorHex', (req, res) => {
   );
 
 });
-
-app.post(
-  "/uploadimg",
-  upload.single("file" /* name attribute of <file> element in your form */),
-  (req, res) => {
-    const tempPath = req.file.path;
-    const targetPath = path.join(__dirname, "./uploads/image.png");
-
-    if (path.extname(req.file.originalname).toLowerCase() === ".jpg") {
-      fs.rename(tempPath, targetPath, err => {
-        if (err) return handleError(err, res);
-
-        res
-          .status(200)
-          .contentType("text/plain")
-          .end("File uploaded!");
-      });
-    } else {
-      fs.unlink(tempPath, err => {
-        if (err) return handleError(err, res);
-
-        res
-          .status(403)
-          .contentType("text/plain")
-          .end("Only .png files are allowed!");
-      });
-    }
-  }
-);
 
 // start the server at URL: http://localhost:3000/
 app.listen(3000, () => {
