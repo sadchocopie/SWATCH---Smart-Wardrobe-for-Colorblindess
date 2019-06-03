@@ -54,3 +54,6 @@
 
 ## Google Slide Link
 https://docs.google.com/presentation/d/1BIO2c4QdlDfCsP26bZNVdkx_x5_GScaF4iAQjzAylUY/edit?usp=sharing
+
+## Video Link
+https://drive.google.com/file/d/1wqenJxrDki84NhLAG9Eqr8jFzt6TpKbB/view?fbclid=IwAR38WhUfhUMElPFlUn8ExkVbwZVhKnslMfwak6brtBFT7bUGZnlD_hG-lEQ
