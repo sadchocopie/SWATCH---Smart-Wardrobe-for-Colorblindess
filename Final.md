@@ -53,4 +53,4 @@
 
 
 ## Google Slide Link
-[https://docs.google.com/presentation/d/1BIO2c4QdlDfCsP26bZNVdkx_x5_GScaF4iAQjzAylUY/edit?usp=sharing]
+https://docs.google.com/presentation/d/1BIO2c4QdlDfCsP26bZNVdkx_x5_GScaF4iAQjzAylUY/edit?usp=sharing
