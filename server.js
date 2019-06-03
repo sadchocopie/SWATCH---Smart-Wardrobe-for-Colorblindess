@@ -116,16 +116,16 @@ app.get('/nearestColor/:colorHex', (req, res) => {
 });
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join('./static_files/index.html'));
+  res.sendFile(path.join(__dirname + '.static_files/index.html'));
 });
-app.get('/library.html', function (req, res) {
-  res.sendFile(path.join('./static_files/library.html'));
+app.get('/test.html', function (req, res) {
+  res.sendFile(path.join(__dirname + '/static_files/library.html'));
 });
 app.get('/upload.html', function (req, res) {
-  res.sendFile(path.join('./static_files/upload.html'));
+  res.sendFile(path.join(__dirname + '/static_files/upload.html'));
 });
 app.get('/recommend.html', function (req, res) {
-  res.sendFile(path.join('./static_files/recommend.html'));
+  res.sendFile(path.join(__dirname + '/static_files/recommend.html'));
 });
 
 // start the server at URL: http://localhost:3000/
