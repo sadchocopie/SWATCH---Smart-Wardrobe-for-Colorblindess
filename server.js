@@ -128,6 +128,11 @@ app.get('/recommend.html', function (req, res) {
   res.sendFile(path.join(__dirname + '/static_files/recommend.html'));
 });
 
+var port = process.env.PORT || 8080;
+var server = app.listen(port, function () {
+  console.log("app running on port 8080");
+});
+
 // start the server at URL: http://localhost:3000/
 app.listen(3000, () => {
   console.log('Server started at http://localhost:3000/');
