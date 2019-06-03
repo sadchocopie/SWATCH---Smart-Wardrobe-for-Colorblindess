@@ -133,6 +133,11 @@ var server = app.listen(port, function () {
   console.log("app running on port 8080");
 });
 
+http.createServer(app).listen(app.get('port'), function () {
+  console.log('Express server listening on port ' + app.get('port'));
+});
+
+
 // start the server at URL: http://localhost:3000/
 app.listen(3000, () => {
   console.log('Server started at http://localhost:3000/');
