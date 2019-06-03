@@ -1,3 +1,6 @@
+// this file is the js file that loads the entire frontend and supports the backend of the entire library.html
+// autoloads stuff from database onto the frontend
+
 // template for each clothes
 Vue.component('obj', {
     props: {
@@ -15,6 +18,7 @@ let clothesList_OUTERWEAR = [];
 let clothesList_Other = [];
 
 const database = firebase.database();
+// this is when the user is logged in or not logged in
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         googleUser = firebase.auth().currentUser;
@@ -202,6 +206,7 @@ const app = new Vue({
         selectedArticles: {}
     },
     methods: {
+        // handles the selecting aspect of the library page and grays out the clothes that don't match color wise
         selectObjectType: function (object) {
             console.log("test object selected", object);
             switch (object.type) {
@@ -258,6 +263,7 @@ const app = new Vue({
             console.log('number of things selected', numSelected);
             let rgbArray = Object.values(this.selectedArticles);
             let arrStr = encodeURIComponent(JSON.stringify(rgbArray));
+            // use a ajax request to get the one recommended color to then search for it
             $.ajax({
                 type: 'GET',
                 url: 'recommendOneColor/?sColors=' + arrStr,

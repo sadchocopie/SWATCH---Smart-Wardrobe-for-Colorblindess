@@ -1,5 +1,6 @@
 /**
  * code provided from Google firebase online documenation 
+ * to allow user to login or out of google using firebase
  */
 function googleSignIn() {
     let provider = new firebase.auth.GoogleAuthProvider();

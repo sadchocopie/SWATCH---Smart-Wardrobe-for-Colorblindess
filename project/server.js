@@ -1,3 +1,7 @@
+// Backend of the entire app, we use this file to have 3 ajax requests
+// First ajax is the recommend Colors for the recommend.html page
+// second ajax is the automatic recommendation for the library.html
+// third uses ntc to get the name of the color on the upload page and is uploaded to database
 const http = require("http");
 const path = require("path");
 const fs = require("fs");

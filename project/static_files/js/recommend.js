@@ -1,11 +1,17 @@
 /**
  * this js file is meant for recommend.html page 
+ * This code that allows us to get the IDs of the 
+ * images from the url parameters, then searches from the 
+ * google database for that IDs. This code then gets the hex value 
+ * of the image in order to use the colormind API via an ajax request to the 
+ * backend to get a list of recommended color palettes for the user.
  */
 
 
 
 /**
   * get the parameters you have sent to the reccomend page of the clothes
+  * gets the ids basically to be used later
   */
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
@@ -103,7 +109,7 @@ $(document).ready(() => {
         console.log(articleList.length);
 
         // The next couple of loops allow us to get the list of clothes that the user wants recommendations for
-        // we will then call a ajax function to then get the recommended colors.
+        // we will then call a ajax function to then get the recommended colors via the id.
         for (let i = 0; i < articleList.length; i++) {
             database.ref('Posts/' + googleUser.uid + '/Top/').once('value', (snapshot) => {
                 const allTops = snapshot.val();

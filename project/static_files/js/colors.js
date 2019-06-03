@@ -1,6 +1,7 @@
 // source: https://stackoverflow.com/questions/13586999/color-difference-similarity-between-two-values-with-js
 // Last one with 0 upvotes as of june 1 2019
 // og github source: https://github.com/antimatter15/rgb-lab
+// allows us to determine what colors match the color recommendation
 function deltaE(rgbA, rgbB) {
   let labA = rgb2lab(rgbA);
   let labB = rgb2lab(rgbB);

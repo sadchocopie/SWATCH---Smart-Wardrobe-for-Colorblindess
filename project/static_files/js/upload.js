@@ -1,3 +1,11 @@
+/*
+code to upload images to the firebase database. This also gets the 3 most dominat colors of the image
+once you upload an image and then uses ajax request of nearest color to then get the name of that color.
+Then if you add to database it first stores it onto the firebase storage then on the 
+real time database we then have a reference to the stored image and several other data that help us 
+or other parts like hex and color/. This also displays some of the colors and the dominant color for the user.
+*/
+
 let selectedFile = "";
 let rgbToHex = function (value) {
     let hex = Number(value).toString(16);
@@ -15,6 +23,7 @@ const app = new Vue({
         }
     },
     methods: {
+
         gotPic(event) {
             this.imageSrc = URL.createObjectURL(event.target.files[0]);
             selectedFile = event.target.files[0];

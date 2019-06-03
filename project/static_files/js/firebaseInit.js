@@ -1,4 +1,5 @@
 // Your web app's Firebase configuration
+// Yeah this is really unsafe we know
 var firebaseConfig = {
     apiKey: "AIzaSyB_DRCJ9aj0qMJ_4UHIh2JMjXgohGdmhEY",
     authDomain: "cogs121-color-blind.firebaseapp.com",
