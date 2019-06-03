@@ -37,8 +37,8 @@
 ##### CSS: 
 **Custom.css** - code to set style, color, and position for front end user interface elements, and Vue.js components. 
 ##### HTML: 
-**Index.html** - HTML page for setting up app’s login page with google sign in (for firebase) and click functions for sign in button on the page.
-**Recommend.html** - HTML page for setting up dynamic loading of selected articles of clothing, and ajax call for posting and displaying matching colors extracted using external web API. 	
+**Index.html** - HTML page for setting up app’s login page with google sign in (for firebase) and click functions for sign in button on the page.<br/>
+**Recommend.html** - HTML page for setting up dynamic loading of selected articles of clothing, and ajax call for posting and displaying matching colors extracted using external web API.<br/> 	
 **Library.html** - HTML page for displaying user’s personal library or wardrobe. Page contains four buttons each with a click function for scanning items, deleting items in the library, finding matching colors and displaying the pop up box for help. The page loads uploaded items dynamically, set up by Vue.js. Selected item on the page displays in a whitebox so do items with colors that matches. Items that don’t match are greyed out.
 **Upload.html** - HTML page for uploading images. Top of the page contains two buttons with click functions, to route to the homepage and library page. This page also sets up the layout for uploading images from user’s laptop or phone by clicking the upload button, and identifying the closest primary colors in the picture uploaded. The identified closest primary colors will be displayed on the right of the upload frame. After the picture is uploaded and colors are identified, users can select clothing category from the drop down menu, and click the button to add to their wardrobe.
 ##### JS:
