@@ -1,5 +1,7 @@
 // this file is the js file that loads the entire frontend and supports the backend of the entire library.html
-// autoloads stuff from database onto the frontend
+// autoloads stuff from database onto the frontend. 
+// The algorithms for deleting items and filtering matching items are defined here.
+
 
 // template for each clothes
 Vue.component('obj', {
