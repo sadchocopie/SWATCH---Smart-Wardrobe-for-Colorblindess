@@ -118,7 +118,7 @@ app.get('/nearestColor/:colorHex', (req, res) => {
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '.static_files/index.html'));
 });
-app.get('/test.html', function (req, res) {
+app.get('/library.html', function (req, res) {
   res.sendFile(path.join(__dirname + '/static_files/library.html'));
 });
 app.get('/upload.html', function (req, res) {
