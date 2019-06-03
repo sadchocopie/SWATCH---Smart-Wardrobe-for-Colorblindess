@@ -114,8 +114,11 @@ app.get('/nearestColor/:colorHex', (req, res) => {
   );
 
 });
-var index = require('./static_files/index.html');
-app.get('/', index);
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join('./static_files/index.html'));
+});
+
 
 // start the server at URL: http://localhost:3000/
 app.listen(3000, () => {
