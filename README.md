@@ -3,6 +3,7 @@
 ### Youtube Video:
 [![logo](http://img.youtube.com/vi/Ylq1OyGcsDc/0.jpg)](http://www.youtube.com/watch?v=Ylq1OyGcsDc "Swatch Logo")
 
+
 # Cogs 121 Project Spring 2019
 ## Professor: Philip Guo
 ### Class Website: http://courses.pgbovine.net/cogs121/index.htm
@@ -14,7 +15,7 @@
 - [Harriet Wang](https://github.com/sadchocopie)
 
 ## Project Proposal
-We desigedn an application to assist people with color blindness by helping them choose outfits through a web app that uses a smart color matching algorithm to correctly identify colors and recommending aesthetically pleasing color combination from our database that match well with the color of the clothing. 
+We designed an application to assist people with color blindness by helping them choose outfits through a web app that uses a smart color matching algorithm to correctly identify colors and recommending aesthetically pleasing color combination from our database that match well with the color of the clothing. 
 
 Our target user population is people with (various degrees of) color blindness. We recognize there are people around us who are color blind and struggle to pick out outfits on a daily basis. Some of them would have to ask their friends and parents to assist them in matching their outfit before going out.
 
