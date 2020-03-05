@@ -16,6 +16,14 @@ Our target user population is people with (various degrees of) color blindness. 
 We were inspired by this story and came up with the idea of creating an outfit assistance specifically targeted at color blind users. This app would help save our target users the trouble of color-coordinating outfits. Since none of our team members are color blind, our app idea fits the project theme of designing for people very different from ourselves.
 
 
+Storyboard 1: ![](./milestone-Images/storyboard1.jpg)
+
+Storyboard 2: ![](./milestone-Images/storyboard2.jpg)
+
+Paper prototype 1: ![Paper prototype 1](./milestone-Images/Paper1.JPEG)
+
+Paper prototype 2: ![Paper prototype 2](./milestone-Images/Paper2.JPEG)
+
 
 ### Active link to our app: https://swatch-cogs121.herokuapp.com/
 ### Youtube Video:
