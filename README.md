@@ -1,3 +1,8 @@
+
+### Active link to our app: https://swatch-cogs121.herokuapp.com/
+### Youtube Video:
+[![logo](http://img.youtube.com/vi/Ylq1OyGcsDc/0.jpg)](http://www.youtube.com/watch?v=Ylq1OyGcsDc "Swatch Logo")
+
 # Cogs 121 Project Spring 2019
 ## Professor: Philip Guo
 ### Class Website: http://courses.pgbovine.net/cogs121/index.htm
@@ -18,13 +23,3 @@ We were inspired by this story and came up with the idea of creating an outfit a
 
 Storyboard 1: ![](./milestone-Images/storyboard1.jpg)
 
-Storyboard 2: ![](./milestone-Images/storyboard2.jpg)
-
-Paper prototype 1: ![Paper prototype 1](./milestone-Images/Paper1.JPEG)
-
-Paper prototype 2: ![Paper prototype 2](./milestone-Images/Paper2.JPEG)
-
-
-### Active link to our app: https://swatch-cogs121.herokuapp.com/
-### Youtube Video:
-[![logo](http://img.youtube.com/vi/Ylq1OyGcsDc/0.jpg)](http://www.youtube.com/watch?v=Ylq1OyGcsDc "Swatch Logo")
